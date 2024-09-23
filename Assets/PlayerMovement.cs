@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    /*접근 지정자 or 접근 제한자
+    public , private, protected 공부해오기
+
+    유니티 물리 rigidbody2D
+    Body Type에 다이나믹 키네마틱 스테틱 차이 알아오기 */
     public float moveSpeed = 5f;
     public float rollSpeed = 10f;    // 구르기 시 속도
     public float rollDuration = 0.5f; // 구르기 지속 시간
