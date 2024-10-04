@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class LongRangeEnemy : MonoBehaviour
 {
-    public float speed; // Àû ÀÌµ¿ ¼Óµµ
-    public Rigidbody2D player;
-    public float stopDistance; // ÇÃ·¹ÀÌ¾î¿Í ¸ØÃß´Â °Å¸®
+    [SerializeField]
+    private float speed; // ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½Óµï¿½
+    [SerializeField]
+    private Rigidbody2D player;
+    public float stopDistance; // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½ï¿½ï¿½ß´ï¿½ ï¿½Å¸ï¿½
     public GameObject projectilePrefab;
     public Transform firePoint;
-    public float fireRate = 2f; // ¹ß»ç °£°Ý
+    public float fireRate = 2f; // ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½
     public float nextFireTime;
-    public float projectileSpeed = 10f; // Åõ»çÃ¼ ¼Óµµ¸¦ ¼³Á¤ÇÒ º¯¼ö
+    public float projectileSpeed = 10f; // ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     bool isLive = true;
-    Rigidbody2D enemy;
+    private Rigidbody2D enemy;
 
     void Awake()
     {
@@ -26,34 +28,34 @@ public class LongRangeEnemy : MonoBehaviour
         if (!isLive)
             return;
 
-        // ÀûÀÌ ÇÃ·¹ÀÌ¾î¸¦ ÇâÇØ ÀÌµ¿
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
         Vector2 dirVec = player.position - enemy.position;
         float distance = dirVec.magnitude;
 
-        // ÇÃ·¹ÀÌ¾î¿Í ÀÏÁ¤ °Å¸® ÀÌ»óÀÏ ¶§¸¸ ÀÌµ¿
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
         if (distance > stopDistance)
         {
             Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
             enemy.MovePosition(enemy.position + nextVec);
         }
 
-        // ¹ß»ç °£°Ý°ú ÇÃ·¹ÀÌ¾î¿ÍÀÇ °Å¸®¿¡ µû¶ó Åõ»çÃ¼ ¹ß»ç
+        // ï¿½ß»ï¿½ ï¿½ï¿½ï¿½Ý°ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½ß»ï¿½
         if (Time.time >= nextFireTime && distance <= stopDistance)
         {
             Shoot();
             nextFireTime = Time.time + 1f / fireRate;
         }
 
-        // ÀûÀÇ ¼Óµµ¸¦ 0À¸·Î °íÁ¤
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         enemy.velocity = Vector2.zero;
     }
 
     void Shoot()
     {
-        // Åõ»çÃ¼ ÇÁ¸®ÆÕ »ý¼º
+        // ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
 
-        // Åõ»çÃ¼ÀÇ ¼Óµµ¿Í ¹æÇâ ¼³Á¤
+        // ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Projectile projectileScript = projectile.GetComponent<Projectile>();
         if (projectileScript != null)
         {
