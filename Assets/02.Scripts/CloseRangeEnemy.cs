@@ -24,7 +24,7 @@ public class CloseRangeEnemy : MonoBehaviour
         Vector2 dirVec = player.position - enemy.position;
         float distance = dirVec.magnitude;
 
-        // 거리가 최소 거리보다 크면 이동
+        // ????? ??? ??????? ??? ???
         if (distance > stopDistance)
         {
             Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
