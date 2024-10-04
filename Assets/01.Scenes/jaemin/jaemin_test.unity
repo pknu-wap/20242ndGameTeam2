@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 23013723}
   - component: {fileID: 23013722}
   - component: {fileID: 23013721}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: rock (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -951,7 +951,7 @@ GameObject:
   - component: {fileID: 438801315}
   m_Layer: 6
   m_Name: enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1144,7 +1144,7 @@ GameObject:
   - component: {fileID: 538678614}
   - component: {fileID: 538678613}
   - component: {fileID: 538678612}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1516,7 +1516,7 @@ GameObject:
   - component: {fileID: 800253325}
   - component: {fileID: 800253324}
   - component: {fileID: 800253323}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: rock (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1809,7 +1809,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.75, y: 0.38}
   m_AnchorMax: {x: 0.85, y: 0.5}
-  m_AnchoredPosition: {x: -1.2000122, y: -2.100006}
+  m_AnchoredPosition: {x: -1.1999512, y: -2.100006}
   m_SizeDelta: {x: -34, y: -13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &893580460
@@ -2229,9 +2229,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 2394273297595163384, guid: 8437e252f82996946bda6b7babe5ddfe, type: 3}
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 1069843842}
   bulletSpeed: 10
-  attackRange: 5
+  attackRange: 8
   attackCooldown: 1
 --- !u!1 &1091982179
 GameObject:
@@ -2462,7 +2462,7 @@ GameObject:
   - component: {fileID: 1147811292}
   - component: {fileID: 1147811291}
   - component: {fileID: 1147811290}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: rock (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3130,7 +3130,7 @@ GameObject:
   - component: {fileID: 2085355890}
   - component: {fileID: 2085355889}
   - component: {fileID: 2085355888}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: rock (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
