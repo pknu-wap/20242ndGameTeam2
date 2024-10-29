@@ -6,10 +6,10 @@ public class LongRangeEnemy : MonoBehaviour
 {
     public float speed; // 적 이동 속도
     public Rigidbody2D player;
-    public float stopDistance; // 플레이어와 멈추는 거리
+    public float stopDistance; // 공격범위
     public GameObject projectilePrefab;
     public Transform firePoint;
-    public float fireRate = 2f; // 발사 간격
+    public float fireRate; // 발사 간격
     public float nextFireTime;
     public float projectileSpeed = 10f; // 투사체 속도를 설정할 변수
 
