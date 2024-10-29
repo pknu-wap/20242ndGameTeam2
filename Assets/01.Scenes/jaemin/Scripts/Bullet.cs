@@ -8,5 +8,9 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        else if (hitInfo.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

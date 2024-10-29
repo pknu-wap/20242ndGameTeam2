@@ -133,9 +133,9 @@ GameObject:
   - component: {fileID: 23013723}
   - component: {fileID: 23013722}
   - component: {fileID: 23013721}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rock (6)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -272,9 +272,9 @@ GameObject:
   - component: {fileID: 71665752}
   - component: {fileID: 71665751}
   - component: {fileID: 71665750}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall3
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -552,9 +552,9 @@ GameObject:
   - component: {fileID: 316584797}
   - component: {fileID: 316584796}
   - component: {fileID: 316584795}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall4
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1031,9 +1031,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.5943396, g: 0.1485849, b: 0.1485849, a: 1}
+  m_Color: {r: 0.6037736, g: 0.40726238, b: 0.40726238, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1052,8 +1052,8 @@ Transform:
   m_GameObject: {fileID: 438801314}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.59, y: -1.59, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -8.3, y: -1.85, z: 0}
+  m_LocalScale: {x: 0.6423, y: 0.5367, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1144,9 +1144,9 @@ GameObject:
   - component: {fileID: 538678614}
   - component: {fileID: 538678613}
   - component: {fileID: 538678612}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rock
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1386,9 +1386,9 @@ GameObject:
   - component: {fileID: 641036447}
   - component: {fileID: 641036446}
   - component: {fileID: 641036445}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1505,6 +1505,126 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1550393163}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &682707636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 682707639}
+  - component: {fileID: 682707638}
+  - component: {fileID: 682707637}
+  m_Layer: 6
+  m_Name: enemy (1)
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!70 &682707637
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682707636}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
+--- !u!212 &682707638
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682707636}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 3
+  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Color: {r: 0.6037736, g: 0.40726238, b: 0.40726238, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &682707639
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682707636}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.71, y: -6.1, z: 0}
+  m_LocalScale: {x: 0.6423, y: 0.5367, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &800253322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1516,9 +1636,9 @@ GameObject:
   - component: {fileID: 800253325}
   - component: {fileID: 800253324}
   - component: {fileID: 800253323}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rock (8)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1636,7 +1756,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.1693352, y: -2.3855047}
+  m_AnchoredPosition: {x: -2.35, y: -2.93}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &886082270 stripped
@@ -1905,9 +2025,9 @@ GameObject:
   - component: {fileID: 902474449}
   - component: {fileID: 902474448}
   - component: {fileID: 902474447}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: rock (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2025,7 +2145,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8.830665, y: -2.3855047}
+  m_AnchoredPosition: {x: -9.78, y: -0.72}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1069843839
@@ -2039,10 +2159,11 @@ GameObject:
   - component: {fileID: 1069843842}
   - component: {fileID: 1069843841}
   - component: {fileID: 1069843840}
-  - component: {fileID: 1069843843}
   - component: {fileID: 1069843844}
   - component: {fileID: 1069843845}
   - component: {fileID: 1069843846}
+  - component: {fileID: 1069843847}
+  - component: {fileID: 1069843848}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2060,7 +2181,7 @@ Animator:
   m_GameObject: {fileID: 1069843839}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9a1ad0e17691e8545b6279a190756fb8, type: 2}
+  m_Controller: {fileID: 9100000, guid: 861462749de6ba94989a0b917f761f9a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2112,7 +2233,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 901639f1dddd7b04aa3c943786d274d5, type: 3}
+  m_Sprite: {fileID: 2008164196, guid: 99a24620d31e5ce4e823c32d11e17c2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2132,47 +2253,12 @@ Transform:
   m_GameObject: {fileID: 1069843839}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04, y: 4.79, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalPosition: {x: 0.2357, y: 3.5933, z: 0}
+  m_LocalScale: {x: 1.35144, y: 1.2620801, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &1069843843
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1069843839}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.033016875, y: -1.62}
-  m_Size: {x: 1.28, y: 1.2666155}
-  m_Direction: 0
 --- !u!114 &1069843844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2185,10 +2271,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25ef238dc4642c74097d2968afa4294a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  rollSpeed: 10
+  moveSpeed: 7
   rollDuration: 0.5
   joystick: {fileID: 886082270}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  checkRadius: 0.3
+  checkOffset: {x: 0.2, y: 0.2}
 --- !u!50 &1069843845
 Rigidbody2D:
   serializedVersion: 4
@@ -2231,8 +2321,60 @@ MonoBehaviour:
   bullet: {fileID: 2394273297595163384, guid: 8437e252f82996946bda6b7babe5ddfe, type: 3}
   firePoint: {fileID: 1069843842}
   bulletSpeed: 10
-  attackRange: 8
-  attackCooldown: 1
+  attackRange: 9
+  attackCooldown: 0.8
+--- !u!114 &1069843847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069843839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd33039a6417ea445898d1e56839fc55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scanRange: 9
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  nearestTarget: {fileID: 0}
+--- !u!70 &1069843848
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069843839}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 1.1111112}
+  m_Direction: 0
 --- !u!1 &1091982179
 GameObject:
   m_ObjectHideFlags: 0
@@ -2462,9 +2604,9 @@ GameObject:
   - component: {fileID: 1147811292}
   - component: {fileID: 1147811291}
   - component: {fileID: 1147811290}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rock (4)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2498,7 +2640,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2582,7 +2724,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.8306646, y: 2.6144953}
+  m_AnchoredPosition: {x: -5.33, y: 1.67}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1462707138
@@ -2996,9 +3138,9 @@ GameObject:
   - component: {fileID: 1896649196}
   - component: {fileID: 1896649195}
   - component: {fileID: 1896649194}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: rock (7)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3116,7 +3258,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.8306646, y: -7.3855047}
+  m_AnchoredPosition: {x: -5.41, y: -8.81}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2085355887
@@ -3130,9 +3272,9 @@ GameObject:
   - component: {fileID: 2085355890}
   - component: {fileID: 2085355889}
   - component: {fileID: 2085355888}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rock (5)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3538,9 +3680,9 @@ GameObject:
   - component: {fileID: 2144042538}
   - component: {fileID: 2144042537}
   - component: {fileID: 2144042536}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall2
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3668,3 +3810,4 @@ SceneRoots:
   - {fileID: 624679286}
   - {fileID: 1550393163}
   - {fileID: 438801317}
+  - {fileID: 682707639}
