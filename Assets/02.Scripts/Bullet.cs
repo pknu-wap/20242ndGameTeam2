@@ -8,11 +8,14 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
+        // 각 적들마다 알아서 데미지 주기
         BaseEnemy enemy = hitInfo.GetComponent<BaseEnemy>();
         if (enemy != null)
         {
+            Debug.Log("한방");
             enemy.TakeDamage(baseDamage);
         }
+
         if(hitInfo.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             Destroy(gameObject);

@@ -17,8 +17,9 @@ public class LongRangeEnemy : BaseEnemy
     bool isLive = true;
     Rigidbody2D enemy;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         enemy = GetComponent<Rigidbody2D>();
         damageMultiplier = 1.0f;
     }

@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class LongRangeNonTargeting : MonoBehaviour
 {
-    public int damage;
+    public float damage;
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        BaseEnemy enemy = other.GetComponent<BaseEnemy>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(damage);
+        }
+
         if (!other.CompareTag("Player"))
         {
             Destroy(gameObject);

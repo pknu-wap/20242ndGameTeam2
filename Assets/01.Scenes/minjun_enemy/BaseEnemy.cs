@@ -1,15 +1,16 @@
 using UnityEngine;
 
-public class BaseEnemy : MonoBehaviour
+public abstract class BaseEnemy : MonoBehaviour
 {
     public float maxHealth = 100f;
-    protected float currentHealth;
+   [SerializeField] protected float currentHealth;
 
     // 무기에 따라 다르게 적용할 수 있는 데미지 배율
     public float damageMultiplier = 1.0f;
 
-    void Awake()
+    protected virtual void Awake()
     {
+        Debug.Log("Awake 들어감");
         currentHealth = maxHealth;
     }
 
@@ -21,6 +22,7 @@ public class BaseEnemy : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            Debug.Log("체력 0 이하");
             Die();
         }
     }

@@ -11,6 +11,7 @@ public class RushEnemy : BaseEnemy
     [SerializeField] private float waitAfterChargeTime; // ���� �� ��� �ð�
     [SerializeField] private Rigidbody2D player;
     [SerializeField] private GameObject incomingAlertSign; // IncomingAlertSign ������
+    [SerializeField] private int damageAmount = 1;
 
     private bool isLive = true; // ����ִ��� ����
     private bool isCharging = false; // ���� ������ ����
@@ -21,8 +22,9 @@ public class RushEnemy : BaseEnemy
     private Vector2 chargeDirection; // ���� ����
     private GameObject alert; // ��� ������Ʈ
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         enemy = GetComponent<Rigidbody2D>();
         damageMultiplier = 1.0f;
     }
@@ -116,6 +118,5 @@ public class RushEnemy : BaseEnemy
     {
         base.Die();
         // 추가적인 사망 효과 구현
-        Debug.Log("EnemyType1 사망 시 특별한 효과 발생!");
     }
 }

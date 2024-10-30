@@ -161,6 +161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8fac41589cf09c449b9d5cffdbebf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 30
+  currentHealth: 0
+  damageMultiplier: 1
   speed: 5
   stopDistance: 5
   chargeSpeed: 20
@@ -168,3 +171,4 @@ MonoBehaviour:
   waitAfterChargeTime: 0
   player: {fileID: 0}
   incomingAlertSign: {fileID: 0}
+  isCollision: 0

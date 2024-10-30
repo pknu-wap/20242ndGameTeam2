@@ -6,7 +6,11 @@ public class PlayerManager : MonoBehaviour
 {
     public static int maxHealth = 6; // �ִ� ü��
     public int currentHealth; // ���� ü��
+
+    //쓸일 없으면 삭제.
     public int attackPower = 10; // ���ݷ�
+    
+    
     public GameObject[] Hp = new GameObject[maxHealth];
     public GameObject player;
 

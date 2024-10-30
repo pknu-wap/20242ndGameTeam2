@@ -161,6 +161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ff5edee326ee34eacaf32834490ec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 30
+  currentHealth: 0
+  damageMultiplier: 1
   speed: 1.5
   player: {fileID: 0}
   stopDistance: 1
