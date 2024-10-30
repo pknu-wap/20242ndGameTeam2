@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float speed; // Åõ»çÃ¼ ¼Óµµ
+    public float speed; // ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½Óµï¿½
     public Vector2 direction;
     public float projectileLifeTime = 3f;
-    public int damageAmount = 10;
+    public int damageAmount = 1;
 
     void Start()
     {
@@ -16,29 +16,34 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
-        // ¹æÇâ¿¡ ¼Óµµ¿Í Time.deltaTimeÀ» °öÇØ Åõ»çÃ¼ ÀÌµ¿
+        // ï¿½ï¿½ï¿½â¿¡ ï¿½Óµï¿½ï¿½ï¿½ Time.deltaTimeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½Ìµï¿½
         transform.position += (Vector3)direction * speed * Time.deltaTime;
 
-        // Åõ»çÃ¼°¡ ÀÏÁ¤ °Å¸® ÀÌ»ó ¸Ö¾îÁö¸é ÆÄ±«
+        // ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½Ì»ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ä±ï¿½
         if (transform.position.magnitude > 50f)
         {
             Destroy(gameObject);
         }
     }
 
-    // Æ®¸®°Å Ãæµ¹ °¨Áö
+    // Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            // ÇÃ·¹ÀÌ¾îÀÇ PlayerManager¸¦ °¡Á®¿Í¼­ µ¥¹ÌÁö ÁÖ±â
+            // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ PlayerManagerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½
             PlayerManager playerManager = other.GetComponent<PlayerManager>();
             if (playerManager != null)
             {
-                playerManager.TakeDamage(damageAmount, "Åõ»çÃ¼ °ø°Ý");
+                playerManager.TakeDamage(damageAmount, "ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½");
             }
 
-            Destroy(gameObject); // Ãæµ¹ ÈÄ Åõ»çÃ¼ ÆÄ±«
+            Destroy(gameObject); // ï¿½æµ¹ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½Ä±ï¿½
+        }
+
+        else if(other.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        {
+            Destroy(gameObject);
         }
     }
 }

@@ -4,38 +4,42 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public int maxHealth = 100; // ÃÖ´ë Ã¼·Â
-    public int currentHealth; // ÇöÀç Ã¼·Â
-    public int attackPower = 10; // °ø°Ý·Â
+    public int maxHealth = 6; // ï¿½Ö´ï¿½ Ã¼ï¿½ï¿½
+    public int currentHealth; // ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½
+    public int attackPower = 10; // ï¿½ï¿½ï¿½Ý·ï¿½
 
     void Start()
     {
-        currentHealth = maxHealth; // ÇöÀç Ã¼·ÂÀ» ÃÖ´ë Ã¼·ÂÀ¸·Î ÃÊ±âÈ­
+        currentHealth = maxHealth; // ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
     }
 
-    // ÇÇÇØ¸¦ ÀÔ´Â ¸Þ¼­µå
+    // ï¿½ï¿½ï¿½Ø¸ï¿½ ï¿½Ô´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     public void TakeDamage(int damage, string damageSource)
     {
         currentHealth -= damage;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // ÇöÀç Ã¼·ÂÀÌ 0 ÀÌÇÏ·Î´Â ¸ø ¶³¾îÁö°Ô maxHealthº¸´Ù Ä¿Áú ¼ö ¾øµµ·Ï Å¬·¥ÇÁ
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ 0 ï¿½ï¿½ï¿½Ï·Î´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ maxHealthï¿½ï¿½ï¿½ï¿½ Ä¿ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 
         if (currentHealth <= 0)
         {
-            Die(); // Ã¼·ÂÀÌ 0 ÀÌÇÏ°¡ µÇ¸é »ç¸Á
+            Die(); // Ã¼ï¿½ï¿½ï¿½ï¿½ 0 ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½
         }
     }
 
-    // »ç¸Á Ã³¸® ¸Þ¼­µå
+    // ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     private void Die()
     {
-        Debug.Log("ÇÃ·¹ÀÌ¾î »ç¸Á");
-        // »ç¸Á ½Ã Ã³¸®ÇÒ ·ÎÁ÷ (¿¹: °ÔÀÓ ¿À¹ö È­¸é Ç¥½Ã µî)
+        Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½");
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ Ç¥ï¿½ï¿½ ï¿½ï¿½)
     }
 
-    // °ø°Ý ¸Þ¼­µå (ÇÊ¿äÇÑ °æ¿ì)
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ (ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½)
     public void Attack(GameObject target)
     {
-        // °ø°Ý ´ë»ó¿¡ ÇÇÇØ¸¦ ÀÔÈ÷´Â ·ÎÁ÷ ±¸Çö
-        // ¿¹: target.GetComponent<Enemy>().TakeDamage(attackPower);
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // ï¿½ï¿½: target.GetComponent<Enemy>().TakeDamage(attackPower);
+    }
+
+    void Update() {
+        Debug.Log("now health : " +  currentHealth);
     }
 }

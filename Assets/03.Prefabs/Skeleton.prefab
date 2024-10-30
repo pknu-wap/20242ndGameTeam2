@@ -198,7 +198,7 @@ MonoBehaviour:
   stopDistance: 5
   projectilePrefab: {fileID: 5604997419782537581, guid: 8582efe1cee592e4db1e3aed878bca14, type: 3}
   firePoint: {fileID: 8540474780502713692}
-  fireRate: 2
+  fireRate: 0.5
   nextFireTime: 0
-  projectileSpeed: 10
-  damageAmount: 10
+  projectileSpeed: 7
+  damageAmount: 1

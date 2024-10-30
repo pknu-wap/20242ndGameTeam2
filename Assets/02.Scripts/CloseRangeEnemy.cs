@@ -7,9 +7,9 @@ public class CloseRangeEnemy : MonoBehaviour
     public float speed;
     public Rigidbody2D player;
     public float stopDistance;
-    public int damageAmount = 10; // ÇÃ·¹ÀÌ¾î¿¡°Ô ÁÙ µ¥¹ÌÁö
-    public float damageInterval = 1f; // µ¥¹ÌÁö¸¦ ÁÖ´Â °£°Ý
-    private float nextDamageTime; // ´ÙÀ½ µ¥¹ÌÁö¸¦ ÁÖ´Â ½Ã°£
+    public int damageAmount = 1; // ï¿½Ã·ï¿½ï¿½Ì¾î¿¡ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public float damageInterval = 1f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
+    private float nextDamageTime; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ã°ï¿½
 
     bool isLive = true;
 
@@ -26,31 +26,31 @@ public class CloseRangeEnemy : MonoBehaviour
         Vector2 dirVec = player.position - enemy.position;
         float distance = dirVec.magnitude;
 
-        // °Å¸®°¡ ÃÖ¼Ò °Å¸®º¸´Ù Å©¸é ÀÌµ¿
+        // ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½Ìµï¿½
         if (distance > stopDistance)
         {
             Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
             enemy.MovePosition(enemy.position + nextVec);
         }
-        // ÇÃ·¹ÀÌ¾î¿Í Á¢ÃË ½Ã µ¥¹ÌÁö ÁÖ±â
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½
         else
         {
             if (Time.time >= nextDamageTime)
             {
                 TakeDamage();
-                nextDamageTime = Time.time + damageInterval; // ´ÙÀ½ µ¥¹ÌÁö¸¦ ÁÖ´Â ½Ã°£ ¼³Á¤
+                nextDamageTime = Time.time + damageInterval; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
             }
         }
 
         enemy.velocity = Vector2.zero;
     }
-    // ÇÃ·¹ÀÌ¾î¿¡°Ô µ¥¹ÌÁö ÁÖ±â
+    // ï¿½Ã·ï¿½ï¿½Ì¾î¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½
     private void TakeDamage()
     {
         PlayerManager playerManager = player.GetComponent<PlayerManager>();
         if (playerManager != null)
         {
-            playerManager.TakeDamage(damageAmount, "±ÙÁ¢ ÀûÀÇ °ø°Ý");
+            playerManager.TakeDamage(damageAmount, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
         }
     }
 }

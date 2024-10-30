@@ -14,13 +14,5 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        /*if (hitInfo.CompareTag("Enemy"))
-        {
-            Destroy(gameObject);
-        }
-        else if (hitInfo.CompareTag("Wall"))
-        {
-            Destroy(gameObject);
-        }*/
     }
 }
