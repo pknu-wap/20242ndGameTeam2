@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Scanner : MonoBehaviour
 {
-    public float scanRange;     //¹ÝÁö¸§
+        public float scanRange;     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public LayerMask targetLayer;
     public RaycastHit2D[] targets;
     public Transform nearestTarget;
@@ -34,6 +34,5 @@ public class Scanner : MonoBehaviour
         }
 
         return result;
-
     }
 }

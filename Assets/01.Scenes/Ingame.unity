@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 23013723}
   - component: {fileID: 23013722}
   - component: {fileID: 23013721}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: rock (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 71665752}
   - component: {fileID: 71665751}
   - component: {fileID: 71665750}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 316584797}
   - component: {fileID: 316584796}
   - component: {fileID: 316584795}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1021,6 +1021,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -604269435205051386, guid: 8eab877ad724b3041b76b51d03019a61, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1069843845}
     - target: {fileID: 544760327145010603, guid: 8eab877ad724b3041b76b51d03019a61, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.91
@@ -1081,7 +1085,7 @@ GameObject:
   - component: {fileID: 538678614}
   - component: {fileID: 538678613}
   - component: {fileID: 538678612}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1323,7 +1327,7 @@ GameObject:
   - component: {fileID: 641036447}
   - component: {fileID: 641036446}
   - component: {fileID: 641036445}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1453,7 +1457,7 @@ GameObject:
   - component: {fileID: 689013245}
   - component: {fileID: 689013244}
   - component: {fileID: 689013243}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: rock (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1633,7 +1637,7 @@ GameObject:
   - component: {fileID: 800253325}
   - component: {fileID: 800253324}
   - component: {fileID: 800253323}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: rock (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2019,6 +2023,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1185848290200983484, guid: d49be262d18f7654aa232e9c9bf2d48e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1069843845}
     - target: {fileID: 984564369700974467, guid: d49be262d18f7654aa232e9c9bf2d48e, type: 3}
       propertyPath: m_Name
       value: Slime
@@ -2079,7 +2087,7 @@ GameObject:
   - component: {fileID: 902474449}
   - component: {fileID: 902474448}
   - component: {fileID: 902474447}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: rock (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2216,6 +2224,8 @@ GameObject:
   - component: {fileID: 1069843843}
   - component: {fileID: 1069843844}
   - component: {fileID: 1069843846}
+  - component: {fileID: 1069843847}
+  - component: {fileID: 1069843848}
   - component: {fileID: 1069843845}
   m_Layer: 0
   m_Name: Player
@@ -2405,6 +2415,40 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   attackPower: 10
+--- !u!114 &1069843847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069843839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2316d3646e89944f1873408cacc2479d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 2394273297595163384, guid: 8437e252f82996946bda6b7babe5ddfe, type: 3}
+  firePoint: {fileID: 1069843842}
+  bulletSpeed: 10
+  attackRange: 5
+  attackCooldown: 1
+--- !u!114 &1069843848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069843839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07ab4908fb9d48b09feca5bc5ac1da1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scanRange: 10
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  nearestTarget: {fileID: 0}
 --- !u!1 &1091982179
 GameObject:
   m_ObjectHideFlags: 0
@@ -2634,7 +2678,7 @@ GameObject:
   - component: {fileID: 1147811292}
   - component: {fileID: 1147811291}
   - component: {fileID: 1147811290}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: rock (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2768,7 +2812,7 @@ GameObject:
   - component: {fileID: 1367107431}
   - component: {fileID: 1367107430}
   - component: {fileID: 1367107429}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: rock (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3272,7 +3316,7 @@ GameObject:
   - component: {fileID: 1896649196}
   - component: {fileID: 1896649195}
   - component: {fileID: 1896649194}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: rock (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3406,7 +3450,7 @@ GameObject:
   - component: {fileID: 2085355890}
   - component: {fileID: 2085355889}
   - component: {fileID: 2085355888}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: rock (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3814,7 +3858,7 @@ GameObject:
   - component: {fileID: 2144042538}
   - component: {fileID: 2144042537}
   - component: {fileID: 2144042536}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wall2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

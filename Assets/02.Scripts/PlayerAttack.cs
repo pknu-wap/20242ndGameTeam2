@@ -11,26 +11,32 @@ public class PlayerAttack : MonoBehaviour
     public float attackCooldown = 1f;
 
     private float lastAttackTime;
+    private Scanner scanner;
+
+    private void Start()
+    {
+        scanner = GetComponent<Scanner>();
+    }
     void Update()
     {
-        DetectAndAttack();
-    }
+        Transform target = scanner.nearestTarget;
 
-    void DetectAndAttack()
-    {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRange, LayerMask.GetMask("Enemy"));
-        if (hitEnemies.Length > 0 && Time.time >= lastAttackTime + attackCooldown)
+        if (target != null && Time.time >= lastAttackTime + attackCooldown)
         {
-            Shoot(hitEnemies[0].transform); 
+            Shoot(target);
             lastAttackTime = Time.time;
         }
     }
+
+   
     void Shoot(Transform target)
     {
-        GameObject bullet_shoot = Instantiate(bullet, firePoint.position, firePoint.rotation);
+        Vector2 targetPosition = target.position;
+
+        GameObject bullet_shoot = Instantiate(bullet, firePoint.position, Quaternion.identity);
         Rigidbody2D rb = bullet_shoot.GetComponent<Rigidbody2D>();
 
-        Vector2 direction = (target.position - firePoint.position).normalized;
+        Vector2 direction = (targetPosition - (Vector2)firePoint.position).normalized;
         rb.velocity = direction * bulletSpeed; 
     }
 
@@ -39,5 +45,4 @@ public class PlayerAttack : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
-
 }

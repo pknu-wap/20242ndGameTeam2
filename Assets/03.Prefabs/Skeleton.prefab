@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3216692615424511414}
   - component: {fileID: 949333150442519638}
   - component: {fileID: -604269435205051386}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skeleton
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -199,3 +199,6 @@ MonoBehaviour:
   projectilePrefab: {fileID: 5604997419782537581, guid: 8582efe1cee592e4db1e3aed878bca14, type: 3}
   firePoint: {fileID: 8540474780502713692}
   fireRate: 2
+  nextFireTime: 0
+  projectileSpeed: 10
+  damageAmount: 10
