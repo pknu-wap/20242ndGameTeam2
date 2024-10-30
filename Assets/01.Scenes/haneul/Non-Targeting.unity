@@ -2835,8 +2835,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7568c13a89250f84c9aa61a9d63170be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rate: 2
-  speed: 800
+  rate: 0.2
+  speed: 15
   arrowPos: {fileID: 563935341}
   arrow: {fileID: 2045400321070488781, guid: ea118e1bbfbeeb54b872ff0dd87c47fd, type: 3}
   playerTransform: {fileID: 1069843842}
