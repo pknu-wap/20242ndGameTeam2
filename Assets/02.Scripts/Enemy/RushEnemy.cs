@@ -95,7 +95,6 @@ public class RushEnemy : BaseEnemy
             /*enemy.velocity�� ���߿� ���� */
             enemy.MovePosition(enemy.position + chargeDirection * chargeSpeed * Time.fixedDeltaTime);
             elapsedTime += Time.fixedDeltaTime;
-            Debug.Log("코루틴시작");
             yield return new WaitForFixedUpdate();
         }
 
