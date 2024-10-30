@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1378786043083202412}
   - component: {fileID: 8928337374252213412}
   - component: {fileID: 2014032619578490130}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RushEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,8 +162,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  player: {fileID: 0}
   stopDistance: 5
-  incomingAlertSign: {fileID: 0}
   chargeSpeed: 20
   alertTime: 1
+  waitAfterChargeTime: 0
+  player: {fileID: 0}
+  incomingAlertSign: {fileID: 0}

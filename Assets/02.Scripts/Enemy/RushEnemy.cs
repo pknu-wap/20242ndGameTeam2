@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class RushEnemy : MonoBehaviour
 {
-    [SerializeField] private float speed; // Àû ÀÌµ¿ ¼Óµµ
-    [SerializeField] private float stopDistance; // °ø°Ý¹üÀ§
-    [SerializeField] private float chargeSpeed; // µ¹Áø ¼Óµµ
-    [SerializeField] private float alertTime; // °æ°í Ç¥½Ã ½Ã°£
-    [SerializeField] private float waitAfterChargeTime; // µ¹Áø ÈÄ ´ë±â ½Ã°£
+    [SerializeField] private float speed; // ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½Óµï¿½
+    [SerializeField] private float stopDistance; // ï¿½ï¿½ï¿½Ý¹ï¿½ï¿½ï¿½
+    [SerializeField] private float chargeSpeed; // ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½
+    [SerializeField] private float alertTime; // ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ ï¿½Ã°ï¿½
+    [SerializeField] private float waitAfterChargeTime; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
     [SerializeField] private Rigidbody2D player;
-    [SerializeField] private GameObject incomingAlertSign; // IncomingAlertSign ÇÁ¸®ÆÕ
+    [SerializeField] private GameObject incomingAlertSign; // IncomingAlertSign ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    private bool isLive = true; // »ì¾ÆÀÖ´ÂÁö ¿©ºÎ
-    private bool isCharging = false; // µ¹Áø ÁßÀÎÁö ¿©ºÎ
-    private bool isPreparingCharge = false; // µ¹Áø ÁØºñ ÁßÀÎÁö ¿©ºÎ
-    private bool isWaitingAfterCharge = false; // µ¹Áø ÈÄ ´ë±â »óÅÂ ¿©ºÎ
-    private bool isCollision = false; // Ãæµ¹ ¿©ºÎ
+    private bool isLive = true; // ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    private bool isCharging = false; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    private bool isPreparingCharge = false; // ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    private bool isWaitingAfterCharge = false; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    [SerializeField] private bool isCollision = false; // ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½
     private Rigidbody2D enemy;
-    private Vector2 chargeDirection; // µ¹Áø ¹æÇâ
-    private GameObject alert; // °æ°í ¿ÀºêÁ§Æ®
+    private Vector2 chargeDirection; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    private GameObject alert; // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 
     void Awake()
     {
@@ -31,11 +31,11 @@ public class RushEnemy : MonoBehaviour
         if (!isLive || isCharging || isPreparingCharge || isWaitingAfterCharge)
             return;
 
-        // ÀûÀÌ ÇÃ·¹ÀÌ¾î¸¦ ÇâÇØ ÀÌµ¿
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
         Vector2 dirVec = player.position - enemy.position;
         float distance = dirVec.magnitude;
 
-        // ÇÃ·¹ÀÌ¾î¿Í ÀÏÁ¤ °Å¸® ÀÌ»óÀÏ ¶§¸¸ ÀÌµ¿
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
         if (distance > stopDistance)
         {
             Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
@@ -43,45 +43,47 @@ public class RushEnemy : MonoBehaviour
         }
         else if (!isCharging && alert == null)
         {
-            // µ¹Áø ÁØºñ
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½
             StartCoroutine(PrepareCharge(dirVec.normalized));
         }
 
-        // ÀûÀÇ ¼Óµµ¸¦ 0À¸·Î °íÁ¤
-        enemy.velocity = Vector2.zero;
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        //enemy.velocity = Vector2.zero;
     }
 
     IEnumerator PrepareCharge(Vector2 direction)
     {
-        // µ¹Áø ÁØºñ ½ÃÀÛ - ÀûÀÇ ÀÌµ¿ Á¤Áö
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½ ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
         isPreparingCharge = true;
 
-        // ÀûÀÇ ÇöÀç À§Ä¡¸¦ ÀúÀå
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Vector2 enemyPosition = enemy.position;
 
-        // °æ°í Ç¥½Ã - ÀûÀÇ À§Ä¡¸¦ ±âÁØÀ¸·Î °íÁ¤µÈ À§Ä¡¿¡ »ý¼º
-        Vector2 alertPosition = enemyPosition + new Vector2(0, 2f); // ÀûÀÇ À§Ä¡ ¹Ù·Î À§¿¡ Ç¥½Ã
+        // ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        Vector2 alertPosition = enemyPosition + new Vector2(0, 2f); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
         alert = Instantiate(incomingAlertSign, alertPosition, Quaternion.identity);
-        alert.transform.SetParent(transform); // Àû ¿ÀºêÁ§Æ®¿¡ ºÙÀÌ±â
+        alert.transform.SetParent(transform); // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½
 
         yield return new WaitForSeconds(alertTime);
 
-        // °æ°í ¿ÀºêÁ§Æ® »èÁ¦
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         Destroy(alert);
 
-        // µ¹Áø ½ÃÀÛ
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         isCharging = true;
-        chargeDirection = direction; // µ¹ÁøÇÒ ¹æÇâ °íÁ¤
-        isPreparingCharge = false; // µ¹Áø ÁØºñ ¿Ï·á - ÀÌµ¿ °¡´É »óÅÂ·Î º¯°æ
+        chargeDirection = direction; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        isPreparingCharge = false; // ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½ ï¿½Ï·ï¿½ - ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-        // µ¹ÁøÀ» FixedUpdate¿¡¼­ ¼öÇàÇÏµµ·Ï ÄÚ·çÆ¾ Á¾·á
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ FixedUpdateï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾ ï¿½ï¿½ï¿½ï¿½
         StartCoroutine(Charge());
     }
 
     IEnumerator Charge()
     {
-        float chargeDuration = 1f; // µ¹Áø Áö¼Ó ½Ã°£
-        float elapsedTime = 0f; // µ¹Áø °æ°ú ½Ã°£
+        float chargeDuration = 1f; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+        float elapsedTime = 0f; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+
+        isCollision = false;
 
         while (elapsedTime < chargeDuration)
         {
@@ -89,20 +91,21 @@ public class RushEnemy : MonoBehaviour
             {
                 break;
             }
-            /*enemy.velocity·Î ³ªÁß¿¡ ¼öÁ¤ */
+            /*enemy.velocityï¿½ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ */
             enemy.MovePosition(enemy.position + chargeDirection * chargeSpeed * Time.fixedDeltaTime);
             elapsedTime += Time.fixedDeltaTime;
+            Debug.Log("ì½”ë£¨í‹´ì‹œìž‘");
             yield return new WaitForFixedUpdate();
         }
 
-        isCharging = false; // µ¹Áø Á¾·á ÈÄ ´ë±â »óÅÂ·Î µ¹¾Æ°¨
-        alert = null; // °æ°í ¿ÀºêÁ§Æ® ¸®¼Â
+        alert = null; // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+        isCharging = false; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½
         isCollision = false;
 
-        // µ¹Áø ÈÄ ´ë±â »óÅÂ·Î ÀüÈ¯
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯
         isWaitingAfterCharge = true;
         yield return new WaitForSeconds(waitAfterChargeTime);
-        isWaitingAfterCharge = false; // ´ë±â ½Ã°£ Á¾·á ÈÄ ÀÌµ¿ °¡´É »óÅÂ·Î º¯°æ
+        isWaitingAfterCharge = false; // ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

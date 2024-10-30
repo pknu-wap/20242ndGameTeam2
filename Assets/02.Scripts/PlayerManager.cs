@@ -38,8 +38,4 @@ public class PlayerManager : MonoBehaviour
         // ���� ��� ���ظ� ������ ���� ����
         // ��: target.GetComponent<Enemy>().TakeDamage(attackPower);
     }
-
-    void Update() {
-        Debug.Log("now health : " +  currentHealth);
-    }
 }
