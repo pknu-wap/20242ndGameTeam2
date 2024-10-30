@@ -10,7 +10,6 @@ public abstract class BaseEnemy : MonoBehaviour
 
     protected virtual void Awake()
     {
-        Debug.Log("Awake 들어감");
         currentHealth = maxHealth;
     }
 
@@ -22,7 +21,6 @@ public abstract class BaseEnemy : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Debug.Log("체력 0 이하");
             Die();
         }
     }

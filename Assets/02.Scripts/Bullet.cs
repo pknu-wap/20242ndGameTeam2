@@ -12,7 +12,6 @@ public class Bullet : MonoBehaviour
         BaseEnemy enemy = hitInfo.GetComponent<BaseEnemy>();
         if (enemy != null)
         {
-            Debug.Log("한방");
             enemy.TakeDamage(baseDamage);
         }
 

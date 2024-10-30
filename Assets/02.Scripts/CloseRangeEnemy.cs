@@ -50,10 +50,9 @@ public class CloseRangeEnemy : BaseEnemy
     // �÷��̾�� ������ �ֱ�
     private void TakeDamageToPlayer()
     {
-        PlayerManager playerManager = player.GetComponent<PlayerManager>();
-        if (playerManager != null)
+        if (PlayerManager.Instance != null)
         {
-            playerManager.TakeDamage(damageAmount, "���� ���� ����");
+            PlayerManager.Instance.TakeDamageToPlayer(damageAmount, "���� ���� ����");
         }
     }
     protected override void Die()

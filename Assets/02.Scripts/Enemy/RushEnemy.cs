@@ -18,6 +18,7 @@ public class RushEnemy : BaseEnemy
     private bool isPreparingCharge = false; // ���� �غ� ������ ����
     private bool isWaitingAfterCharge = false; // ���� �� ��� ���� ����
     [SerializeField] private bool isCollision = false; // �浹 ����
+    [SerializeField] private bool isPlayer = false;
     private Rigidbody2D enemy;
     private Vector2 chargeDirection; // ���� ����
     private GameObject alert; // ��� ������Ʈ
@@ -92,6 +93,11 @@ public class RushEnemy : BaseEnemy
         {
             if (isCollision)
             {
+                if(isPlayer == true)
+                {
+                    isPlayer = false;
+                    PlayerManager.Instance.TakeDamageToPlayer(damageAmount, "����ü ����");
+                }
                 break;
             }
             /*enemy.velocity�� ���߿� ���� */
@@ -113,6 +119,10 @@ public class RushEnemy : BaseEnemy
     private void OnCollisionEnter2D(Collision2D collision)
     {
         isCollision = true;
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            isPlayer = true;
+        }
     }
     protected override void Die()
     {

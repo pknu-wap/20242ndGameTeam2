@@ -4,17 +4,34 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    public static PlayerManager Instance;  // 싱글톤 인스턴스
     public static int maxHealth = 6; // �ִ� ü��
     public int currentHealth; // ���� ü��
 
     //쓸일 없으면 삭제.
     public int attackPower = 10; // ���ݷ�
     
-    
+
     public GameObject[] Hp = new GameObject[maxHealth];
     public GameObject player;
 
     public static bool isMelee = false;
+
+     private void Awake()
+    {
+        // 싱글톤 인스턴스를 설정합니다.
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject); // 인스턴스가 중복될 경우 삭제
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject); // 씬이 변경되더라도 인스턴스 유지
+    }
 
     void Start()
     {
@@ -22,9 +39,10 @@ public class PlayerManager : MonoBehaviour
     }
 
     // ���ظ� �Դ� �޼���
-    public void TakeDamage(int damage, string damageSource)
+    public void TakeDamageToPlayer(int damage, string damageSource)
     {
         currentHealth -= damage;
+        Debug.Log("현재 체력 : " + Hp[currentHealth]);
         Hp[currentHealth].SetActive(false);
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // ���� ü���� 0 ���Ϸδ� �� �������� maxHealth���� Ŀ�� �� ������ Ŭ����
 

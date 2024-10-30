@@ -31,11 +31,9 @@ public class Projectile : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // �÷��̾��� PlayerManager�� �����ͼ� ������ �ֱ�
-            PlayerManager playerManager = other.GetComponent<PlayerManager>();
-            if (playerManager != null)
+            if (PlayerManager.Instance != null)
             {
-                playerManager.TakeDamage(damageAmount, "����ü ����");
+                PlayerManager.Instance.TakeDamageToPlayer(damageAmount, "����ü ����");
             }
 
             Destroy(gameObject); // �浹 �� ����ü �ı�
