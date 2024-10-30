@@ -21,7 +21,7 @@ public class PlayerAttack : MonoBehaviour
     {
         Transform target = scanner.nearestTarget;
 
-        if (target != null && Time.time >= lastAttackTime + attackCooldown)
+        if (target != null && Time.time >= lastAttackTime + attackCooldown && PlayerManager.isMelee == false)
         {
             Shoot(target);
             lastAttackTime = Time.time;

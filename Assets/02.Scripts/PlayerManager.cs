@@ -8,6 +8,8 @@ public class PlayerManager : MonoBehaviour
     public int currentHealth; // ���� ü��
     public int attackPower = 10; // ���ݷ�
 
+    public static bool isMelee = false;
+
     void Start()
     {
         currentHealth = maxHealth; // ���� ü���� �ִ� ü������ �ʱ�ȭ
@@ -37,5 +39,17 @@ public class PlayerManager : MonoBehaviour
     {
         // ���� ��� ���ظ� ������ ���� ����
         // ��: target.GetComponent<Enemy>().TakeDamage(attackPower);
+    }
+
+    public void WeaponChange()
+    {
+        if (isMelee == true)
+        { 
+            isMelee = false;
+        }
+        else //원거리공격일때 근접공격으로 전환
+        {
+            isMelee = true;
+        }
     }
 }

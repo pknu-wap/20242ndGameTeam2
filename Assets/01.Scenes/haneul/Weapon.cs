@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public float rate;                       // ¹ß»ç °£°İ
-    public float speed;                      // ¹ß»ç ¼Óµµ
-    public Transform arrowPos;               // È­»ì ¹ß»ç À§Ä¡ (Transform)
-    public GameObject arrow;                 // È­»ì ÇÁ¸®ÆÕ
-    public Transform playerTransform;        // ÇÃ·¹ÀÌ¾îÀÇ Transform
+    public float rate;                       // ë°œì‚¬ ê°„ê²©
+    public float speed;                      // ë°œì‚¬ ì†ë„
+    public Transform arrowPos;               // í™”ì‚´ ë°œì‚¬ ìœ„ì¹˜ (Transform)
+    public GameObject arrow;                 // í™”ì‚´ í”„ë¦¬íŒ¹
+    public Transform playerTransform;        // í”Œë ˆì´ì–´ì˜ Transform
 
     private void Start()
     {
-        // È­»ìÀ» ÀÏÁ¤ °£°İÀ¸·Î ¹ß»çÇÏµµ·Ï ÄÚ·çÆ¾ ½ÃÀÛ
+        // í™”ì‚´ì„ ì¼ì • ê°„ê²©ìœ¼ë¡œ ë°œì‚¬í•˜ë„ë¡ ì½”ë£¨í‹´ ì‹œì‘
         StartCoroutine(AutoFire());
     }
 
@@ -20,21 +20,24 @@ public class Weapon : MonoBehaviour
     {
         while (true)
         {
-            // ÇÃ·¹ÀÌ¾îÀÇ ÀÌµ¿ ¹æÇâÀ» °è»êÇÏ°í ¹İÀü
-            Vector2 direction = (playerTransform.position - arrowPos.position).normalized;
-
-            // È­»ì »ı¼º (È­»ìÀÌ ÇÃ·¹ÀÌ¾îÀÇ ÀÌµ¿ ¹æÇâÀÇ ¹İ´ë·Î ¹Ù¶óº¸µµ·Ï È¸Àü)
-            GameObject instantArrow = Instantiate(arrow, arrowPos.position, Quaternion.FromToRotation(Vector3.right, -direction));
-
-            // È­»ì¿¡ ¼Óµµ Àû¿ë
-            Rigidbody2D rb = instantArrow.GetComponent<Rigidbody2D>();
-            if (rb != null)
+            // ê·¼ì ‘ ê³µê²© ëª¨ë“œì¼ ë•Œë§Œ ë°œì‚¬
+            while (PlayerManager.isMelee)
             {
-                rb.velocity = (-direction) * speed; // ¹İÀüµÈ ¹æÇâÀ¸·Î ¹ß»ç ¼Óµµ Àû¿ë
+                Vector2 direction = (playerTransform.position - arrowPos.position).normalized;
+
+                GameObject instantArrow = Instantiate(arrow, arrowPos.position, Quaternion.FromToRotation(Vector3.right, -direction));
+
+                Rigidbody2D rb = instantArrow.GetComponent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    rb.velocity = (-direction) * speed;
+                }
+
+                yield return new WaitForSeconds(rate);
             }
 
-            // ¹ß»ç °£°İ¸¸Å­ ´ë±â
-            yield return new WaitForSeconds(rate);
+            yield return null; // `isMelee`ê°€ `false`ì¼ ë•Œ ë§¤ í”„ë ˆì„ ëŒ€ê¸°
         }
     }
+
 }
