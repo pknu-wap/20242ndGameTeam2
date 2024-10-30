@@ -2242,8 +2242,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.033016875, y: -1.62}
-  m_Size: {x: 1.28, y: 1.2666155}
+  m_Offset: {x: -0.06433703, y: -0.9779349}
+  m_Size: {x: 2.0943265, y: 2.6267715}
   m_Direction: 0
 --- !u!114 &1069843844
 MonoBehaviour:
@@ -2273,7 +2273,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -2790,6 +2790,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 984564369700974467, guid: d49be262d18f7654aa232e9c9bf2d48e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1731637321416633519, guid: d49be262d18f7654aa232e9c9bf2d48e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.4
@@ -2852,13 +2856,29 @@ PrefabInstance:
       value: RushEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 2014032619578490130, guid: e809bb91b4451a145b1a898fa229f2a6, type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2014032619578490130, guid: e809bb91b4451a145b1a898fa229f2a6, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1069843845}
     - target: {fileID: 2014032619578490130, guid: e809bb91b4451a145b1a898fa229f2a6, type: 3}
+      propertyPath: alertTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2014032619578490130, guid: e809bb91b4451a145b1a898fa229f2a6, type: 3}
+      propertyPath: stopDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2014032619578490130, guid: e809bb91b4451a145b1a898fa229f2a6, type: 3}
       propertyPath: incomingAlertSign
       value: 
       objectReference: {fileID: 3392455685984850998, guid: 93e95a6d83657e3429dc334edec0c15a, type: 3}
+    - target: {fileID: 2014032619578490130, guid: e809bb91b4451a145b1a898fa229f2a6, type: 3}
+      propertyPath: waitAfterChargeTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4484381288753707041, guid: e809bb91b4451a145b1a898fa229f2a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.180182
