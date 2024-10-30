@@ -44,8 +44,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isRolling)
         {
-            rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+            rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);   
         }
+        
+
     }
 
     // 구르기 동작 실행
