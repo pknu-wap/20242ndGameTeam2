@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CloseRangeEnemy : MonoBehaviour
+public class CloseRangeEnemy : BaseEnemy
 {
     public float speed;
     public Rigidbody2D player;
@@ -17,6 +17,8 @@ public class CloseRangeEnemy : MonoBehaviour
     void Awake()
     {
         enemy = GetComponent<Rigidbody2D>();
+        damageMultiplier = 1.0f;
+
     }
 
     private void FixedUpdate()
@@ -37,7 +39,7 @@ public class CloseRangeEnemy : MonoBehaviour
         {
             if (Time.time >= nextDamageTime)
             {
-                TakeDamage();
+                TakeDamageToPlayer(); // give damage to player
                 nextDamageTime = Time.time + damageInterval; // ���� �������� �ִ� �ð� ����
             }
         }
@@ -45,12 +47,17 @@ public class CloseRangeEnemy : MonoBehaviour
         enemy.velocity = Vector2.zero;
     }
     // �÷��̾�� ������ �ֱ�
-    private void TakeDamage()
+    private void TakeDamageToPlayer()
     {
         PlayerManager playerManager = player.GetComponent<PlayerManager>();
         if (playerManager != null)
         {
             playerManager.TakeDamage(damageAmount, "���� ���� ����");
         }
+    }
+    protected override void Die()
+    {
+        base.Die();
+        // 추가적인 사망 효과 구현
     }
 }

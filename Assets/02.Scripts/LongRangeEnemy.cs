@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LongRangeEnemy : MonoBehaviour
+public class LongRangeEnemy : BaseEnemy
 {
     public float speed; // �� �̵� �ӵ�
     public Rigidbody2D player;
@@ -20,6 +20,7 @@ public class LongRangeEnemy : MonoBehaviour
     void Awake()
     {
         enemy = GetComponent<Rigidbody2D>();
+        damageMultiplier = 1.0f;
     }
 
     private void FixedUpdate()
@@ -63,5 +64,11 @@ public class LongRangeEnemy : MonoBehaviour
             projectileScript.speed = projectileSpeed;
             projectileScript.damageAmount = damageAmount;
         }
+    }
+
+    protected override void Die()
+    {
+        base.Die();
+        // 추가적인 사망 효과 구현
     }
 }

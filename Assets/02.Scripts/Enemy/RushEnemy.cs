@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RushEnemy : MonoBehaviour
+public class RushEnemy : BaseEnemy
 {
     [SerializeField] private float speed; // �� �̵� �ӵ�
     [SerializeField] private float stopDistance; // ���ݹ���
@@ -24,6 +24,7 @@ public class RushEnemy : MonoBehaviour
     void Awake()
     {
         enemy = GetComponent<Rigidbody2D>();
+        damageMultiplier = 1.0f;
     }
 
     private void FixedUpdate()
@@ -111,5 +112,11 @@ public class RushEnemy : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         isCollision = true;
+    }
+    protected override void Die()
+    {
+        base.Die();
+        // 추가적인 사망 효과 구현
+        Debug.Log("EnemyType1 사망 시 특별한 효과 발생!");
     }
 }

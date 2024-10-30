@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+
     public GameObject bullet; 
     public Transform firePoint;
     public float bulletSpeed = 10f;
