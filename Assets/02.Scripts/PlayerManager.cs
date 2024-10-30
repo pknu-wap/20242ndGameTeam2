@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public int maxHealth = 6; // �ִ� ü��
+    public static int maxHealth = 6; // �ִ� ü��
     public int currentHealth; // ���� ü��
     public int attackPower = 10; // ���ݷ�
+    public GameObject[] Hp = new GameObject[maxHealth];
+    public GameObject player;
 
     public static bool isMelee = false;
 
@@ -19,18 +21,20 @@ public class PlayerManager : MonoBehaviour
     public void TakeDamage(int damage, string damageSource)
     {
         currentHealth -= damage;
+        Hp[currentHealth].SetActive(false);
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // ���� ü���� 0 ���Ϸδ� �� �������� maxHealth���� Ŀ�� �� ������ Ŭ����
 
         if (currentHealth <= 0)
         {
             Die(); // ü���� 0 ���ϰ� �Ǹ� ���
+            
         }
     }
 
     // ��� ó�� �޼���
     private void Die()
     {
-        Debug.Log("�÷��̾� ���");
+        player.SetActive(false);
         // ��� �� ó���� ���� (��: ���� ���� ȭ�� ǥ�� ��)
     }
 
