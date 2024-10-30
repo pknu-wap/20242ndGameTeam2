@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     public float speed; // 투사체 속도
     public Vector2 direction;
     public float projectileLifeTime = 3f;
+    public int damageAmount = 10;
 
     void Start()
     {
@@ -30,7 +31,14 @@ public class Projectile : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            // 플레이어의 PlayerManager를 가져와서 데미지 주기
+            PlayerManager playerManager = other.GetComponent<PlayerManager>();
+            if (playerManager != null)
+            {
+                playerManager.TakeDamage(damageAmount, "투사체 공격");
+            }
+
+            Destroy(gameObject); // 충돌 후 투사체 파괴
         }
     }
 }
