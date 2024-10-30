@@ -12,6 +12,7 @@ public class LongRangeEnemy : MonoBehaviour
     public float fireRate = 2f; // 발사 간격
     public float nextFireTime;
     public float projectileSpeed = 10f; // 투사체 속도를 설정할 변수
+    public int damageAmount = 10; // 플레이어에게 줄 데미지
 
     bool isLive = true;
     Rigidbody2D enemy;
@@ -60,6 +61,7 @@ public class LongRangeEnemy : MonoBehaviour
             Vector2 direction = new Vector2(player.position.x - firePoint.position.x, player.position.y - firePoint.position.y).normalized;
             projectileScript.direction = direction;
             projectileScript.speed = projectileSpeed;
+            projectileScript.damageAmount = damageAmount;
         }
     }
 }
