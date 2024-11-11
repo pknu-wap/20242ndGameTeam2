@@ -31,9 +31,9 @@ public class Projectile : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (PlayerManager.Instance != null)
+            if (GameManager.Instance != null)
             {
-                PlayerManager.Instance.TakeDamageToPlayer(damageAmount, "����ü ����");
+                GameManager.Instance.TakeDamageToPlayer(damageAmount, "����ü ����");
             }
 
             Destroy(gameObject); // �浹 �� ����ü �ı�

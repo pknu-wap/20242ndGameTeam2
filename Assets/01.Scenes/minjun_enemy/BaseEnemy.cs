@@ -7,6 +7,9 @@ public abstract class BaseEnemy : MonoBehaviour
 
     // 무기에 따라 다르게 적용할 수 있는 데미지 배율
     public float damageMultiplier = 1.0f;
+    // 적이 죽을 때 떨구는 경험치
+    public int expOnDeath;
+
 
     protected virtual void Awake()
     {
@@ -29,6 +32,8 @@ public abstract class BaseEnemy : MonoBehaviour
     {
         // 적 사망 처리 로직
         Debug.Log($"{gameObject.name} is dead.");
+        // 경험치 추가
+        GameManager.Instance.AddExperience(expOnDeath);
         Destroy(gameObject);
     }
 }
