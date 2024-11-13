@@ -21,7 +21,7 @@ public class Weapon : MonoBehaviour
         while (true)
         {
             // 근접 공격 모드일 때만 발사
-            while (PlayerManager.isMelee)
+            while (GameManager.isMelee)
             {
                 Vector2 direction = (playerTransform.position - arrowPos.position).normalized;
 
