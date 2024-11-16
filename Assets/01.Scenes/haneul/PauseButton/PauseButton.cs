@@ -5,15 +5,22 @@ using UnityEngine.UI;
 
 public class PauseButton : MonoBehaviour
 {
-    private bool isPaused = false;
+    public static bool isPaused = false;
+    public Canvas pauseCanvas;   // 일시정지 버튼과 관련된 Canvas
+    public GameObject ingameCanvas;  // 재개 버튼과 관련된 Canvas
+    public GameObject filter;
 
     public void GamePause()
     {
-        isPaused = !isPaused;
+        isPaused = true;
 
         if (isPaused)
-            Time.timeScale = 0f; // 게임 정지
-        else
-            Time.timeScale = 1f; // 게임 재개
+        {
+            pauseCanvas.gameObject.SetActive(true);
+            ingameCanvas.gameObject.SetActive(false);
+            filter.gameObject.SetActive(true);
+            Time.timeScale = 0f; // 게임 재개
+        }
+            
     }
 }
