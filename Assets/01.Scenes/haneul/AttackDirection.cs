@@ -6,7 +6,18 @@ public class AttackDirection : MonoBehaviour
 {
     private Vector2 moveDirection;
     public Joystick joystick;
-    public Transform player; // ÇÃ·¹ÀÌ¾îÀÇ TransformÀ» ¹ŞÀ» º¯¼ö
+
+    public float rate;                       // ë°œì‚¬ ê°„ê²©
+    public float speed;                      // ë°œì‚¬ ì†ë„
+    public Transform arrowPos;               // í™”ì‚´ ë°œì‚¬ ìœ„ì¹˜ (Transform)
+    public GameObject arrow;                 // í™”ì‚´ í”„ë¦¬íŒ¹
+    public Transform playerTransform;        // í”Œë ˆì´ì–´ì˜ Transform
+
+    private void Start()
+    {
+        // í™”ì‚´ì„ ì¼ì • ê°„ê²©ìœ¼ë¡œ ë°œì‚¬í•˜ë„ë¡ ì½”ë£¨í‹´ ì‹œì‘
+        StartCoroutine(AutoFire());
+    }
 
     void Update()
     {
@@ -20,17 +31,43 @@ public class AttackDirection : MonoBehaviour
         float moveY = joystick.Vertical;
 
         
-        moveDirection = new Vector2(moveX, moveY).normalized; // ÀÔ·Â ¹æÇâÀ» Á¤±ÔÈ­
+        moveDirection = new Vector2(moveX, moveY).normalized; // ì…ë ¥ ë°©í–¥ì„ ì •ê·œí™”
         
     }
 
     void MovePoint()
     {
-        // Á¶ÀÌ½ºÆ½ ÀÔ·ÂÀÌ ÀÖÀ» ¶§¸¸ À§Ä¡¸¦ ÀÌµ¿
+        // ì¡°ì´ìŠ¤í‹± ì…ë ¥ì´ ìˆì„ ë•Œë§Œ ìœ„ì¹˜ë¥¼ ì´ë™
         if (moveDirection != Vector2.zero)
         {
-            // ÇÃ·¹ÀÌ¾î À§Ä¡¿¡¼­ moveDirectionÀ» ´õÇÏ¿© ÀÌµ¿
-            transform.position = player.position + (Vector3)moveDirection; // ÇÃ·¹ÀÌ¾î À§Ä¡¿¡ moveVector¸¦ ´õÇÏ¿© ÀÌµ¿
+            // í”Œë ˆì´ì–´ ìœ„ì¹˜ì—ì„œ moveDirectionì„ ë”í•˜ì—¬ ì´ë™
+            transform.position = playerTransform.position + (Vector3)moveDirection; // í”Œë ˆì´ì–´ ìœ„ì¹˜ì— moveVectorë¥¼ ë”í•˜ì—¬ ì´ë™
         }
     }
+    
+
+    IEnumerator AutoFire()
+    {
+        while (true)
+        {
+            // ê·¼ì ‘ ê³µê²© ëª¨ë“œì¼ ë•Œë§Œ ë°œì‚¬
+            while (GameManager.isMelee)
+            {
+                Vector2 direction = (playerTransform.position - arrowPos.position).normalized;
+
+                GameObject instantArrow = Instantiate(arrow, arrowPos.position, Quaternion.FromToRotation(Vector3.right, -direction));
+
+                Rigidbody2D rb = instantArrow.GetComponent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    rb.velocity = (-direction) * speed;
+                }
+
+                yield return new WaitForSeconds(rate);
+            }
+
+            yield return null; // `isMelee`ê°€ `false`ì¼ ë•Œ ë§¤ í”„ë ˆì„ ëŒ€ê¸°
+        }
+    }
+
 }
