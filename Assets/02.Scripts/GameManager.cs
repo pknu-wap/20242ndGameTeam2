@@ -14,10 +14,29 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int currentHealth; // 현재 체력
 
-    /* 쓸일 없으면 삭제.
-    public int attackPower = 10; // 공격력*/
     [SerializeField]
     private GameObject[] Hp = new GameObject[maxHealth];
+
+    // 플레이어가 피해를 입는 함수
+    public void TakeDamageToPlayer(int damage, string damageSource)
+    {
+        currentHealth -= damage;
+        Debug.Log("현재 체력 : " + Hp[currentHealth]);
+        Hp[currentHealth].SetActive(false);
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // 현재 체력을 0 이하로 떨어지지 않게 하고 최대 체력보다 클 수 없게 Clamp 처리
+
+        if (currentHealth <= 0)
+        {
+            Die(); // 체력이 0 이하가 되면 사망
+        }
+    }
+
+    // 사망 처리 함수
+    private void Die()
+    {
+        player.SetActive(false);
+        // 사망 시 처리할 코드 추가 (예: 게임 오버 화면 표시 등)
+    }
     #endregion
     #region 경험치, 레벨업
     // 경험치, 레벨 관련 변수
@@ -139,8 +158,8 @@ public class GameManager : MonoBehaviour
     {
         List<LevelUpUI.UpgradeOption> options = new List<LevelUpUI.UpgradeOption>();
 
-        options.Add(new LevelUpUI.UpgradeOption { name = "검", description = "강화된 검", icon = null, isNew = meleeWeapon1 == 0 });
-        options.Add(new LevelUpUI.UpgradeOption { name = "도끼", description = "강화된 도끼", icon = null, isNew = meleeWeapon2 == 0 });
+        options.Add(new LevelUpUI.UpgradeOption { name = "근접무기1", description = "강화된 근접무기1", icon = null, isNew = meleeWeapon1 == 0 });
+        options.Add(new LevelUpUI.UpgradeOption { name = "근접무기2", description = "강화된 근접무기2", icon = null, isNew = meleeWeapon2 == 0 });
         options.Add(new LevelUpUI.UpgradeOption { name = "타겟 무기", description = "강화된 타겟 무기", icon = null, isNew = targetWeapon == 0 });
         options.Add(new LevelUpUI.UpgradeOption { name = "비타겟 무기", description = "강화된 비타겟 무기", icon = null, isNew = nonTargetWeapon == 0 });
 
@@ -185,31 +204,6 @@ public class GameManager : MonoBehaviour
         playerAttackScript = GameObject.FindWithTag("Player").GetComponent<PlayerAttack>();
         // 무기 상태에 맞게 PlayerAttack 스크립트 활성화/비활성화
         UpdateWeaponStatus();
-    }
-    private void Update()
-    {
-
-    }
-
-    // 플레이어가 피해를 입는 함수
-    public void TakeDamageToPlayer(int damage, string damageSource)
-    {
-        currentHealth -= damage;
-        Debug.Log("현재 체력 : " + Hp[currentHealth]);
-        Hp[currentHealth].SetActive(false);
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // 현재 체력을 0 이하로 떨어지지 않게 하고 최대 체력보다 클 수 없게 Clamp 처리
-
-        if (currentHealth <= 0)
-        {
-            Die(); // 체력이 0 이하가 되면 사망
-        }
-    }
-
-    // 사망 처리 함수
-    private void Die()
-    {
-        player.SetActive(false);
-        // 사망 시 처리할 코드 추가 (예: 게임 오버 화면 표시 등)
     }
 
     // 공격 함수 (필요시 구현)

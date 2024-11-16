@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 1789261}
   - component: {fileID: 1789260}
   m_Layer: 5
-  m_Name: ItemImage
+  m_Name: ItemImage1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 77569025}
   - component: {fileID: 77569024}
   m_Layer: 5
-  m_Name: ItemInfoText
+  m_Name: ItemInfoText1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -741,7 +741,7 @@ GameObject:
   - component: {fileID: 163842835}
   - component: {fileID: 163842834}
   m_Layer: 5
-  m_Name: ItemName
+  m_Name: ItemName3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1100,7 +1100,7 @@ GameObject:
   - component: {fileID: 225837454}
   - component: {fileID: 225837453}
   m_Layer: 5
-  m_Name: ChoiceButton
+  m_Name: ChoiceButton3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1261,7 +1261,7 @@ GameObject:
   - component: {fileID: 245002529}
   - component: {fileID: 245002528}
   m_Layer: 5
-  m_Name: ChoiceButton
+  m_Name: ChoiceButton1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1809,7 +1809,7 @@ GameObject:
   - component: {fileID: 478244524}
   - component: {fileID: 478244523}
   m_Layer: 5
-  m_Name: NewItemIndicator
+  m_Name: NewItemIndicator1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2018,7 +2018,7 @@ GameObject:
   - component: {fileID: 529326288}
   - component: {fileID: 529326287}
   m_Layer: 5
-  m_Name: NewItemIndicator
+  m_Name: NewItemIndicator3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2463,7 +2463,7 @@ GameObject:
   - component: {fileID: 555726467}
   - component: {fileID: 555726466}
   m_Layer: 5
-  m_Name: ItemName
+  m_Name: ItemName2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2662,7 +2662,7 @@ GameObject:
   - component: {fileID: 608376769}
   - component: {fileID: 608376768}
   m_Layer: 5
-  m_Name: ItemInfoText
+  m_Name: ItemInfoText2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3440,7 +3440,7 @@ GameObject:
   - component: {fileID: 818016526}
   - component: {fileID: 818016525}
   m_Layer: 5
-  m_Name: ItemName
+  m_Name: ItemName1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5335,7 +5335,7 @@ GameObject:
   - component: {fileID: 1491639768}
   - component: {fileID: 1491639767}
   m_Layer: 5
-  m_Name: ChoiceButton
+  m_Name: ChoiceButton2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5458,7 +5458,7 @@ GameObject:
   - component: {fileID: 1500360937}
   - component: {fileID: 1500360936}
   m_Layer: 5
-  m_Name: ItemImage
+  m_Name: ItemImage2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5618,7 +5618,7 @@ GameObject:
   - component: {fileID: 1576661552}
   - component: {fileID: 1576661551}
   m_Layer: 5
-  m_Name: ItemInfoText
+  m_Name: ItemInfoText3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5863,7 +5863,7 @@ GameObject:
   - component: {fileID: 1688897564}
   - component: {fileID: 1688897563}
   m_Layer: 5
-  m_Name: NewItemIndicator
+  m_Name: NewItemIndicator2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6310,7 +6310,7 @@ GameObject:
   - component: {fileID: 2017443037}
   - component: {fileID: 2017443036}
   m_Layer: 5
-  m_Name: ItemImage
+  m_Name: ItemImage3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

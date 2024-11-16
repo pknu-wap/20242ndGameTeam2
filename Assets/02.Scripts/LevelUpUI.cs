@@ -15,11 +15,6 @@ public class LevelUpUI : MonoBehaviour
     private bool isPaused = false;
     public GameManager gameManager;
 
-    void Start()
-    {
-        levelUpPanel.SetActive(false);
-    }
-
     public void TriggerLevelUpUI(UpgradeOption[] options)
     {
         // 인게임 정지
@@ -29,7 +24,6 @@ public class LevelUpUI : MonoBehaviour
         // UI 패널 활성화
         levelUpPanel.SetActive(true);
 
-        // 버튼 정보 업데이트
         for (int i = 0; i < optionButtons.Length; i++)
         {
             if (i < options.Length)
@@ -43,26 +37,40 @@ public class LevelUpUI : MonoBehaviour
                 // 버튼 클릭 이벤트 추가
                 int index = i; // 로컬 변수로 캡처
                 optionButtons[i].onClick.RemoveAllListeners(); // 이전 이벤트 제거
-                optionButtons[i].onClick.AddListener(() => SelectOption(index));
+                optionButtons[i].onClick.AddListener(() => SelectOption(options[index])); // 각 버튼에 대응되는 실제 UpgradeOption 전달
             }
         }
     }
 
-    public void SelectOption(int index)
+    public void SelectOption(UpgradeOption selectedOption)
     {
         // 선택한 무기/유물 강화 로직 실행
-        UpgradeSelectedOption(index);
-
+        UpgradeSelectedOption(selectedOption);
         // UI 패널 비활성화
         CloseLevelUpUI();
     }
 
-    private void UpgradeSelectedOption(int index)
+    private void UpgradeSelectedOption(UpgradeOption selectedOption)
     {
-        // 무기/유물 강화 로직 추가
-        GameManager.Instance.SelectWeapon(index); // GameManager에서 무기 선택
+        // 해당 무기/유물의 이름을 사용하여 실제 무기를 선택
+        if (selectedOption.name == "근접무기1") // 검을 강화
+        {
+            GameManager.Instance.SelectWeapon(0);
+        }
+        else if (selectedOption.name == "근접무기2") // 도끼를 강화
+        {
+            GameManager.Instance.SelectWeapon(1);
+        }
+        else if (selectedOption.name == "타겟 무기") // 타겟 무기를 강화
+        {
+            GameManager.Instance.SelectWeapon(2);
+        }
+        else if (selectedOption.name == "비타겟 무기") // 비타겟 무기를 강화
+        {
+            GameManager.Instance.SelectWeapon(3);
+        }
 
-        Debug.Log($"무기/유물 {index + 1} 강화 완료");
+        Debug.Log($"무기/유물 {selectedOption.name} 강화 완료");
     }
 
     public void CloseLevelUpUI()
