@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class LongRangeAttack1 : MonoBehaviour
 {
 
     public GameObject bullet; 
