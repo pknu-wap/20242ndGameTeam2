@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackDirection : MonoBehaviour
+public class LongRangeAttack3 : MonoBehaviour
 {
     private Vector2 moveDirection;
     public Joystick joystick;
 
-    public float rate;                       // ë°œì‚¬ ê°„ê²©
-    public float speed;                      // ë°œì‚¬ ì†ë„
-    public Transform arrowPos;               // í™”ì‚´ ë°œì‚¬ ìœ„ì¹˜ (Transform)
-    public GameObject arrow;                 // í™”ì‚´ í”„ë¦¬íŒ¹
-    public Transform playerTransform;        // í”Œë ˆì´ì–´ì˜ Transform
+    public float rate;                       // ¹ß»ç °£°İ
+    public float speed;                      // ¹ß»ç ¼Óµµ
+    public Transform arrowPos;               // È­»ì ¹ß»ç À§Ä¡ (Transform)
+    public GameObject arrow;                 // È­»ì ÇÁ¸®ÆÕ
+    public Transform playerTransform;        // ÇÃ·¹ÀÌ¾îÀÇ Transform
 
     private void Start()
     {
-        // í™”ì‚´ì„ ì¼ì • ê°„ê²©ìœ¼ë¡œ ë°œì‚¬í•˜ë„ë¡ ì½”ë£¨í‹´ ì‹œì‘
+        // È­»ìÀ» ÀÏÁ¤ °£°İÀ¸·Î ¹ß»çÇÏµµ·Ï ÄÚ·çÆ¾ ½ÃÀÛ
         StartCoroutine(AutoFire());
     }
 
@@ -30,27 +30,27 @@ public class AttackDirection : MonoBehaviour
         float moveX = joystick.Horizontal;
         float moveY = joystick.Vertical;
 
-        
-        moveDirection = new Vector2(moveX, moveY).normalized; // ì…ë ¥ ë°©í–¥ì„ ì •ê·œí™”
-        
+
+        moveDirection = new Vector2(moveX, moveY).normalized; // ÀÔ·Â ¹æÇâÀ» Á¤±ÔÈ­
+
     }
 
     void MovePoint()
     {
-        // ì¡°ì´ìŠ¤í‹± ì…ë ¥ì´ ìˆì„ ë•Œë§Œ ìœ„ì¹˜ë¥¼ ì´ë™
+        // Á¶ÀÌ½ºÆ½ ÀÔ·ÂÀÌ ÀÖÀ» ¶§¸¸ À§Ä¡¸¦ ÀÌµ¿
         if (moveDirection != Vector2.zero)
         {
-            // í”Œë ˆì´ì–´ ìœ„ì¹˜ì—ì„œ moveDirectionì„ ë”í•˜ì—¬ ì´ë™
-            transform.position = playerTransform.position + (Vector3)moveDirection; // í”Œë ˆì´ì–´ ìœ„ì¹˜ì— moveVectorë¥¼ ë”í•˜ì—¬ ì´ë™
+            // ÇÃ·¹ÀÌ¾î À§Ä¡¿¡¼­ moveDirectionÀ» ´õÇÏ¿© ÀÌµ¿
+            transform.position = playerTransform.position + (Vector3)moveDirection; // ÇÃ·¹ÀÌ¾î À§Ä¡¿¡ moveVector¸¦ ´õÇÏ¿© ÀÌµ¿
         }
     }
-    
+
 
     IEnumerator AutoFire()
     {
         while (true)
         {
-            // ê·¼ì ‘ ê³µê²© ëª¨ë“œì¼ ë•Œë§Œ ë°œì‚¬
+            // ±ÙÁ¢ °ø°İ ¸ğµåÀÏ ¶§¸¸ ¹ß»ç
             while (GameManager.isMelee)
             {
                 Vector2 direction = (playerTransform.position - arrowPos.position).normalized;
@@ -66,7 +66,7 @@ public class AttackDirection : MonoBehaviour
                 yield return new WaitForSeconds(rate);
             }
 
-            yield return null; // `isMelee`ê°€ `false`ì¼ ë•Œ ë§¤ í”„ë ˆì„ ëŒ€ê¸°
+            yield return null; // `isMelee`°¡ `false`ÀÏ ¶§ ¸Å ÇÁ·¹ÀÓ ´ë±â
         }
     }
 

@@ -61,13 +61,21 @@ public class LevelUpUI : MonoBehaviour
         {
             GameManager.Instance.SelectWeapon(1);
         }
-        else if (selectedOption.name == "타겟 무기") // 타겟 무기를 강화
+        else if (selectedOption.name == "원거리 무기1") // 타겟 무기를 강화
         {
             GameManager.Instance.SelectWeapon(2);
         }
         else if (selectedOption.name == "비타겟 무기") // 비타겟 무기를 강화
         {
             GameManager.Instance.SelectWeapon(3);
+        }
+        else if (selectedOption.name == "원거리 무기2") // 비타겟 무기를 강화
+        {
+            GameManager.Instance.SelectWeapon(4);
+        }
+        else if (selectedOption.name == "원거리 무기3") // 비타겟 무기를 강화
+        {
+            GameManager.Instance.SelectWeapon(5);
         }
 
         Debug.Log($"무기/유물 {selectedOption.name} 강화 완료");

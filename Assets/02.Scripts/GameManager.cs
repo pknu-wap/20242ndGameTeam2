@@ -92,13 +92,19 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public int meleeWeapon2;
     [SerializeField]
-    public int targetWeapon;   // TargetWeapon을 PlayerAttack으로 설정
+    public int longRangeAttack1;   // TargetWeapon을 PlayerAttack으로 설정
+    [SerializeField]
+    public int longRangeAttack2;
+    [SerializeField]
+    public int longRangeAttack3;
     [SerializeField]
     public int nonTargetWeapon; // 비타겟 무기
     [SerializeField]
     private int maxWeaponLevel = 8; //무기 최대 레벨
 
-    private PlayerAttack playerAttackScript; // PlayerAttack 스크립트 레퍼런스
+    private LongRangeAttack1 LongRangeAttack1Script;
+    private LongRangeAttack2 LongRangeAttack2Script;
+    private LongRangeAttack3 LongRangeAttack3Script;
 
     public void WeaponChange()
     {
@@ -123,10 +129,16 @@ public class GameManager : MonoBehaviour
                 if (meleeWeapon2 < maxWeaponLevel) meleeWeapon2++;
                 break;
             case 2: // targetWeapon 선택
-                if (targetWeapon < maxWeaponLevel) targetWeapon++;
+                if (longRangeAttack1 < maxWeaponLevel) longRangeAttack1++;
                 break;
             case 3: // nonTargetWeapon 선택
                 if (nonTargetWeapon < maxWeaponLevel) nonTargetWeapon++;
+                break;
+            case 4: // nonTargetWeapon 선택
+                if (longRangeAttack2 < maxWeaponLevel) longRangeAttack2++;
+                break;
+            case 5: // nonTargetWeapon 선택
+                if (longRangeAttack3 < maxWeaponLevel) longRangeAttack3++;
                 break;
         }
 
@@ -136,20 +148,54 @@ public class GameManager : MonoBehaviour
     private void UpdateWeaponStatus()
     {
         // targetWeapon의 값에 따라 PlayerAttack 활성화 여부 결정
-        if (targetWeapon == 0)
+        if (longRangeAttack1 == 0)
         {
             // targetWeapon이 0이면 공격 불가 -> PlayerAttack 비활성화
-            if (playerAttackScript != null)
+            if (LongRangeAttack1Script != null)
             {
-                playerAttackScript.enabled = false;
+                LongRangeAttack1Script.enabled = false;
             }
         }
         else
         {
             // targetWeapon이 1 이상이면 공격 가능 -> PlayerAttack 활성화
-            if (playerAttackScript != null)
+            if (LongRangeAttack1Script != null)
             {
-                playerAttackScript.enabled = true;
+                LongRangeAttack1Script.enabled = true;
+            }
+        }
+
+        if (longRangeAttack2 == 0)
+        {
+            // targetWeapon이 0이면 공격 불가 -> PlayerAttack 비활성화
+            if (LongRangeAttack2Script != null)
+            {
+                LongRangeAttack2Script.enabled = false;
+            }
+        }
+        else
+        {
+            // targetWeapon이 1 이상이면 공격 가능 -> PlayerAttack 활성화
+            if (LongRangeAttack2Script != null)
+            {
+                LongRangeAttack2Script.enabled = true;
+            }
+        }
+
+        if (longRangeAttack3 == 0)
+        {
+            // targetWeapon이 0이면 공격 불가 -> PlayerAttack 비활성화
+            if (LongRangeAttack3Script != null)
+            {
+                LongRangeAttack3Script.enabled = false;
+            }
+        }
+        else
+        {
+            // targetWeapon이 1 이상이면 공격 가능 -> PlayerAttack 활성화
+            if (LongRangeAttack3Script != null)
+            {
+                LongRangeAttack3Script.enabled = true;
             }
         }
     }
@@ -160,8 +206,10 @@ public class GameManager : MonoBehaviour
 
         options.Add(new LevelUpUI.UpgradeOption { name = "근접무기1", description = "강화된 근접무기1", icon = null, isNew = meleeWeapon1 == 0 });
         options.Add(new LevelUpUI.UpgradeOption { name = "근접무기2", description = "강화된 근접무기2", icon = null, isNew = meleeWeapon2 == 0 });
-        options.Add(new LevelUpUI.UpgradeOption { name = "타겟 무기", description = "강화된 타겟 무기", icon = null, isNew = targetWeapon == 0 });
+        options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기1", description = "강화된 원거리 무기1", icon = null, isNew = longRangeAttack1 == 0 });
         options.Add(new LevelUpUI.UpgradeOption { name = "비타겟 무기", description = "강화된 비타겟 무기", icon = null, isNew = nonTargetWeapon == 0 });
+        options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기2", description = "강화된 원거리 무기2", icon = null, isNew = longRangeAttack2 == 0 });
+        options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기3", description = "강화된 원거리 무기3", icon = null, isNew = longRangeAttack3 == 0 });
 
         // 무기 옵션 중 3개를 랜덤으로 선택
         List<LevelUpUI.UpgradeOption> selectedOptions = new List<LevelUpUI.UpgradeOption>();
@@ -201,7 +249,9 @@ public class GameManager : MonoBehaviour
         UpdateUI();
         DisplayLevelUpUI();
         // PlayerAttack 스크립트 찾기 (Player 객체에 부착되어 있다고 가정)
-        playerAttackScript = GameObject.FindWithTag("Player").GetComponent<PlayerAttack>();
+        LongRangeAttack1Script = GameObject.FindWithTag("Player").GetComponent<LongRangeAttack1>();
+        LongRangeAttack2Script = GameObject.FindWithTag("Player").GetComponent<LongRangeAttack2>();
+        LongRangeAttack3Script = GameObject.FindWithTag("Player").GetComponent<LongRangeAttack3>();
         // 무기 상태에 맞게 PlayerAttack 스크립트 활성화/비활성화
         UpdateWeaponStatus();
     }
