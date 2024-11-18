@@ -4569,7 +4569,7 @@ MonoBehaviour:
   speed: 1
   player: {fileID: 1069843845}
   stopDistance: 6
-  projectilePrefab: {fileID: 5604997419782537581, guid: 6434a7787820a904b9958e6dee3ed131, type: 3}
+  fireballPrefab: {fileID: 5604997419782537581, guid: 6434a7787820a904b9958e6dee3ed131, type: 3}
   firePoint: {fileID: 1620709832}
   fireRate: 0.5
   nextFireTime: 0
