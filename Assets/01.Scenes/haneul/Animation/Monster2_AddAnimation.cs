@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Monster2_AddAnimation : BaseEnemy
 {
-    public float speed; // �� �̵� �ӵ�
+    public float speed; // 이동 속도
     public Rigidbody2D player;
-    public float stopDistance; // �÷��̾�� ���ߴ� �Ÿ�
-    public GameObject projectilePrefab;
+    public float stopDistance; // 플레이어와의 거리
+    public GameObject fireballPrefab; // fireballPrefab으로 이름 변경
     public Transform firePoint;
-    public float fireRate = 2f; // �߻� ����
+    public float fireRate = 2f; // 공격 속도
     public float nextFireTime;
-    public float projectileSpeed = 10f; // ����ü �ӵ��� ������ ����
-    public int damageAmount = 1; // �÷��̾�� �� ������
+    public float projectileSpeed = 10f; // 투사체 속도
+    public int damageAmount = 1; // 공격력
 
     bool isLive = true;
     bool isWaiting = false;
@@ -35,10 +35,11 @@ public class Monster2_AddAnimation : BaseEnemy
         if (!isLive)
             return;
 
-        // ���� �÷��̾ ���� �̵�
+        // 플레이어와의 방향 벡터 계산
         Vector2 dirVec = player.position - enemy.position;
         float distance = dirVec.magnitude;
 
+        // 플레이어 위치에 따른 회전
         if (dirVec.x < 0)  // 플레이어가 왼쪽에 있을 때
         {
             enemy.transform.rotation = Quaternion.Euler(0, -180, 0);  // 적을 왼쪽으로 회전
@@ -46,25 +47,25 @@ public class Monster2_AddAnimation : BaseEnemy
         else if (dirVec.x > 0)  // 플레이어가 오른쪽에 있을 때
         {
             enemy.transform.rotation = Quaternion.Euler(0, 0, 0);  // 적을 오른쪽으로 회전
-        }  
-        // �÷��̾�� ���� �Ÿ� �̻��� ���� �̵�
+        }
+
+        // 플레이어가 멀리 있으면 이동
         if (distance > stopDistance && anim.GetBool("isWalk") && !anim.GetBool("isAttack"))
         {
             Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
             enemy.MovePosition(enemy.position + nextVec);
         }
-
         else
         {
-            anim.SetBool("isWalk",false);
-            if(Time.time >= nextFireTime && !isWaiting)
+            anim.SetBool("isWalk", false);
+            if (Time.time >= nextFireTime && !isWaiting)
             {
-                anim.SetBool("isAttack", true); 
+                anim.SetBool("isAttack", true);
                 StartCoroutine(WaitAndShoot());
             }
         }
 
-        // ���� �ӵ��� 0���� ����
+        // 이동을 멈추고 정지 상태 유지
         enemy.velocity = Vector2.zero;
     }
 
@@ -72,7 +73,6 @@ public class Monster2_AddAnimation : BaseEnemy
     {
         isWaiting = true; // 대기 시작
 
-        
         yield return new WaitForSeconds(0.65f);
         Shoot();
         nextFireTime = Time.time + 1f / fireRate;
@@ -83,24 +83,24 @@ public class Monster2_AddAnimation : BaseEnemy
 
     void Shoot()
     {
-        // 투사체 객체 생성
-        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+        // fireballPrefab을 사용하여 투사체 객체 생성
+        GameObject fireball = Instantiate(fireballPrefab, firePoint.position, Quaternion.identity);
 
         // 투사체의 스크립트 가져오기
-        Projectile projectileScript = projectile.GetComponent<Projectile>();
-        if (projectileScript != null)
+        Projectile fireballScript = fireball.GetComponent<Projectile>();
+        if (fireballScript != null)
         {
             // 플레이어와 발사 지점의 방향 계산
             Vector2 direction = new Vector2(player.position.x - firePoint.position.x, player.position.y - firePoint.position.y).normalized;
 
             // 투사체의 방향 설정
-            projectileScript.direction = direction;
-            projectileScript.speed = projectileSpeed;
-            projectileScript.damageAmount = damageAmount;
+            fireballScript.direction = direction;
+            fireballScript.speed = projectileSpeed;
+            fireballScript.damageAmount = damageAmount;
 
             // 발사 각도 계산 (라디안으로 계산된 값을 각도로 변환)
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;  // y, x 방향에 대해 각도 계산
-            projectile.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle)); // 각도에 맞게 회전
+            fireball.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle)); // 각도에 맞게 회전
         }
     }
 
