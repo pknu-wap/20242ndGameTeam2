@@ -63,7 +63,7 @@ public class Monster1__AddAnimation : BaseEnemy
         yield return new WaitForSeconds(0.8f);
 
         // 대기 후, 플레이어와의 충돌 여부 확인
-        if (IsPlayerInRange())
+        if (Enemy_MeleeAttack_Judgment.isAttackSusses)
         {
             TakeDamageToPlayer(); // 플레이어에게 피해 주기
             nextDamageTime = Time.time + damageInterval; // 다음 공격을 위한 시간 설정
@@ -74,18 +74,6 @@ public class Monster1__AddAnimation : BaseEnemy
         isWaiting = false; // 대기 종료
     }
 
-    private bool IsPlayerInRange()
-    {
-     
-        Collider2D playerCollider = player.GetComponent<Collider2D>();
-        Collider2D enemyCollider = GetComponent<Collider2D>();
-
-        if (playerCollider != null && enemyCollider != null)
-        {
-            return enemyCollider.IsTouching(playerCollider); // 충돌 여부 확인
-        }
-        return false;
-    }
 
     private void TakeDamageToPlayer()
     {
