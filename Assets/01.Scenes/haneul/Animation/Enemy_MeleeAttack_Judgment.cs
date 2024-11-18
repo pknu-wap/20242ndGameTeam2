@@ -17,7 +17,6 @@ public class Enemy_MeleeAttack_Judgment : MonoBehaviour
             if (RangeCollider.IsTouching(playerCollider))
             {
                 isAttackSusses = true;
-                Debug.Log("으악");
             }
             else
             {

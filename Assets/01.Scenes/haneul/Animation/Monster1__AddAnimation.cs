@@ -36,6 +36,14 @@ public class Monster1__AddAnimation : BaseEnemy
         Vector2 dirVec = player.position - enemy.position;
         float distance = dirVec.magnitude;
 
+        if (dirVec.x < 0)  // 플레이어가 왼쪽에 있을 때
+        {
+            enemy.transform.rotation = Quaternion.Euler(0, -180, 0);  // 적을 왼쪽으로 회전
+        }
+        else if (dirVec.x > 0)  // 플레이어가 오른쪽에 있을 때
+        {
+            enemy.transform.rotation = Quaternion.Euler(0, 0, 0);  // 적을 오른쪽으로 회전
+        }
         if (distance > stopDistance && anim.GetBool("isWalk") && !anim.GetBool("isAttack"))
         {
             // 플레이어에게 이동
@@ -48,7 +56,7 @@ public class Monster1__AddAnimation : BaseEnemy
             if (Time.time >= nextDamageTime && !isWaiting) // 대기 중이지 않으면
             {
                 anim.SetBool("isAttack", true); // 공격 애니메이션 시작
-                StartCoroutine(WaitAndCheckCollision()); // 0.5초 대기 후 충돌 확인
+                StartCoroutine(WaitAndCheckCollision());
             }
         }
 
