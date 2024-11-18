@@ -38,11 +38,11 @@ public class Monster1__AddAnimation : BaseEnemy
 
         if (dirVec.x < 0)  // 플레이어가 왼쪽에 있을 때
         {
-            enemy.transform.rotation = Quaternion.Euler(0, -180, 0);  // 적을 왼쪽으로 회전
+            enemy.transform.rotation = Quaternion.Euler(0, 0, 0);  // 적을 왼쪽으로 회전
         }
         else if (dirVec.x > 0)  // 플레이어가 오른쪽에 있을 때
         {
-            enemy.transform.rotation = Quaternion.Euler(0, 0, 0);  // 적을 오른쪽으로 회전
+            enemy.transform.rotation = Quaternion.Euler(0, -180, 0);  // 적을 오른쪽으로 회전
         }
         if (distance > stopDistance && anim.GetBool("isWalk") && !anim.GetBool("isAttack"))
         {
