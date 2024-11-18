@@ -6,7 +6,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;  // ΩÃ±€≈Ê ¿ŒΩ∫≈œΩ∫
+    public static GameManager Instance { get; private set; }  // ΩÃ±€≈Ê ¿ŒΩ∫≈œΩ∫
     public GameObject player;
     #region √º∑¬
     [SerializeField]
@@ -221,6 +221,32 @@ public class GameManager : MonoBehaviour
         }
 
         return selectedOptions.ToArray();
+    }
+    #endregion
+    #region Pause
+    [SerializeField]
+    private int pauseCounter = 0;
+
+    public void PauseGame()
+    {
+        if (pauseCounter == 0)
+        {
+            Time.timeScale = 0f; // ∞‘¿” ∏ÿ√„
+        }
+        pauseCounter++;
+    }
+
+    public void ResumeGame()
+    {
+        if (pauseCounter > 0)
+        {
+            pauseCounter--;
+
+            if (pauseCounter == 0)
+            {
+                Time.timeScale = 1f; // ∞‘¿” ¿Á∞≥
+            }
+        }
     }
     #endregion
 
