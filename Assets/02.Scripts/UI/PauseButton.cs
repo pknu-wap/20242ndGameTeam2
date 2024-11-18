@@ -12,15 +12,17 @@ public class PauseButton : MonoBehaviour
 
     public void GamePause()
     {
-        isPaused = true;
+        GameManager.Instance.PauseGame(); // 일시정지 관리
+        pauseCanvas.gameObject.SetActive(true);
+        ingameCanvas.gameObject.SetActive(false);
+        filter.gameObject.SetActive(true);
+    }
 
-        if (isPaused)
-        {
-            pauseCanvas.gameObject.SetActive(true);
-            ingameCanvas.gameObject.SetActive(false);
-            filter.gameObject.SetActive(true);
-            Time.timeScale = 0f; // 게임 재개
-        }
-            
+    public void GameResume()
+    {
+        GameManager.Instance.ResumeGame(); // 일시정지 해제
+        pauseCanvas.gameObject.SetActive(false);
+        ingameCanvas.gameObject.SetActive(true);
+        filter.gameObject.SetActive(false);
     }
 }

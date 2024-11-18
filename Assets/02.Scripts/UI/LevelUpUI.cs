@@ -12,14 +12,12 @@ public class LevelUpUI : MonoBehaviour
     public TMP_Text[] infoTexts; // 무기/유물 정보 텍스트
     public TMP_Text[] newTexts; // 신규 여부 텍스트
     public Image[] optionImages; // 무기/유물 이미지
-    private bool isPaused = false;
     public GameManager gameManager;
 
     public void TriggerLevelUpUI(UpgradeOption[] options)
     {
-        // 인게임 정지
-        Time.timeScale = 0;
-        isPaused = true;
+        // 게임 정지
+        GameManager.Instance.PauseGame();
 
         // UI 패널 활성화
         levelUpPanel.SetActive(true);
@@ -84,8 +82,7 @@ public class LevelUpUI : MonoBehaviour
     public void CloseLevelUpUI()
     {
         levelUpPanel.SetActive(false);
-        Time.timeScale = 1; // 인게임 진행 재개
-        isPaused = false;
+        GameManager.Instance.ResumeGame(); // 일시정지 해제
     }
 
     // 무기/유물 옵션 클래스
