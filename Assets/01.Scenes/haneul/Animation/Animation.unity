@@ -4125,12 +4125,12 @@ GameObject:
   - component: {fileID: 8037523747237583403}
   - component: {fileID: 8037523747237583404}
   m_Layer: 6
-  m_Name: Monster1
+  m_Name: Stage0_Monster1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1731637321907101377
 Transform:
   m_ObjectHideFlags: 0
@@ -4162,7 +4162,7 @@ GameObject:
   - component: {fileID: 8445136271053642068}
   - component: {fileID: 8445136271053642067}
   m_Layer: 6
-  m_Name: Monster2
+  m_Name: Stage0_Monster2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
