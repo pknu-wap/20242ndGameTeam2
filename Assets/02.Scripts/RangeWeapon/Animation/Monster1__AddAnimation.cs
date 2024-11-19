@@ -88,7 +88,6 @@ public class Monster1__AddAnimation : BaseEnemy
         if (GameManager.Instance != null)
         {
             GameManager.Instance.TakeDamageToPlayer(damageAmount, "근접 공격");
-            Debug.Log("-HP");
         }
     }
 
