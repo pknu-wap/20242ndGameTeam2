@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LongRangeNonTargeting : MonoBehaviour
 {
-    public float damage;
+    public float damage=LongRangeAttack3.arrowDamage;
 
     void OnTriggerEnter2D(Collider2D other)
     {
