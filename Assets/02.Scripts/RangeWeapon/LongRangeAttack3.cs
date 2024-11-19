@@ -7,15 +7,19 @@ public class LongRangeAttack3 : MonoBehaviour
     private Vector2 moveDirection;
     public Joystick joystick;
 
-    public float rate;                       // ¹ß»ç °£°İ
-    public float speed;                      // ¹ß»ç ¼Óµµ
-    public Transform arrowPos;               // È­»ì ¹ß»ç À§Ä¡ (Transform)
-    public GameObject arrow;                 // È­»ì ÇÁ¸®ÆÕ
-    public Transform playerTransform;        // ÇÃ·¹ÀÌ¾îÀÇ Transform
+    public float rate = 1;                   // ì´ˆê¸° ë°œì‚¬ ê°„ê²©
+    public float speed;                      // ë°œì‚¬ ì†ë„
+    public Transform arrowPos;               // í™”ì‚´ ë°œì‚¬ ìœ„ì¹˜ (Transform)
+    public GameObject arrow;                 // í™”ì‚´ í”„ë¦¬íŒ¹
+    public Transform playerTransform;        // í”Œë ˆì´ì–´ì˜ Transform
+    public static int arrowDamage = 10;
+
+    public int weaponLevel = 0;             // ë‚´ë¶€ ë¬´ê¸° ë ˆë²¨
+
 
     private void Start()
     {
-        // È­»ìÀ» ÀÏÁ¤ °£°İÀ¸·Î ¹ß»çÇÏµµ·Ï ÄÚ·çÆ¾ ½ÃÀÛ
+        // í™”ì‚´ì„ ì¼ì • ê°„ê²©ìœ¼ë¡œ ë°œì‚¬í•˜ë„ë¡ ì½”ë£¨í‹´ ì‹œì‘
         StartCoroutine(AutoFire());
     }
 
@@ -30,32 +34,34 @@ public class LongRangeAttack3 : MonoBehaviour
         float moveX = joystick.Horizontal;
         float moveY = joystick.Vertical;
 
-
-        moveDirection = new Vector2(moveX, moveY).normalized; // ÀÔ·Â ¹æÇâÀ» Á¤±ÔÈ­
-
+        moveDirection = new Vector2(moveX, moveY).normalized; // ì…ë ¥ ë°©í–¥ì„ ì •ê·œí™”
     }
 
     void MovePoint()
     {
-        // Á¶ÀÌ½ºÆ½ ÀÔ·ÂÀÌ ÀÖÀ» ¶§¸¸ À§Ä¡¸¦ ÀÌµ¿
+        // ì¡°ì´ìŠ¤í‹± ì…ë ¥ì´ ìˆì„ ë•Œë§Œ ìœ„ì¹˜ë¥¼ ì´ë™
         if (moveDirection != Vector2.zero)
         {
-            // ÇÃ·¹ÀÌ¾î À§Ä¡¿¡¼­ moveDirectionÀ» ´õÇÏ¿© ÀÌµ¿
-            transform.position = playerTransform.position + (Vector3)moveDirection; // ÇÃ·¹ÀÌ¾î À§Ä¡¿¡ moveVector¸¦ ´õÇÏ¿© ÀÌµ¿
+            // í”Œë ˆì´ì–´ ìœ„ì¹˜ì—ì„œ moveDirectionì„ ë”í•˜ì—¬ ì´ë™
+            transform.position = playerTransform.position + (Vector3)moveDirection;
         }
     }
-
 
     IEnumerator AutoFire()
     {
         while (true)
         {
-            // ±ÙÁ¢ °ø°İ ¸ğµåÀÏ ¶§¸¸ ¹ß»ç
-            while (GameManager.isMelee)
+            rate = 1 - (weaponLevel * 0.05f);
+            arrowDamage = 4 + weaponLevel;
+            // ê·¼ì ‘ ê³µê²© ëª¨ë“œê°€ ì•„ë‹ ë•Œë§Œ ë°œì‚¬
+            while (GameManager.isMelee == false)
             {
                 Vector2 direction = (playerTransform.position - arrowPos.position).normalized;
 
                 GameObject instantArrow = Instantiate(arrow, arrowPos.position, Quaternion.FromToRotation(Vector3.right, -direction));
+
+                float scaleMultiplier = 1 + (weaponLevel / 2) * 0.15f;
+                instantArrow.transform.localScale = new Vector3(scaleMultiplier, scaleMultiplier*0.25f, 1);
 
                 Rigidbody2D rb = instantArrow.GetComponent<Rigidbody2D>();
                 if (rb != null)
@@ -66,8 +72,9 @@ public class LongRangeAttack3 : MonoBehaviour
                 yield return new WaitForSeconds(rate);
             }
 
-            yield return null; // `isMelee`°¡ `false`ÀÏ ¶§ ¸Å ÇÁ·¹ÀÓ ´ë±â
+            yield return null; // `isMelee`ê°€ `true`ì¼ ë•Œ ë§¤ í”„ë ˆì„ ëŒ€ê¸°
         }
     }
 
 }
+
