@@ -6,53 +6,53 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }  // ½Ì±ÛÅæ ÀÎ½ºÅÏ½º
+    public static GameManager Instance { get; private set; }  // ì‹±ê¸€í†¤ ì¸ìŠ¤í„´ìŠ¤
     public GameObject player;
-    #region Ã¼·Â
+    #region ì²´ë ¥
     [SerializeField]
-    private static int maxHealth = 6; // ÃÖ´ë Ã¼·Â
+    private static int maxHealth = 6; // ìµœëŒ€ ì²´ë ¥
     [SerializeField]
-    private int currentHealth; // ÇöÀç Ã¼·Â
+    private int currentHealth; // í˜„ì¬ ì²´ë ¥
 
     [SerializeField]
     private GameObject[] Hp = new GameObject[maxHealth];
 
-    // ÇÃ·¹ÀÌ¾î°¡ ÇÇÇØ¸¦ ÀÔ´Â ÇÔ¼ö
+    // í”Œë ˆì´ì–´ê°€ í”¼í•´ë¥¼ ì…ëŠ” í•¨ìˆ˜
     public void TakeDamageToPlayer(int damage, string damageSource)
     {
         currentHealth -= damage;
-        Debug.Log("ÇöÀç Ã¼·Â : " + Hp[currentHealth]);
+        Debug.Log("í˜„ì¬ ì²´ë ¥ : " + Hp[currentHealth]);
         Hp[currentHealth].SetActive(false);
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // ÇöÀç Ã¼·ÂÀ» 0 ÀÌÇÏ·Î ¶³¾îÁöÁö ¾Ê°Ô ÇÏ°í ÃÖ´ë Ã¼·Âº¸´Ù Å¬ ¼ö ¾ø°Ô Clamp Ã³¸®
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // í˜„ì¬ ì²´ë ¥ì„ 0 ì´í•˜ë¡œ ë–¨ì–´ì§€ì§€ ì•Šê²Œ í•˜ê³  ìµœëŒ€ ì²´ë ¥ë³´ë‹¤ í´ ìˆ˜ ì—†ê²Œ Clamp ì²˜ë¦¬
 
         if (currentHealth <= 0)
         {
-            Die(); // Ã¼·ÂÀÌ 0 ÀÌÇÏ°¡ µÇ¸é »ç¸Á
+            Die(); // ì²´ë ¥ì´ 0 ì´í•˜ê°€ ë˜ë©´ ì‚¬ë§
         }
     }
 
-    // »ç¸Á Ã³¸® ÇÔ¼ö
+    // ì‚¬ë§ ì²˜ë¦¬ í•¨ìˆ˜
     private void Die()
     {
         player.SetActive(false);
-        // »ç¸Á ½Ã Ã³¸®ÇÒ ÄÚµå Ãß°¡ (¿¹: °ÔÀÓ ¿À¹ö È­¸é Ç¥½Ã µî)
+        // ì‚¬ë§ ì‹œ ì²˜ë¦¬í•  ì½”ë“œ ì¶”ê°€ (ì˜ˆ: ê²Œì„ ì˜¤ë²„ í™”ë©´ í‘œì‹œ ë“±)
     }
     #endregion
-    #region °æÇèÄ¡, ·¹º§¾÷
-    // °æÇèÄ¡, ·¹º§ °ü·Ã º¯¼ö
-    public int exp = 0; // ÇöÀç °æÇèÄ¡
-    public int level = 1; // ÇöÀç ·¹º§
-    public int expToNextLevel = 100; // ´ÙÀ½ ·¹º§±îÁö ÇÊ¿äÇÑ °æÇèÄ¡
-    public float expMultiplier = 1.2f; // °¢ ·¹º§¾÷¸¶´Ù ÇÊ¿äÇÑ °æÇèÄ¡ Áõ°¡ ¹èÀ²
-    public Slider expSlider; // °æÇèÄ¡ ½½¶óÀÌ´õ
-    public TMP_Text levelText;   // ·¹º§ ÅØ½ºÆ®
-    public LevelUpUI levelUpUI;  // LevelUpUI ½ºÅ©¸³Æ®
+    #region ê²½í—˜ì¹˜, ë ˆë²¨ì—…
+    // ê²½í—˜ì¹˜, ë ˆë²¨ ê´€ë ¨ ë³€ìˆ˜
+    public int exp = 0; // í˜„ì¬ ê²½í—˜ì¹˜
+    public int level = 1; // í˜„ì¬ ë ˆë²¨
+    public int expToNextLevel = 100; // ë‹¤ìŒ ë ˆë²¨ê¹Œì§€ í•„ìš”í•œ ê²½í—˜ì¹˜
+    public float expMultiplier = 1.2f; // ê° ë ˆë²¨ì—…ë§ˆë‹¤ í•„ìš”í•œ ê²½í—˜ì¹˜ ì¦ê°€ ë°°ìœ¨
+    public Slider expSlider; // ê²½í—˜ì¹˜ ìŠ¬ë¼ì´ë”
+    public TMP_Text levelText;   // ë ˆë²¨ í…ìŠ¤íŠ¸
+    public LevelUpUI levelUpUI;  // LevelUpUI ìŠ¤í¬ë¦½íŠ¸
 
-    // °æÇèÄ¡¸¦ Ãß°¡ÇÏ°í ·¹º§¾÷À» Ã¼Å©ÇÏ´Â ÇÔ¼ö
+    // ê²½í—˜ì¹˜ë¥¼ ì¶”ê°€í•˜ê³  ë ˆë²¨ì—…ì„ ì²´í¬í•˜ëŠ” í•¨ìˆ˜
     public void AddExperience(int amount)
     {
         exp += amount;
-        // °æÇèÄ¡°¡ ÇÊ¿äÇÑ ¾çÀ» ³ÑÀ¸¸é ·¹º§¾÷
+        // ê²½í—˜ì¹˜ê°€ í•„ìš”í•œ ì–‘ì„ ë„˜ìœ¼ë©´ ë ˆë²¨ì—…
         if (exp >= expToNextLevel)
         {
             LevelUp();
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         UpdateUI();
     }
 
-    // ·¹º§¾÷ Ã³¸®
+    // ë ˆë²¨ì—… ì²˜ë¦¬
     private void LevelUp()
     {
         level++;
@@ -69,38 +69,38 @@ public class GameManager : MonoBehaviour
         DisplayLevelUpUI();
     }
 
-    // ·¹º§¾÷ UI È°¼ºÈ­
+    // ë ˆë²¨ì—… UI í™œì„±í™”
     private void DisplayLevelUpUI()
     {
         LevelUpUI.UpgradeOption[] options = GetUpgradeOptions();
-        levelUpUI.TriggerLevelUpUI(options); // ·¹º§¾÷ UI¸¦ Ç¥½ÃÇÏ´Â ÇÔ¼ö È£Ãâ
+        levelUpUI.TriggerLevelUpUI(options); // ë ˆë²¨ì—… UIë¥¼ í‘œì‹œí•˜ëŠ” í•¨ìˆ˜ í˜¸ì¶œ
     }
 
-    // ·¹º§¾÷ UI ¾÷µ¥ÀÌÆ® ÇÔ¼ö
+    // ë ˆë²¨ì—… UI ì—…ë°ì´íŠ¸ í•¨ìˆ˜
     private void UpdateUI()
     {
-        // ½½¶óÀÌ´õ¿Í ·¹º§ ÅØ½ºÆ® ¾÷µ¥ÀÌÆ®
+        // ìŠ¬ë¼ì´ë”ì™€ ë ˆë²¨ í…ìŠ¤íŠ¸ ì—…ë°ì´íŠ¸
         expSlider.maxValue = expToNextLevel;
         expSlider.value = exp;
         levelText.text = "Level: " + level;
     }
     #endregion
-    #region ¹«±â
+    #region ë¬´ê¸°
     public static bool isMelee = false;
     [SerializeField]
     public int meleeWeapon1;
     [SerializeField]
     public int meleeWeapon2;
     [SerializeField]
-    public int longRangeAttack1;   // TargetWeaponÀ» PlayerAttackÀ¸·Î ¼³Á¤
+    public int longRangeAttack1;   // TargetWeaponì„ PlayerAttackìœ¼ë¡œ ì„¤ì •
     [SerializeField]
     public int longRangeAttack2;
     [SerializeField]
-    public int longRangeAttack3;
+    public static int longRangeAttack3;
     [SerializeField]
-    public int nonTargetWeapon; // ºñÅ¸°Ù ¹«±â
+    public int nonTargetWeapon; // ë¹„íƒ€ê²Ÿ ë¬´ê¸°
     [SerializeField]
-    private int maxWeaponLevel = 8; //¹«±â ÃÖ´ë ·¹º§
+    private int maxWeaponLevel = 8; //ë¬´ê¸° ìµœëŒ€ ë ˆë²¨
 
     private LongRangeAttack1 LongRangeAttack1Script;
     private LongRangeAttack2 LongRangeAttack2Script;
@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
         {
             isMelee = false;
         }
-        else //¿ø°Å¸®°ø°İÀÏ¶§ ±ÙÁ¢°ø°İÀ¸·Î ÀüÈ¯
+        else //ì›ê±°ë¦¬ê³µê²©ì¼ë•Œ ê·¼ì ‘ê³µê²©ìœ¼ë¡œ ì „í™˜
         {
             isMelee = true;
         }
@@ -122,22 +122,22 @@ public class GameManager : MonoBehaviour
     {
         switch (weaponIndex)
         {
-            case 0: // meleeWeapon1 ¼±ÅÃ
+            case 0: // meleeWeapon1 ì„ íƒ
                 if (meleeWeapon1 < maxWeaponLevel) meleeWeapon1++;
                 break;
-            case 1: // meleeWeapon2 ¼±ÅÃ
+            case 1: // meleeWeapon2 ì„ íƒ
                 if (meleeWeapon2 < maxWeaponLevel) meleeWeapon2++;
                 break;
-            case 2: // targetWeapon ¼±ÅÃ
+            case 2: // targetWeapon ì„ íƒ
                 if (longRangeAttack1 < maxWeaponLevel) longRangeAttack1++;
                 break;
-            case 3: // nonTargetWeapon ¼±ÅÃ
+            case 3: // nonTargetWeapon ì„ íƒ
                 if (nonTargetWeapon < maxWeaponLevel) nonTargetWeapon++;
                 break;
-            case 4: // nonTargetWeapon ¼±ÅÃ
+            case 4: // nonTargetWeapon ì„ íƒ
                 if (longRangeAttack2 < maxWeaponLevel) longRangeAttack2++;
                 break;
-            case 5: // nonTargetWeapon ¼±ÅÃ
+            case 5: // nonTargetWeapon ì„ íƒ
                 if (longRangeAttack3 < maxWeaponLevel) longRangeAttack3++;
                 break;
         }
@@ -147,10 +147,10 @@ public class GameManager : MonoBehaviour
 
     private void UpdateWeaponStatus()
     {
-        // targetWeaponÀÇ °ª¿¡ µû¶ó PlayerAttack È°¼ºÈ­ ¿©ºÎ °áÁ¤
+        // targetWeaponì˜ ê°’ì— ë”°ë¼ PlayerAttack í™œì„±í™” ì—¬ë¶€ ê²°ì •
         if (longRangeAttack1 == 0)
         {
-            // targetWeaponÀÌ 0ÀÌ¸é °ø°İ ºÒ°¡ -> PlayerAttack ºñÈ°¼ºÈ­
+            // targetWeaponì´ 0ì´ë©´ ê³µê²© ë¶ˆê°€ -> PlayerAttack ë¹„í™œì„±í™”
             if (LongRangeAttack1Script != null)
             {
                 LongRangeAttack1Script.enabled = false;
@@ -158,7 +158,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            // targetWeaponÀÌ 1 ÀÌ»óÀÌ¸é °ø°İ °¡´É -> PlayerAttack È°¼ºÈ­
+            // targetWeaponì´ 1 ì´ìƒì´ë©´ ê³µê²© ê°€ëŠ¥ -> PlayerAttack í™œì„±í™”
             if (LongRangeAttack1Script != null)
             {
                 LongRangeAttack1Script.enabled = true;
@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
 
         if (longRangeAttack2 == 0)
         {
-            // targetWeaponÀÌ 0ÀÌ¸é °ø°İ ºÒ°¡ -> PlayerAttack ºñÈ°¼ºÈ­
+            // targetWeaponì´ 0ì´ë©´ ê³µê²© ë¶ˆê°€ -> PlayerAttack ë¹„í™œì„±í™”
             if (LongRangeAttack2Script != null)
             {
                 LongRangeAttack2Script.enabled = false;
@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            // targetWeaponÀÌ 1 ÀÌ»óÀÌ¸é °ø°İ °¡´É -> PlayerAttack È°¼ºÈ­
+            // targetWeaponì´ 1 ì´ìƒì´ë©´ ê³µê²© ê°€ëŠ¥ -> PlayerAttack í™œì„±í™”
             if (LongRangeAttack2Script != null)
             {
                 LongRangeAttack2Script.enabled = true;
@@ -184,7 +184,7 @@ public class GameManager : MonoBehaviour
 
         if (longRangeAttack3 == 0)
         {
-            // targetWeaponÀÌ 0ÀÌ¸é °ø°İ ºÒ°¡ -> PlayerAttack ºñÈ°¼ºÈ­
+            // targetWeaponì´ 0ì´ë©´ ê³µê²© ë¶ˆê°€ -> PlayerAttack ë¹„í™œì„±í™”
             if (LongRangeAttack3Script != null)
             {
                 LongRangeAttack3Script.enabled = false;
@@ -192,7 +192,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            // targetWeaponÀÌ 1 ÀÌ»óÀÌ¸é °ø°İ °¡´É -> PlayerAttack È°¼ºÈ­
+            // targetWeaponì´ 1 ì´ìƒì´ë©´ ê³µê²© ê°€ëŠ¥ -> PlayerAttack í™œì„±í™”
             if (LongRangeAttack3Script != null)
             {
                 LongRangeAttack3Script.enabled = true;
@@ -204,20 +204,20 @@ public class GameManager : MonoBehaviour
     {
         List<LevelUpUI.UpgradeOption> options = new List<LevelUpUI.UpgradeOption>();
 
-        options.Add(new LevelUpUI.UpgradeOption { name = "±ÙÁ¢¹«±â1", description = "°­È­µÈ ±ÙÁ¢¹«±â1", icon = null, isNew = meleeWeapon1 == 0 });
-        options.Add(new LevelUpUI.UpgradeOption { name = "±ÙÁ¢¹«±â2", description = "°­È­µÈ ±ÙÁ¢¹«±â2", icon = null, isNew = meleeWeapon2 == 0 });
-        options.Add(new LevelUpUI.UpgradeOption { name = "¿ø°Å¸® ¹«±â1", description = "°­È­µÈ ¿ø°Å¸® ¹«±â1", icon = null, isNew = longRangeAttack1 == 0 });
-        options.Add(new LevelUpUI.UpgradeOption { name = "ºñÅ¸°Ù ¹«±â", description = "°­È­µÈ ºñÅ¸°Ù ¹«±â", icon = null, isNew = nonTargetWeapon == 0 });
-        options.Add(new LevelUpUI.UpgradeOption { name = "¿ø°Å¸® ¹«±â2", description = "°­È­µÈ ¿ø°Å¸® ¹«±â2", icon = null, isNew = longRangeAttack2 == 0 });
-        options.Add(new LevelUpUI.UpgradeOption { name = "¿ø°Å¸® ¹«±â3", description = "°­È­µÈ ¿ø°Å¸® ¹«±â3", icon = null, isNew = longRangeAttack3 == 0 });
+        options.Add(new LevelUpUI.UpgradeOption { name = "ê·¼ì ‘ë¬´ê¸°1", description = "ê°•í™”ëœ ê·¼ì ‘ë¬´ê¸°1", icon = null, isNew = meleeWeapon1 == 0 });
+        options.Add(new LevelUpUI.UpgradeOption { name = "ê·¼ì ‘ë¬´ê¸°2", description = "ê°•í™”ëœ ê·¼ì ‘ë¬´ê¸°2", icon = null, isNew = meleeWeapon2 == 0 });
+        options.Add(new LevelUpUI.UpgradeOption { name = "ì›ê±°ë¦¬ ë¬´ê¸°1", description = "ê°•í™”ëœ ì›ê±°ë¦¬ ë¬´ê¸°1", icon = null, isNew = longRangeAttack1 == 0 });
+        options.Add(new LevelUpUI.UpgradeOption { name = "ë¹„íƒ€ê²Ÿ ë¬´ê¸°", description = "ê°•í™”ëœ ë¹„íƒ€ê²Ÿ ë¬´ê¸°", icon = null, isNew = nonTargetWeapon == 0 });
+        options.Add(new LevelUpUI.UpgradeOption { name = "ì›ê±°ë¦¬ ë¬´ê¸°2", description = "ê°•í™”ëœ ì›ê±°ë¦¬ ë¬´ê¸°2", icon = null, isNew = longRangeAttack2 == 0 });
+        options.Add(new LevelUpUI.UpgradeOption { name = "ì›ê±°ë¦¬ ë¬´ê¸°3", description = "ê°•í™”ëœ ì›ê±°ë¦¬ ë¬´ê¸°3", icon = null, isNew = longRangeAttack3 == 0 });
 
-        // ¹«±â ¿É¼Ç Áß 3°³¸¦ ·£´ıÀ¸·Î ¼±ÅÃ
+        // ë¬´ê¸° ì˜µì…˜ ì¤‘ 3ê°œë¥¼ ëœë¤ìœ¼ë¡œ ì„ íƒ
         List<LevelUpUI.UpgradeOption> selectedOptions = new List<LevelUpUI.UpgradeOption>();
         for (int i = 0; i < 3; i++)
         {
             int randomIndex = Random.Range(0, options.Count);
             selectedOptions.Add(options[randomIndex]);
-            options.RemoveAt(randomIndex);  // ÀÌ¹Ì ¼±ÅÃµÈ ¿É¼ÇÀº ¸®½ºÆ®¿¡¼­ Á¦°Å
+            options.RemoveAt(randomIndex);  // ì´ë¯¸ ì„ íƒëœ ì˜µì…˜ì€ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì œê±°
         }
 
         return selectedOptions.ToArray();
@@ -231,7 +231,7 @@ public class GameManager : MonoBehaviour
     {
         if (pauseCounter == 0)
         {
-            Time.timeScale = 0f; // °ÔÀÓ ¸ØÃã
+            Time.timeScale = 0f; // ê²Œì„ ë©ˆì¶¤
         }
         pauseCounter++;
     }
@@ -244,7 +244,7 @@ public class GameManager : MonoBehaviour
 
             if (pauseCounter == 0)
             {
-                Time.timeScale = 1f; // °ÔÀÓ Àç°³
+                Time.timeScale = 1f; // ê²Œì„ ì¬ê°œ
             }
         }
     }
@@ -252,40 +252,40 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        // ½Ì±ÛÅæ ÀÎ½ºÅÏ½º¸¦ ¼³Á¤ÇÕ´Ï´Ù.
+        // ì‹±ê¸€í†¤ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
         if (Instance == null)
         {
             Instance = this;
         }
         else
         {
-            Destroy(gameObject); // ÀÎ½ºÅÏ½º°¡ Áßº¹µÉ °æ¿ì »èÁ¦
+            Destroy(gameObject); // ì¸ìŠ¤í„´ìŠ¤ê°€ ì¤‘ë³µë  ê²½ìš° ì‚­ì œ
             return;
         }
-        DontDestroyOnLoad(gameObject); // ¾ÀÀÌ º¯°æµÇ´õ¶óµµ ÀÎ½ºÅÏ½º À¯Áö
+        DontDestroyOnLoad(gameObject); // ì”¬ì´ ë³€ê²½ë˜ë”ë¼ë„ ì¸ìŠ¤í„´ìŠ¤ ìœ ì§€
     }
 
     void Start()
     {
-        currentHealth = maxHealth; // ÇöÀç Ã¼·ÂÀ» ÃÖ´ë Ã¼·ÂÀ¸·Î ÃÊ±âÈ­
-        // PlayerAttack ½ºÅ©¸³Æ®¸¦ ÃÊ±âÈ­ÇÏ°í ºñÈ°¼ºÈ­
+        currentHealth = maxHealth; // í˜„ì¬ ì²´ë ¥ì„ ìµœëŒ€ ì²´ë ¥ìœ¼ë¡œ ì´ˆê¸°í™”
+        // PlayerAttack ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì´ˆê¸°í™”í•˜ê³  ë¹„í™œì„±í™”
         /*playerAttackScript = GetComponent<PlayerAttack>();
         playerAttackScript.enabled = false;*/
-        expSlider.handleRect.gameObject.SetActive(false); // ÇÚµé ºÎºĞÀ» ºñÈ°¼ºÈ­
+        expSlider.handleRect.gameObject.SetActive(false); // í•¸ë“¤ ë¶€ë¶„ì„ ë¹„í™œì„±í™”
         UpdateUI();
         DisplayLevelUpUI();
-        // PlayerAttack ½ºÅ©¸³Æ® Ã£±â (Player °´Ã¼¿¡ ºÎÂøµÇ¾î ÀÖ´Ù°í °¡Á¤)
+        // PlayerAttack ìŠ¤í¬ë¦½íŠ¸ ì°¾ê¸° (Player ê°ì²´ì— ë¶€ì°©ë˜ì–´ ìˆë‹¤ê³  ê°€ì •)
         LongRangeAttack1Script = GameObject.FindWithTag("Player").GetComponent<LongRangeAttack1>();
         LongRangeAttack2Script = GameObject.FindWithTag("Player").GetComponent<LongRangeAttack2>();
         LongRangeAttack3Script = GameObject.FindWithTag("Player").GetComponent<LongRangeAttack3>();
-        // ¹«±â »óÅÂ¿¡ ¸Â°Ô PlayerAttack ½ºÅ©¸³Æ® È°¼ºÈ­/ºñÈ°¼ºÈ­
+        // ë¬´ê¸° ìƒíƒœì— ë§ê²Œ PlayerAttack ìŠ¤í¬ë¦½íŠ¸ í™œì„±í™”/ë¹„í™œì„±í™”
         UpdateWeaponStatus();
     }
 
-    // °ø°İ ÇÔ¼ö (ÇÊ¿ä½Ã ±¸Çö)
+    // ê³µê²© í•¨ìˆ˜ (í•„ìš”ì‹œ êµ¬í˜„)
     public void Attack(GameObject target)
     {
-        // °ø°İ ½Ã Å¸°Ù¿¡°Ô ÇÇÇØ¸¦ ÀÔÈ÷´Â ÄÚµå Ãß°¡
-        // ¿¹: target.GetComponent<Enemy>().TakeDamage(attackPower);
+        // ê³µê²© ì‹œ íƒ€ê²Ÿì—ê²Œ í”¼í•´ë¥¼ ì…íˆëŠ” ì½”ë“œ ì¶”ê°€
+        // ì˜ˆ: target.GetComponent<Enemy>().TakeDamage(attackPower);
     }
 }

@@ -3056,9 +3056,9 @@ MonoBehaviour:
   meleeWeapon2: 0
   longRangeAttack1: 0
   longRangeAttack2: 0
-  longRangeAttack3: 0
   nonTargetWeapon: 0
   maxWeaponLevel: 8
+  pauseCounter: 0
 --- !u!4 &591760291
 Transform:
   m_ObjectHideFlags: 0
@@ -7877,9 +7877,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1171447226f058449f62c7d71967a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseCanvas: {fileID: 1276109479}
-  ingameCanvas: {fileID: 381221329}
-  filter: {fileID: 1596885898}
 --- !u!114 &1735032318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8019,8 +8016,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joystick: {fileID: 1239624355}
-  rate: 0
-  speed: 0
+  rate: 1
+  speed: 10
   arrowPos: {fileID: 1871324194}
   arrow: {fileID: 2045400321070488781, guid: ea118e1bbfbeeb54b872ff0dd87c47fd, type: 3}
   playerTransform: {fileID: 1069843842}

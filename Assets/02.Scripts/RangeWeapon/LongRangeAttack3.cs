@@ -14,8 +14,6 @@ public class LongRangeAttack3 : MonoBehaviour
     public Transform playerTransform;        // 플레이어의 Transform
     public static int arrowDamage = 10;
 
-    public int weaponLevel = 0;             // 내부 무기 레벨
-
 
     private void Start()
     {
@@ -51,8 +49,8 @@ public class LongRangeAttack3 : MonoBehaviour
     {
         while (true)
         {
-            rate = 1 - (weaponLevel * 0.05f);
-            arrowDamage = 4 + weaponLevel;
+            rate = 1 - (GameManager.longRangeAttack3 * 0.05f);
+            arrowDamage = 10 + GameManager.longRangeAttack3*5;
             // 근접 공격 모드가 아닐 때만 발사
             while (GameManager.isMelee == false)
             {
@@ -60,7 +58,7 @@ public class LongRangeAttack3 : MonoBehaviour
 
                 GameObject instantArrow = Instantiate(arrow, arrowPos.position, Quaternion.FromToRotation(Vector3.right, -direction));
 
-                float scaleMultiplier = 1 + (weaponLevel / 2) * 0.15f;
+                float scaleMultiplier = 1 + (GameManager.longRangeAttack3 / 2) * 0.15f;
                 instantArrow.transform.localScale = new Vector3(scaleMultiplier, scaleMultiplier*0.25f, 1);
 
                 Rigidbody2D rb = instantArrow.GetComponent<Rigidbody2D>();
