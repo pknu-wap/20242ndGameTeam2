@@ -3661,7 +3661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25ef238dc4642c74097d2968afa4294a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 15
   rollSpeed: 10
   rollDuration: 0.5
   joystick: {fileID: 1239624355}
