@@ -7,15 +7,11 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }  // 싱글톤 인스턴스
-    public GameObject player;
+    [SerializeField] private GameObject player;
     #region 체력
-    [SerializeField]
-    private static int maxHealth = 6; // 최대 체력
-    [SerializeField]
-    private int currentHealth; // 현재 체력
-
-    [SerializeField]
-    private GameObject[] Hp = new GameObject[maxHealth];
+    [SerializeField] private static int maxHealth = 6; // 최대 체력
+    [SerializeField] private int currentHealth; // 현재 체력
+    [SerializeField] private GameObject[] Hp = new GameObject[maxHealth];
 
     // 플레이어가 피해를 입는 함수
     public void TakeDamageToPlayer(int damage, string damageSource)
@@ -40,13 +36,13 @@ public class GameManager : MonoBehaviour
     #endregion
     #region 경험치, 레벨업
     // 경험치, 레벨 관련 변수
-    public int exp = 0; // 현재 경험치
-    public int level = 1; // 현재 레벨
-    public int expToNextLevel = 100; // 다음 레벨까지 필요한 경험치
-    public float expMultiplier = 1.2f; // 각 레벨업마다 필요한 경험치 증가 배율
-    public Slider expSlider; // 경험치 슬라이더
-    public TMP_Text levelText;   // 레벨 텍스트
-    public LevelUpUI levelUpUI;  // LevelUpUI 스크립트
+    [SerializeField] private int exp = 0; // 현재 경험치
+    [SerializeField] private int level = 1; // 현재 레벨
+    [SerializeField] private int expToNextLevel = 100; // 다음 레벨까지 필요한 경험치
+    [SerializeField] private float expMultiplier = 1.2f; // 각 레벨업마다 필요한 경험치 증가 배율
+    [SerializeField] private Slider expSlider; // 경험치 슬라이더
+    [SerializeField] private TMP_Text levelText;   // 레벨 텍스트
+    [SerializeField] private LevelUpUI levelUpUI;  // LevelUpUI 스크립트
 
     // 경험치를 추가하고 레벨업을 체크하는 함수
     public void AddExperience(int amount)
@@ -87,20 +83,13 @@ public class GameManager : MonoBehaviour
     #endregion
     #region 무기
     public static bool isMelee = false;
-    [SerializeField]
-    public int meleeWeapon1;
-    [SerializeField]
-    public int meleeWeapon2;
-    [SerializeField]
-    public int meleeWeapon3;
-    [SerializeField]
-    public int longRangeAttack1;   // TargetWeapon을 PlayerAttack으로 설정
-    [SerializeField]
-    public int longRangeAttack2;
-    [SerializeField]
-    public static int longRangeAttack3;
-    [SerializeField]
-    private int maxWeaponLevel = 8; //무기 최대 레벨
+    [SerializeField] public int meleeWeapon1_Level;
+    [SerializeField] public int meleeWeapon2_Level;
+    [SerializeField] public int meleeWeapon3_Level;
+    [SerializeField] public int longRangeAttack1_Level;   // TargetWeapon을 PlayerAttack으로 설정
+    [SerializeField] public int longRangeAttack2_Level;
+    [SerializeField] public static int longRangeAttack3_Level;
+    [SerializeField] public int maxWeaponLevel = 8; //무기 최대 레벨
 
     private LongRangeAttack1 LongRangeAttack1Script;
     private LongRangeAttack2 LongRangeAttack2Script;
@@ -124,22 +113,22 @@ public class GameManager : MonoBehaviour
         switch (weaponIndex)
         {
             case 0:
-                if (meleeWeapon1 < maxWeaponLevel) meleeWeapon1++;
+                if (meleeWeapon1_Level < maxWeaponLevel) meleeWeapon1_Level++;
                 break;
             case 1:
-                if (meleeWeapon2 < maxWeaponLevel) meleeWeapon2++;
+                if (meleeWeapon2_Level < maxWeaponLevel) meleeWeapon2_Level++;
                 break;
             case 2:
-                if (meleeWeapon3 < maxWeaponLevel) meleeWeapon3++;
+                if (meleeWeapon3_Level < maxWeaponLevel) meleeWeapon3_Level++;
                 break;
             case 3:
-                if (longRangeAttack1 < maxWeaponLevel) longRangeAttack1++;
+                if (longRangeAttack1_Level < maxWeaponLevel) longRangeAttack1_Level++;
                 break;
             case 4:
-                if (longRangeAttack2 < maxWeaponLevel) longRangeAttack2++;
+                if (longRangeAttack2_Level < maxWeaponLevel) longRangeAttack2_Level++;
                 break;
             case 5:
-                if (longRangeAttack3 < maxWeaponLevel) longRangeAttack3++;
+                if (longRangeAttack3_Level < maxWeaponLevel) longRangeAttack3_Level++;
                 break;
         }
 
@@ -148,7 +137,7 @@ public class GameManager : MonoBehaviour
 
     private void UpdateWeaponStatus()
     {
-        if (longRangeAttack1 == 0)
+        if (longRangeAttack1_Level == 0)
         {
             if (LongRangeAttack1Script != null)
             {
@@ -163,7 +152,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (longRangeAttack2 == 0)
+        if (longRangeAttack2_Level == 0)
         {
             if (LongRangeAttack2Script != null)
             {
@@ -178,7 +167,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (longRangeAttack3 == 0)
+        if (longRangeAttack3_Level == 0)
         {
             if (LongRangeAttack3Script != null)
             {
@@ -193,7 +182,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (meleeWeapon3 == 0)
+        if (meleeWeapon3_Level == 0)
         {
             if (MeleeWeapon3Script != null)
             {
@@ -213,12 +202,12 @@ public class GameManager : MonoBehaviour
     {
         List<LevelUpUI.UpgradeOption> options = new List<LevelUpUI.UpgradeOption>();
 
-        options.Add(new LevelUpUI.UpgradeOption { name = "근접무기1", description = "강화된 근접무기1", icon = null, isNew = meleeWeapon1 == 0 });
-        options.Add(new LevelUpUI.UpgradeOption { name = "근접무기2", description = "강화된 근접무기2", icon = null, isNew = meleeWeapon2 == 0 });
-        options.Add(new LevelUpUI.UpgradeOption { name = "근접무기3", description = "강화된 근접무기3", icon = null, isNew = meleeWeapon3 == 0 });
-        options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기1", description = "강화된 원거리 무기1", icon = null, isNew = longRangeAttack1 == 0 });
-        options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기2", description = "강화된 원거리 무기2", icon = null, isNew = longRangeAttack2 == 0 });
-        options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기3", description = "강화된 원거리 무기3", icon = null, isNew = longRangeAttack3 == 0 });
+        options.Add(new LevelUpUI.UpgradeOption { name = "근접무기1", description = "강화된 근접무기1", icon = null, isNew = meleeWeapon1_Level == 0 });
+        options.Add(new LevelUpUI.UpgradeOption { name = "근접무기2", description = "강화된 근접무기2", icon = null, isNew = meleeWeapon2_Level == 0 });
+        options.Add(new LevelUpUI.UpgradeOption { name = "근접무기3", description = "강화된 근접무기3", icon = null, isNew = meleeWeapon3_Level == 0 });
+        options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기1", description = "강화된 원거리 무기1", icon = null, isNew = longRangeAttack1_Level == 0 });
+        options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기2", description = "강화된 원거리 무기2", icon = null, isNew = longRangeAttack2_Level == 0 });
+        options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기3", description = "강화된 원거리 무기3", icon = null, isNew = longRangeAttack3_Level == 0 });
 
         // 무기 옵션 중 3개를 랜덤으로 선택
         List<LevelUpUI.UpgradeOption> selectedOptions = new List<LevelUpUI.UpgradeOption>();
@@ -233,8 +222,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
     #region Pause
-    [SerializeField]
-    private int pauseCounter = 0;
+    [SerializeField] private int pauseCounter = 0;
 
     public void PauseGame()
     {
