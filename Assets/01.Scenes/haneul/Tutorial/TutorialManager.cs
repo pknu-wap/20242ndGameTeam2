@@ -7,7 +7,7 @@ public class TutorialManager : MonoBehaviour
     public static int PlayerHp = 6;
     public GameObject[] Hp = new GameObject[PlayerHp];
     public static bool isDamage = false;
-    public bool isInvincible = false;
+    public static bool isInvincible = false;
 
     private bool isBlinking = false;  // 깜빡임 효과가 실행 중인지 추적하는 변수
 
@@ -20,34 +20,33 @@ public class TutorialManager : MonoBehaviour
     {
         while (true)
         {
-            if (isDamage && !isInvincible)  // 무적 상태가 아니면 데미지를 받음
+            if (isDamage)  // 데미지 상태 확인
             {
-                TakeDamage();  // 체력 감소
+                if (!isInvincible)  // 무적 상태가 아니면 데미지를 받음
+                {
+                    isInvincible = true;  // 무적 상태 시작
+                    PlayerHp--;
 
-                isDamage = false;  // 데미지 상태 리셋
+                    if (PlayerHp >= 0 && PlayerHp < Hp.Length)
+                    {
+                        Hp[PlayerHp].SetActive(false);  // HP 감소 반영
+                    }
 
-                isInvincible = true;  // 무적 상태 시작
+                    // 깜빡임 및 무적 상태 처리
+                    Invincible();
 
-                Invincible();  // 무적 효과 시작
-                yield return new WaitForSeconds(2.5f);  // 2초 동안 무적 상태 유지
+                    // 무적 상태 유지 시간
+                    yield return new WaitForSeconds(2.5f);
 
-                isInvincible = false;  // 무적 상태 종료
+                    isBlinking = false;  // 깜빡임 효과 종료
+                    isInvincible = false;  // 무적 상태 종료
+                }
+
+                // 데미지 상태 초기화 (무조건 처리)
+                isDamage = false;
             }
-            yield return null;
-        }
-    }
 
-    void TakeDamage()
-    {
-        // 무적 상태일 때는 체력이 감소하지 않도록 방지
-        if (isInvincible)
-            return;
-
-        PlayerHp--;  // 무적 상태가 아니면 체력 감소
-
-        if (PlayerHp >= 0 && PlayerHp < Hp.Length)
-        {
-            Hp[PlayerHp].SetActive(false);
+            yield return null;  // 다음 프레임까지 대기
         }
     }
 
@@ -84,7 +83,5 @@ public class TutorialManager : MonoBehaviour
             renderer.material.color = originalColor;
             yield return new WaitForSeconds(blinkInterval);
         }
-        yield return new WaitForSeconds(0.5f);
-        isBlinking = false;  // 깜빡임 효과 종료 후 상태 리셋
     }
 }

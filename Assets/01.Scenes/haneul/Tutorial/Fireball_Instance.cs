@@ -44,6 +44,27 @@ public class Fireball_Instance : MonoBehaviour
             yield return new WaitForSeconds(fireRate);
         }
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject); // 자신의 파괴
+        }
+    }
+
+    void OnDestroy()
+    {
+        // Fireball_Instance가 파괴될 때 생성된 모든 파이어볼 삭제
+        foreach (GameObject fireball in instantiatedPrefabs)
+        {
+            if (fireball != null)
+            {
+                Destroy(fireball); // 생성된 파이어볼 삭제
+            }
+        }
+    }
 }
+
 
 

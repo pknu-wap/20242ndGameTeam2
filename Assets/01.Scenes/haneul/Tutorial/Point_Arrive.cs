@@ -13,6 +13,7 @@ public class Point_Arrive : MonoBehaviour
     public GameObject Point6;
     public GameObject Msg;
     public GameObject Wall;
+    public GameObject Instance;
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -46,6 +47,7 @@ public class Point_Arrive : MonoBehaviour
                 case 6:
                     Point6.SetActive(false);
                     Wall.SetActive(true);
+                    Instance.SetActive(true);
                     break;
             }
         }
