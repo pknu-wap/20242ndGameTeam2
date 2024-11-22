@@ -43,29 +43,33 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Slider expSlider; // 경험치 슬라이더
     [SerializeField] private TMP_Text levelText;   // 레벨 텍스트
     [SerializeField] private LevelUpUI levelUpUI;  // LevelUpUI 스크립트
+    [SerializeField] private GameObject levelUpPanel;
 
     // 경험치를 추가하고 레벨업을 체크하는 함수
     public void AddExperience(int amount)
     {
+        // 기존 경험치에 추가
         exp += amount;
-        // 경험치가 필요한 양을 넘으면 레벨업
-        if (exp >= expToNextLevel)
+
+        // 여러 번의 레벨업을 처리
+        while (exp >= expToNextLevel)
         {
-            LevelUp();
+            LevelUp(); // 레벨업 처리
+            DisplayLevelUpUI(); // 레벨업 UI 표시
+
+            // 레벨업 후 남은 경험치로 계속 진행
+            exp -= expToNextLevel;
+            expToNextLevel = Mathf.FloorToInt(expToNextLevel * expMultiplier);
         }
-        UpdateUI();
+
+        UpdateUI(); // UI 업데이트
     }
 
-    // 레벨업 처리
     private void LevelUp()
     {
-        level++;
-        exp -= expToNextLevel;
-        expToNextLevel = Mathf.FloorToInt(expToNextLevel * expMultiplier);
-        DisplayLevelUpUI();
+        level++; // 레벨 증가
     }
 
-    // 레벨업 UI 활성화
     private void DisplayLevelUpUI()
     {
         LevelUpUI.UpgradeOption[] options = GetUpgradeOptions();
@@ -119,7 +123,11 @@ public class GameManager : MonoBehaviour
                 if (meleeWeapon2_Level < maxWeaponLevel) meleeWeapon2_Level++;
                 break;
             case 2:
-                if (meleeWeapon3_Level < maxWeaponLevel) meleeWeapon3_Level++;
+                if (meleeWeapon3_Level < maxWeaponLevel) 
+                {
+                    meleeWeapon3_Level++;
+                    UpdateMeleeWeapon3Level();
+                }
                 break;
             case 3:
                 if (longRangeAttack1_Level < maxWeaponLevel) longRangeAttack1_Level++;
@@ -220,25 +228,42 @@ public class GameManager : MonoBehaviour
 
         return selectedOptions.ToArray();
     }
+    private void UpdateMeleeWeapon3Level()
+    {
+        // Player 객체의 MeleeWeapon3 스크립트 참조
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            MeleeWeapon3 meleeWeapon3 = player.GetComponent<MeleeWeapon3>();
+            if (meleeWeapon3 != null)
+            {
+                meleeWeapon3.currentLevel = meleeWeapon3_Level;  // 레벨 반영
+                meleeWeapon3.UpdateWeaponStats();  // 능력치 업데이트
+            }
+        }
+    }
     #endregion
     #region Pause
     [SerializeField] private int pauseCounter = 0;
 
     public void PauseGame()
     {
-        if (pauseCounter == 0)
+        if (levelUpPanel.activeSelf == false)
         {
-            Time.timeScale = 0f; // 게임 멈춤
+            if (pauseCounter == 0)
+            {
+                pauseCounter++; // pauseCounter 증가
+                Time.timeScale = 0f; // 게임 멈춤
+            }
         }
-        pauseCounter++;
     }
 
     public void ResumeGame()
     {
-        if (pauseCounter > 0)
+        // 레벨업 UI가 활성화되지 않았다면 게임을 재개
+        if (levelUpPanel.activeSelf == false && pauseCounter > 0)
         {
-            pauseCounter--;
-
+            pauseCounter--; // pauseCounter 감소
             if (pauseCounter == 0)
             {
                 Time.timeScale = 1f; // 게임 재개
@@ -265,9 +290,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth; // 현재 체력을 최대 체력으로 초기화
-        // PlayerAttack 스크립트를 초기화하고 비활성화
-        /*playerAttackScript = GetComponent<PlayerAttack>();
-        playerAttackScript.enabled = false;*/
         expSlider.handleRect.gameObject.SetActive(false); // 핸들 부분을 비활성화
         UpdateUI();
         DisplayLevelUpUI();

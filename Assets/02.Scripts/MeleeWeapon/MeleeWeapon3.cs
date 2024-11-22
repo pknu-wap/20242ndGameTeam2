@@ -1,59 +1,152 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MeleeWeapon3 : MonoBehaviour // 성경
 {
     public GameObject bulletPrefab; // 총알 프리팹
-    public float speed = 100f; // 회전 속도
-    public float radius = 3f; // 원의 반지름
-    private float angle = 0f; // 회전 각도
-    public float bulletExistTime = 3f; // 총알 존재 시간 (초)
-    public float bulletInactiveTime = 3f; // 총알 비활성 시간 (초)
+    [SerializeField] public int currentLevel = 1; // 현재 무기 레벨
+    [SerializeField] private int maxLevel = 8; // 최대 무기 레벨
+    [SerializeField] private float baseDamage = 10f; // 기본 공격력
+    [SerializeField] private float speed = 100f; // 회전 속도
+    [SerializeField] private float radius = 3f; // 원의 반지름
+    [SerializeField] private float bulletExistTime = 3f; // 총알 존재 시간 (초)
+    [SerializeField] private float bulletInactiveTime = 3f; // 총알 비활성 시간 (초)
+    [SerializeField] private List<GameObject> activeBullets = new List<GameObject>(); // 현재 활성화된 총알 리스트
     private Transform playerTransform; // 플레이어의 Transform
-    private GameObject bullet; // 생성된 총알 객체
+    private List<GameObject> bullets = new List<GameObject>(); // 생성된 총알들
+    private int bulletCount = 1; // 현재 투사체 수
 
     void Start()
     {
+        currentLevel = GameManager.Instance.meleeWeapon3_Level;
         playerTransform = GameObject.FindWithTag("Player").transform;
+        UpdateWeaponStats(); // 초기 무기 상태 업데이트
         StartCoroutine(SpawnBulletCycle()); // 총알 생성 사이클 시작
     }
 
-    // 총알을 생성하고 3초 후에 삭제 후 다시 생성하는 코루틴
+    // 무기 레벨에 따른 상태 업데이트
+    public void UpdateWeaponStats()
+    {
+        switch (currentLevel)
+        {
+            case 1:
+                bulletCount = 1;
+                break;
+            case 2:
+                bulletCount = 2;
+                break;
+            case 3:
+                speed += 30f; // 회전 속도 증가
+                radius += 1.25f; // 반지름 증가
+                break;
+            case 4:
+                bulletExistTime += 0.5f; // 지속시간 증가
+                baseDamage += 10f; // 공격력 증가
+                break;
+            case 5:
+                bulletCount = 3;
+                break;
+            case 6:
+                speed += 39f; // 회전 속도 증가
+                radius += 1.5625f; // 반지름 증가
+                break;
+            case 7:
+                bulletExistTime += 0.5f; // 지속시간 증가
+                baseDamage += 10f; // 공격력 증가
+                break;
+            case 8:
+                bulletCount = 4;
+                break;
+        }
+    }
+
+    // 레벨업 메서드
+    public void LevelUp()
+    {
+        if (currentLevel < maxLevel)
+        {
+            currentLevel++;
+            UpdateWeaponStats();
+        }
+    }
+
+    // 총알 생성 및 관리 코루틴
     IEnumerator SpawnBulletCycle()
     {
         while (true)
         {
-            // 총알을 플레이어의 자식으로 생성하고 z좌표는 -1로 설정
-            bullet = Instantiate(bulletPrefab, new Vector3(playerTransform.position.x, playerTransform.position.y, -1f), Quaternion.identity);
-            bullet.transform.SetParent(playerTransform); // 플레이어의 자식으로 설정
+            SpawnBullets();
 
-            // 총알 존재 시간만큼 대기
             yield return new WaitForSeconds(bulletExistTime);
 
-            // 총알 삭제
-            Destroy(bullet);
+            ClearBullets();
 
-            // 총알 비활성 시간만큼 대기
             yield return new WaitForSeconds(bulletInactiveTime);
         }
+    }
+    void UpdateBulletDamage()
+    {
+        foreach (var bullet in activeBullets)
+        {
+            var bulletScript = bullet.GetComponent<MeleeWeapon3Bullet>();
+            if (bulletScript != null)
+            {
+                bulletScript.baseDamage = baseDamage;
+            }
+        }
+    }
+
+    // 총알 생성 메서드
+    void SpawnBullets()
+    {
+        ClearBullets(); // 기존 총알 삭제
+        float angleStep = 360f / bulletCount; // 각 투사체의 각도 간격
+
+        for (int i = 0; i < bulletCount; i++)
+        {
+            float angle = i * angleStep * Mathf.Deg2Rad;
+            Vector3 spawnPosition = new Vector3(
+                Mathf.Cos(angle) * radius,
+                Mathf.Sin(angle) * radius,
+                -1f
+            );
+
+            GameObject bullet = Instantiate(bulletPrefab, playerTransform.position + spawnPosition, Quaternion.identity, playerTransform);
+            bullets.Add(bullet);
+        }
+    }
+
+    // 총알 삭제 메서드
+    void ClearBullets()
+    {
+        foreach (GameObject bullet in bullets)
+        {
+            if (bullet != null)
+                Destroy(bullet);
+        }
+        bullets.Clear();
     }
 
     void Update()
     {
-        if (bullet != null)
+        if (bullets.Count > 0)
         {
-            // 각도를 증가시켜서 회전
-            angle += speed * Time.deltaTime;
+            float angleStep = 360f / bulletCount;
+            for (int i = 0; i < bullets.Count; i++)
+            {
+                float angle = (i * angleStep + Time.time * speed) * Mathf.Deg2Rad;
 
-            // 원을 그리기 위해 총알의 위치 계산
-            Vector3 newBulletPosition = new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, -1f);
+                Vector3 newBulletPosition = new Vector3(
+                    Mathf.Cos(angle) * radius,
+                    Mathf.Sin(angle) * radius,
+                    -1f
+                );
 
-            // 총알이 플레이어를 중심으로 회전하도록 위치 설정
-            bullet.transform.localPosition = newBulletPosition;
-
-            // 총알이 회전하는 방향으로 회전하도록 설정
-            bullet.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle * Mathf.Rad2Deg));
+                bullets[i].transform.localPosition = newBulletPosition;
+                bullets[i].transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle * Mathf.Rad2Deg));
+            }
         }
     }
 }

@@ -32,6 +32,30 @@ public class LevelUpUI : MonoBehaviour
                 newTexts[i].text = options[i].isNew ? "신규" : ""; // 신규 여부 표시
                 optionImages[i].sprite = options[i].icon;
 
+                // 각 무기의 레벨을 확인하여 maxWeaponLevel에 도달하면 비활성화
+                bool isMaxLevel = false;
+
+                // GameManager에서 각 무기의 레벨을 체크
+                if (options[i].name == "근접무기1" && GameManager.Instance.meleeWeapon1_Level >= GameManager.Instance.maxWeaponLevel)
+                    isMaxLevel = true;
+                else if (options[i].name == "근접무기2" && GameManager.Instance.meleeWeapon2_Level >= GameManager.Instance.maxWeaponLevel)
+                    isMaxLevel = true;
+                else if (options[i].name == "근접무기3" && GameManager.Instance.meleeWeapon3_Level >= GameManager.Instance.maxWeaponLevel)
+                    isMaxLevel = true;
+                else if (options[i].name == "원거리 무기1" && GameManager.Instance.longRangeAttack1_Level >= GameManager.Instance.maxWeaponLevel)
+                    isMaxLevel = true;
+                else if (options[i].name == "원거리 무기2" && GameManager.Instance.longRangeAttack2_Level >= GameManager.Instance.maxWeaponLevel)
+                    isMaxLevel = true;
+                else if (options[i].name == "원거리 무기3" && GameManager.longRangeAttack3_Level >= GameManager.Instance.maxWeaponLevel)
+                    isMaxLevel = true;
+
+                if (isMaxLevel)
+                {
+                    // maxWeaponLevel에 도달하면 버튼 비활성화
+                    optionButtons[i].interactable = false;
+                    optionButtons[i].GetComponent<Image>().color = Color.gray; // 버튼 색상 변경
+                }
+
                 // 버튼 클릭 이벤트 추가
                 int index = i; // 로컬 변수로 캡처
                 optionButtons[i].onClick.RemoveAllListeners(); // 이전 이벤트 제거
