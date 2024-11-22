@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MeleeWeapon_0 : MonoBehaviour  // 채찍
@@ -19,6 +20,7 @@ public class MeleeWeapon_0 : MonoBehaviour  // 채찍
     [SerializeField] private Animator animator;           // Animator 연결
 
     private float lastAttackTime;        // 마지막 공격 시간 기록
+    private bool isAttacking = false;
 
     void Start()
     {
@@ -27,8 +29,9 @@ public class MeleeWeapon_0 : MonoBehaviour  // 채찍
 
     void Update()
     {
-        if (Time.time >= lastAttackTime + attackCooldown)
+        if (!isAttacking && Time.time >= lastAttackTime + attackCooldown)
         {
+            isAttacking = true;
             lastAttackTime = Time.time;
             StartCoroutine(AttackSequence());
         }
@@ -48,7 +51,7 @@ public class MeleeWeapon_0 : MonoBehaviour  // 채찍
         else
         {
             // 단일 방향 (기본 오른쪽)
-            Attack(Vector2.right);
+            Attack(Vector2.left);
         }
     }
 
@@ -60,7 +63,7 @@ public class MeleeWeapon_0 : MonoBehaviour  // 채찍
 
         // 애니메이션 트리거
         animator.SetInteger("WeaponLevel", weaponLevel);
-        animator.SetTrigger("Attack");
+
 
         // 공격 방향 설정 (왼쪽 또는 오른쪽)
         //currentDirection = direction;
@@ -68,19 +71,22 @@ public class MeleeWeapon_0 : MonoBehaviour  // 채찍
         // Transform 업데이트 (크기 및 위치 조정)
         UpdateAnimationTransform(direction);
 
-        // 애니메이션 실행
-        if (direction == Vector2.left)
+        if(isAttacking)
         {
-            animator.SetBool("IsAttackingLeft", true);
-            animator.SetBool("IsAttackingRight", false);
-        }
-        else if (direction == Vector2.right)
-        {
-            animator.SetBool("IsAttackingRight", true);
-            animator.SetBool("IsAttackingLeft", false);
-        }
+            // 애니메이션 실행
+            if (direction == Vector2.left)
+            {
+                animator.SetBool("IsAttackingLeft", true);
+                animator.SetBool("IsAttackingRight", false);
+            }
+            else if (direction == Vector2.right)
+            {
+                animator.SetBool("IsAttackingRight", true);
+                animator.SetBool("IsAttackingLeft", false);
+            }
 
-    StartCoroutine(ResetAttackFlag());
+            StartCoroutine(ResetAttackFlag());
+        }
 
         // 방향에 따라 공격 범위 중심 계산
         Vector2 boxCenter = (Vector2)meleePivot.position + direction * (attackRange_x / 2);
@@ -97,10 +103,16 @@ public class MeleeWeapon_0 : MonoBehaviour  // 채찍
     }
     IEnumerator ResetAttackFlag()
     {
-        // 애니메이션이 끝날 때까지 기다린 후 공격 플래그를 초기화
+        //이부분 수정해서 에니메이션 종료 시간 계산까지 코루틴 기다리게 작업 필요.
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        /* while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+        {
+            yield return null; // 애니메이션이 끝날 때까지 대기
+        }*/
         animator.SetBool("IsAttackingLeft", false);
         animator.SetBool("IsAttackingRight", false);
+
+        isAttacking = false;
     }
 
     void UpdateAnimationTransform(Vector2 currentDirection)
