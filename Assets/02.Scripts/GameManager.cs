@@ -45,36 +45,34 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LevelUpUI levelUpUI;  // LevelUpUI 스크립트
     [SerializeField] private GameObject levelUpPanel;
 
-    // 경험치를 추가하고 레벨업을 체크하는 함수
+    // 
     public void AddExperience(int amount)
     {
-        // 기존 경험치에 추가
         exp += amount;
-
-        // 여러 번의 레벨업을 처리
-        while (exp >= expToNextLevel)
+        // 경험치가 필요한 양을 넘으면 레벨업
+        if (exp >= expToNextLevel)
         {
-            LevelUp(); // 레벨업 처리
-            DisplayLevelUpUI(); // 레벨업 UI 표시
-
-            // 레벨업 후 남은 경험치로 계속 진행
-            exp -= expToNextLevel;
-            expToNextLevel = Mathf.FloorToInt(expToNextLevel * expMultiplier);
+            LevelUp();
         }
-
-        UpdateUI(); // UI 업데이트
+        UpdateUI();
     }
 
+    // 레벨업 처리
     private void LevelUp()
     {
-        level++; // 레벨 증가
+        level++;
+        exp = 0;
+        expToNextLevel = Mathf.FloorToInt(expToNextLevel * expMultiplier);
+        DisplayLevelUpUI();
     }
 
+    // 레벨업 UI 활성화
     private void DisplayLevelUpUI()
     {
         LevelUpUI.UpgradeOption[] options = GetUpgradeOptions();
         levelUpUI.TriggerLevelUpUI(options); // 레벨업 UI를 표시하는 함수 호출
     }
+
 
     // 레벨업 UI 업데이트 함수
     private void UpdateUI()

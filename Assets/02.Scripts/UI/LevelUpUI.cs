@@ -22,44 +22,54 @@ public class LevelUpUI : MonoBehaviour
         // UI 패널 활성화
         levelUpPanel.SetActive(true);
 
+        // isMaxLevel이 true인 무기를 제외한 옵션 배열 생성
+        List<UpgradeOption> validOptions = new List<UpgradeOption>();
+        foreach (var option in options)
+        {
+            bool isMaxLevel = false;
+
+            // 각 무기의 레벨을 확인하여 maxWeaponLevel에 도달하면 제외
+            if (option.name == "근접무기1" && GameManager.Instance.meleeWeapon1_Level >= GameManager.Instance.maxWeaponLevel)
+                isMaxLevel = true;
+            else if (option.name == "근접무기2" && GameManager.Instance.meleeWeapon2_Level >= GameManager.Instance.maxWeaponLevel)
+                isMaxLevel = true;
+            else if (option.name == "근접무기3" && GameManager.Instance.meleeWeapon3_Level >= GameManager.Instance.maxWeaponLevel)
+                isMaxLevel = true;
+            else if (option.name == "원거리 무기1" && GameManager.Instance.longRangeAttack1_Level >= GameManager.Instance.maxWeaponLevel)
+                isMaxLevel = true;
+            else if (option.name == "원거리 무기2" && GameManager.Instance.longRangeAttack2_Level >= GameManager.Instance.maxWeaponLevel)
+                isMaxLevel = true;
+            else if (option.name == "원거리 무기3" && GameManager.longRangeAttack3_Level >= GameManager.Instance.maxWeaponLevel)
+                isMaxLevel = true;
+
+            // maxWeaponLevel에 도달하지 않은 무기만 validOptions 리스트에 추가
+            if (!isMaxLevel)
+            {
+                validOptions.Add(option);
+            }
+        }
+
+        // 필터링된 validOptions 배열을 사용하여 UI 업데이트
         for (int i = 0; i < optionButtons.Length; i++)
         {
-            if (i < options.Length)
+            if (i < validOptions.Count)
             {
                 // 무기/유물 정보 업데이트
-                nameTexts[i].text = options[i].name;
-                infoTexts[i].text = options[i].description;
-                newTexts[i].text = options[i].isNew ? "신규" : ""; // 신규 여부 표시
-                optionImages[i].sprite = options[i].icon;
-
-                // 각 무기의 레벨을 확인하여 maxWeaponLevel에 도달하면 비활성화
-                bool isMaxLevel = false;
-
-                // GameManager에서 각 무기의 레벨을 체크
-                if (options[i].name == "근접무기1" && GameManager.Instance.meleeWeapon1_Level >= GameManager.Instance.maxWeaponLevel)
-                    isMaxLevel = true;
-                else if (options[i].name == "근접무기2" && GameManager.Instance.meleeWeapon2_Level >= GameManager.Instance.maxWeaponLevel)
-                    isMaxLevel = true;
-                else if (options[i].name == "근접무기3" && GameManager.Instance.meleeWeapon3_Level >= GameManager.Instance.maxWeaponLevel)
-                    isMaxLevel = true;
-                else if (options[i].name == "원거리 무기1" && GameManager.Instance.longRangeAttack1_Level >= GameManager.Instance.maxWeaponLevel)
-                    isMaxLevel = true;
-                else if (options[i].name == "원거리 무기2" && GameManager.Instance.longRangeAttack2_Level >= GameManager.Instance.maxWeaponLevel)
-                    isMaxLevel = true;
-                else if (options[i].name == "원거리 무기3" && GameManager.longRangeAttack3_Level >= GameManager.Instance.maxWeaponLevel)
-                    isMaxLevel = true;
-
-                if (isMaxLevel)
-                {
-                    // maxWeaponLevel에 도달하면 버튼 비활성화
-                    optionButtons[i].interactable = false;
-                    optionButtons[i].GetComponent<Image>().color = Color.gray; // 버튼 색상 변경
-                }
+                nameTexts[i].text = validOptions[i].name;
+                infoTexts[i].text = validOptions[i].description;
+                newTexts[i].text = validOptions[i].isNew ? "신규" : ""; // 신규 여부 표시
+                optionImages[i].sprite = validOptions[i].icon;
 
                 // 버튼 클릭 이벤트 추가
                 int index = i; // 로컬 변수로 캡처
                 optionButtons[i].onClick.RemoveAllListeners(); // 이전 이벤트 제거
-                optionButtons[i].onClick.AddListener(() => SelectOption(options[index])); // 각 버튼에 대응되는 실제 UpgradeOption 전달
+                optionButtons[i].onClick.AddListener(() => SelectOption(validOptions[index])); // 각 버튼에 대응되는 실제 UpgradeOption 전달
+            }
+            else
+            {
+                // validOptions 배열 크기를 초과하는 경우 버튼을 비활성화
+                optionButtons[i].interactable = false;
+                optionButtons[i].GetComponent<Image>().color = Color.gray; // 버튼 색상 변경
             }
         }
     }
