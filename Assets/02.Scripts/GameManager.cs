@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int meleeWeapon1_Level;
     [SerializeField] public int meleeWeapon2_Level;
     [SerializeField] public int meleeWeapon3_Level;
+    [SerializeField] public int meleeWeapon4_Level;
     [SerializeField] public int longRangeAttack1_Level;   // TargetWeapon을 PlayerAttack으로 설정
     [SerializeField] public int longRangeAttack2_Level;
     [SerializeField] public static int longRangeAttack3_Level;
@@ -97,6 +98,7 @@ public class GameManager : MonoBehaviour
     private LongRangeAttack2 LongRangeAttack2Script;
     private LongRangeAttack3 LongRangeAttack3Script;
     private MeleeWeapon3 MeleeWeapon3Script;
+    private MeleeWeapon4 MeleeWeapon4Script;
 
     public void WeaponChange()
     {
@@ -128,12 +130,19 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case 3:
-                if (longRangeAttack1_Level < maxWeaponLevel) longRangeAttack1_Level++;
+                if (meleeWeapon4_Level < maxWeaponLevel)
+                {
+                    meleeWeapon4_Level++;
+                    UpdateMeleeWeapon4Level();
+                }
                 break;
             case 4:
-                if (longRangeAttack2_Level < maxWeaponLevel) longRangeAttack2_Level++;
+                if (longRangeAttack1_Level < maxWeaponLevel) longRangeAttack1_Level++;
                 break;
             case 5:
+                if (longRangeAttack2_Level < maxWeaponLevel) longRangeAttack2_Level++;
+                break;
+            case 6:
                 if (longRangeAttack3_Level < maxWeaponLevel) longRangeAttack3_Level++;
                 break;
         }
@@ -202,6 +211,21 @@ public class GameManager : MonoBehaviour
                 MeleeWeapon3Script.enabled = true;
             }
         }
+
+        if (meleeWeapon4_Level == 0)
+        {
+            if (MeleeWeapon4Script != null)
+            {
+                MeleeWeapon4Script.enabled = false;
+            }
+        }
+        else
+        {
+            if (MeleeWeapon4Script != null)
+            {
+                MeleeWeapon4Script.enabled = true;
+            }
+        }
     }
 
     private LevelUpUI.UpgradeOption[] GetUpgradeOptions()
@@ -211,6 +235,7 @@ public class GameManager : MonoBehaviour
         options.Add(new LevelUpUI.UpgradeOption { name = "근접무기1", description = "강화된 근접무기1", icon = null, isNew = meleeWeapon1_Level == 0 });
         options.Add(new LevelUpUI.UpgradeOption { name = "근접무기2", description = "강화된 근접무기2", icon = null, isNew = meleeWeapon2_Level == 0 });
         options.Add(new LevelUpUI.UpgradeOption { name = "근접무기3", description = "강화된 근접무기3", icon = null, isNew = meleeWeapon3_Level == 0 });
+        options.Add(new LevelUpUI.UpgradeOption { name = "근접무기4", description = "강화된 근접무기4", icon = null, isNew = meleeWeapon4_Level == 0 });
         options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기1", description = "강화된 원거리 무기1", icon = null, isNew = longRangeAttack1_Level == 0 });
         options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기2", description = "강화된 원거리 무기2", icon = null, isNew = longRangeAttack2_Level == 0 });
         options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기3", description = "강화된 원거리 무기3", icon = null, isNew = longRangeAttack3_Level == 0 });
@@ -237,6 +262,21 @@ public class GameManager : MonoBehaviour
             {
                 meleeWeapon3.currentLevel = meleeWeapon3_Level;  // 레벨 반영
                 meleeWeapon3.UpdateWeaponStats();  // 능력치 업데이트
+            }
+        }
+    }
+
+    private void UpdateMeleeWeapon4Level()
+    {
+        // Player 객체의 MeleeWeapon3 스크립트 참조
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            MeleeWeapon4 meleeWeapon4 = player.GetComponent<MeleeWeapon4>();
+            if (meleeWeapon4 != null)
+            {
+                meleeWeapon4.currentLevel = meleeWeapon4_Level;  // 레벨 반영
+                meleeWeapon4.UpdateWeaponStats();  // 능력치 업데이트
             }
         }
     }
@@ -296,6 +336,7 @@ public class GameManager : MonoBehaviour
         LongRangeAttack2Script = GameObject.FindWithTag("Player").GetComponent<LongRangeAttack2>();
         LongRangeAttack3Script = GameObject.FindWithTag("Player").GetComponent<LongRangeAttack3>();
         MeleeWeapon3Script = GameObject.FindWithTag("Player").GetComponent<MeleeWeapon3>();
+        MeleeWeapon4Script = GameObject.FindWithTag("Player").GetComponent<MeleeWeapon4>();
         // 무기 상태에 맞게 PlayerAttack 스크립트 활성화/비활성화
         UpdateWeaponStatus();
     }
