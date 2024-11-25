@@ -34,7 +34,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        ProcessInputs();
+        if (!isRolling)
+        {
+            ProcessInputs();
+        }
     }
 
     void FixedUpdate()
