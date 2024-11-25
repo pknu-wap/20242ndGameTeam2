@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class FadeOutPanel : MonoBehaviour
 {
     private CanvasGroup canvasGroup;
+    public Canvas PauseState;
+    public GameObject Panel;
     public float fadeDuration = 2f;  
 
     private void Start()
@@ -42,7 +44,11 @@ public class FadeOutPanel : MonoBehaviour
         // 최종적으로 완전히 사라짐
         canvasGroup.alpha = 0f;
 
-        // 오브젝트 비활성화
+        Panel.gameObject.SetActive(true);
+
+        PauseState.gameObject.SetActive(true);
+        TutoText1.isExplain = true;
+        
         gameObject.SetActive(false);
     }
 }
