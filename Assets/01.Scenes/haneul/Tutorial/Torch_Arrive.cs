@@ -62,7 +62,7 @@ public class Torch_Arrive: MonoBehaviour
                     DodgeButton.SetActive(true);
                     if (Light != null)
                     {
-                        Light.intensity = 8f;  // 밝기 설정 (값을 원하는 만큼 조절 가능)
+                        Light.intensity = 18f;  // 밝기 설정 (값을 원하는 만큼 조절 가능)
                         
                     }
                     if (playerLight != null)
