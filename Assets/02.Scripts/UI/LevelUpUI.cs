@@ -35,6 +35,8 @@ public class LevelUpUI : MonoBehaviour
                 isMaxLevel = true;
             else if (option.name == "근접무기3" && GameManager.Instance.meleeWeapon3_Level >= GameManager.Instance.maxWeaponLevel)
                 isMaxLevel = true;
+            else if (option.name == "근접무기4" && GameManager.Instance.meleeWeapon4_Level >= GameManager.Instance.maxWeaponLevel)
+                isMaxLevel = true;
             else if (option.name == "원거리 무기1" && GameManager.Instance.longRangeAttack1_Level >= GameManager.Instance.maxWeaponLevel)
                 isMaxLevel = true;
             else if (option.name == "원거리 무기2" && GameManager.Instance.longRangeAttack2_Level >= GameManager.Instance.maxWeaponLevel)
@@ -97,17 +99,21 @@ public class LevelUpUI : MonoBehaviour
         {
             GameManager.Instance.SelectWeapon(2);
         }
-        else if (selectedOption.name == "원거리 무기1") // 비타겟 무기를 강화
+        else if (selectedOption.name == "근접무기4") // 타겟 무기를 강화
         {
             GameManager.Instance.SelectWeapon(3);
         }
-        else if (selectedOption.name == "원거리 무기2") // 비타겟 무기를 강화
+        else if (selectedOption.name == "원거리 무기1") // 비타겟 무기를 강화
         {
             GameManager.Instance.SelectWeapon(4);
         }
-        else if (selectedOption.name == "원거리 무기3") // 비타겟 무기를 강화
+        else if (selectedOption.name == "원거리 무기2") // 비타겟 무기를 강화
         {
             GameManager.Instance.SelectWeapon(5);
+        }
+        else if (selectedOption.name == "원거리 무기3") // 비타겟 무기를 강화
+        {
+            GameManager.Instance.SelectWeapon(6);
         }
     }
 
