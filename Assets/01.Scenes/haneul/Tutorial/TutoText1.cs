@@ -26,6 +26,7 @@ public class TutoText1 : MonoBehaviour
                 case 1:
                     Text1.gameObject.SetActive(false);
                     Text2.gameObject.SetActive(true);
+                    joyrange.gameObject.SetActive(false);
                     break;
                 case 2:
                     Text2.gameObject.SetActive(false);

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 public class Torch_Arrive: MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Torch_Arrive: MonoBehaviour
     public Light2D Light;
     public Light2D playerLight;
     public ParticleSystem collisionParticles;
+    public GameObject DodgeButton;
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -57,6 +59,7 @@ public class Torch_Arrive: MonoBehaviour
                     Torch7.SetActive(false);
                     Wall.SetActive (true);
                     Instance.SetActive(true);
+                    DodgeButton.SetActive(true);
                     if (Light != null)
                     {
                         Light.intensity = 8f;  // 밝기 설정 (값을 원하는 만큼 조절 가능)

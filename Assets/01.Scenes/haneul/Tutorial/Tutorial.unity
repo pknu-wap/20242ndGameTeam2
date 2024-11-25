@@ -325,6 +325,7 @@ MonoBehaviour:
   Light: {fileID: 0}
   playerLight: {fileID: 0}
   collisionParticles: {fileID: 2114601847}
+  DodgeButton: {fileID: 0}
 --- !u!212 &65506091
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11108,7 +11109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &227767979
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32416,6 +32417,7 @@ MonoBehaviour:
   Light: {fileID: 0}
   playerLight: {fileID: 0}
   collisionParticles: {fileID: 2114601847}
+  DodgeButton: {fileID: 0}
 --- !u!212 &850295328
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -37708,6 +37710,7 @@ MonoBehaviour:
   Light: {fileID: 0}
   playerLight: {fileID: 0}
   collisionParticles: {fileID: 2114601847}
+  DodgeButton: {fileID: 0}
 --- !u!212 &940533258
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -42850,7 +42853,7 @@ MonoBehaviour:
   - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
   spacing: 2
   moveSpeed: 5
-  fireRate: 7
+  fireRate: 4
 --- !u!114 &1017089763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48328,6 +48331,7 @@ MonoBehaviour:
   Light: {fileID: 360310219}
   playerLight: {fileID: 98076333}
   collisionParticles: {fileID: 2114601847}
+  DodgeButton: {fileID: 1880080513}
 --- !u!212 &1155107261
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -48487,6 +48491,7 @@ MonoBehaviour:
   Light: {fileID: 0}
   playerLight: {fileID: 0}
   collisionParticles: {fileID: 2114601847}
+  DodgeButton: {fileID: 0}
 --- !u!212 &1165936397
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -49103,6 +49108,7 @@ MonoBehaviour:
   Light: {fileID: 0}
   playerLight: {fileID: 0}
   collisionParticles: {fileID: 2114601847}
+  DodgeButton: {fileID: 0}
 --- !u!212 &1394817306
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -138919,7 +138925,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1880080514
 RectTransform:
   m_ObjectHideFlags: 0
@@ -173864,6 +173870,7 @@ MonoBehaviour:
   Light: {fileID: 0}
   playerLight: {fileID: 0}
   collisionParticles: {fileID: 2114601847}
+  DodgeButton: {fileID: 0}
 --- !u!61 &7570178237744098261
 BoxCollider2D:
   m_ObjectHideFlags: 0
