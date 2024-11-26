@@ -15,6 +15,10 @@ public class LongRangeNonTargeting : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (gameObject.layer == LayerMask.NameToLayer("Wall"))
+        {
+            Destroy(gameObject);
+        }
         BaseEnemy enemy = other.GetComponent<BaseEnemy>();
         if (enemy != null)
         {
