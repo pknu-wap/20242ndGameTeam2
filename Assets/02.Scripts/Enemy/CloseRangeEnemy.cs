@@ -20,7 +20,7 @@ public class CloseRangeEnemy : BaseEnemy
         base.Awake();
         enemy = GetComponent<Rigidbody2D>();
         damageMultiplier = 1.0f;
-        expOnDeath = 1000000;
+        expOnDeath = 5000;
     }
 
     private void FixedUpdate()
