@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using static LevelUpUI;
 
 public class GameManager : MonoBehaviour
 {
@@ -228,25 +229,123 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private LevelUpUI.UpgradeOption[] GetUpgradeOptions()
+    public LevelUpUI.UpgradeOption[] GetUpgradeOptions()
     {
-        List<LevelUpUI.UpgradeOption> options = new List<LevelUpUI.UpgradeOption>();
+        List<UpgradeOption> options = new List<UpgradeOption>();
 
-        options.Add(new LevelUpUI.UpgradeOption { name = "근접무기1", description = "강화된 근접무기1", icon = null, isNew = meleeWeapon1_Level == 0 });
-        options.Add(new LevelUpUI.UpgradeOption { name = "근접무기2", description = "강화된 근접무기2", icon = null, isNew = meleeWeapon2_Level == 0 });
-        options.Add(new LevelUpUI.UpgradeOption { name = "근접무기3", description = "강화된 근접무기3", icon = null, isNew = meleeWeapon3_Level == 0 });
-        options.Add(new LevelUpUI.UpgradeOption { name = "근접무기4", description = "강화된 근접무기4", icon = null, isNew = meleeWeapon4_Level == 0 });
-        options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기1", description = "강화된 원거리 무기1", icon = null, isNew = longRangeAttack1_Level == 0 });
-        options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기2", description = "강화된 원거리 무기2", icon = null, isNew = longRangeAttack2_Level == 0 });
-        options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기3", description = "강화된 원거리 무기3", icon = null, isNew = longRangeAttack3_Level == 0 });
+        // 근접 무기 1
+        if (meleeWeapon1_Level < maxWeaponLevel)
+        {
+            string description = meleeWeapon1_Level == 0 ? "근접무기1" :
+                                 meleeWeapon1_Level == 1 ? "강화된 근접무기1" :
+                                 meleeWeapon1_Level == 2 ? "강화된 근접무기1" :
+                                 meleeWeapon1_Level == 3 ? "강화된 근접무기1" :
+                                 meleeWeapon1_Level == 4 ? "강화된 근접무기1" :
+                                 meleeWeapon1_Level == 5 ? "강화된 근접무기1" :
+                                 meleeWeapon1_Level == 6 ? "강화된 근접무기1" :
+                                 meleeWeapon1_Level == 7 ? "강화된 근접무기1" :
+                                 "강화된 근접무기1: 추가 효과";
+            options.Add(new LevelUpUI.UpgradeOption { name = "근접무기1", description = description, icon = null, isNew = meleeWeapon1_Level == 0 });
+        }
 
-        // 무기 옵션 중 3개를 랜덤으로 선택
-        List<LevelUpUI.UpgradeOption> selectedOptions = new List<LevelUpUI.UpgradeOption>();
-        for (int i = 0; i < 3; i++)
+        // 근접 무기 2
+        if (meleeWeapon2_Level < maxWeaponLevel)
+        {
+            string description = meleeWeapon2_Level == 0 ? "근접무기2" :
+                                 meleeWeapon2_Level == 1 ? "강화된 근접무기2" :
+                                 meleeWeapon2_Level == 2 ? "강화된 근접무기2" :
+                                 meleeWeapon2_Level == 3 ? "강화된 근접무기2" :
+                                 meleeWeapon2_Level == 4 ? "강화된 근접무기2" :
+                                 meleeWeapon2_Level == 5 ? "강화된 근접무기2" :
+                                 meleeWeapon2_Level == 6 ? "강화된 근접무기2" :
+                                 meleeWeapon2_Level == 7 ? "강화된 근접무기2" :
+                                 "강화된 근접무기2: 추가 효과";
+            options.Add(new LevelUpUI.UpgradeOption { name = "근접무기2", description = description, icon = null, isNew = meleeWeapon2_Level == 0 });
+        }
+
+        // 근접 무기 3
+        if (meleeWeapon3_Level < maxWeaponLevel)
+        {
+            string description = meleeWeapon3_Level == 0 ? "근접무기3" :
+                                 meleeWeapon3_Level == 1 ? "투사체 개수 증가" :
+                                 meleeWeapon3_Level == 2 ? "회전 속도 증가 \n공격 범위 증가" :
+                                 meleeWeapon3_Level == 3 ? "지속 시간 증가" :
+                                 meleeWeapon3_Level == 4 ? "투사체 개수 증가" :
+                                 meleeWeapon3_Level == 5 ? "회전 속도 증가 \n공격 범위 증가" :
+                                 meleeWeapon3_Level == 6 ? "지속 시간 증가" :
+                                 meleeWeapon3_Level == 7 ? "투사체 개수 증가" :
+                                 "강화된 근접무기3: 추가 효과";
+            options.Add(new LevelUpUI.UpgradeOption { name = "근접무기3", description = description, icon = null, isNew = meleeWeapon3_Level == 0 });
+        }
+
+        // 근접 무기 4
+        if (meleeWeapon4_Level < maxWeaponLevel)
+        {
+            string description = meleeWeapon4_Level == 0 ? "근접무기4" :
+                                 meleeWeapon4_Level == 1 ? "공격력 증가 \n공격 범위 증가" :
+                                 meleeWeapon4_Level == 2 ? "공격력 증가 \n공격 범위 증가" :
+                                 meleeWeapon4_Level == 3 ? "공격력 증가 \n공격 범위 증가" :
+                                 meleeWeapon4_Level == 4 ? "공격력 증가 \n공격 범위 증가" :
+                                 meleeWeapon4_Level == 5 ? "공격력 증가 \n공격 범위 증가" :
+                                 meleeWeapon4_Level == 6 ? "공격력 증가 \n공격 범위 증가" :
+                                 meleeWeapon4_Level == 7 ? "공격력 증가 \n공격 범위 증가" :
+                                 "강화된 근접무기4: 추가 효과";
+            options.Add(new LevelUpUI.UpgradeOption { name = "근접무기4", description = description, icon = null, isNew = meleeWeapon4_Level == 0 });
+        }
+
+        // 원거리 무기 1
+        if (longRangeAttack1_Level < maxWeaponLevel)
+        {
+            string description = longRangeAttack1_Level == 0 ? "원거리 무기1" :
+                                 longRangeAttack1_Level == 1 ? "강화된 원거리 무기1" :
+                                 longRangeAttack1_Level == 2 ? "강화된 원거리 무기1" :
+                                 longRangeAttack1_Level == 3 ? "강화된 원거리 무기1" :
+                                 longRangeAttack1_Level == 4 ? "강화된 원거리 무기1" :
+                                 longRangeAttack1_Level == 5 ? "강화된 원거리 무기1" :
+                                 longRangeAttack1_Level == 6 ? "강화된 원거리 무기1" :
+                                 longRangeAttack1_Level == 7 ? "강화된 원거리 무기1" :
+                                 "강화된 원거리 무기1: 추가 효과";
+            options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기1", description = description, icon = null, isNew = longRangeAttack1_Level == 0 });
+        }
+
+        // 원거리 무기 2
+        if (longRangeAttack2_Level < maxWeaponLevel)
+        {
+            string description = longRangeAttack2_Level == 0 ? "원거리 무기2" :
+                                 longRangeAttack2_Level == 1 ? "강화된 원거리 무기2" :
+                                 longRangeAttack2_Level == 2 ? "강화된 원거리 무기2" :
+                                 longRangeAttack2_Level == 3 ? "강화된 원거리 무기2" :
+                                 longRangeAttack2_Level == 4 ? "강화된 원거리 무기2" :
+                                 longRangeAttack2_Level == 5 ? "강화된 원거리 무기2" :
+                                 longRangeAttack2_Level == 6 ? "강화된 원거리 무기2" :
+                                 longRangeAttack2_Level == 7 ? "강화된 원거리 무기2" :
+                                 "강화된 원거리 무기2: 추가 효과";
+            options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기2", description = description, icon = null, isNew = longRangeAttack2_Level == 0 });
+        }
+
+        // 원거리 무기 3
+        if (longRangeAttack3_Level < maxWeaponLevel)
+        {
+            string description = longRangeAttack3_Level == 0 ? "원거리 무기3" :
+                                 longRangeAttack3_Level == 1 ? "강화된 원거리 무기3" :
+                                 longRangeAttack3_Level == 2 ? "강화된 원거리 무기3" :
+                                 longRangeAttack3_Level == 3 ? "강화된 원거리 무기3" :
+                                 longRangeAttack3_Level == 4 ? "강화된 원거리 무기3" :
+                                 longRangeAttack3_Level == 5 ? "강화된 원거리 무기3" :
+                                 longRangeAttack3_Level == 6 ? "강화된 원거리 무기3" :
+                                 longRangeAttack3_Level == 7 ? "강화된 원거리 무기3" :
+                                 "강화된 원거리 무기3: 추가 효과";
+            options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기3", description = description, icon = null, isNew = longRangeAttack3_Level == 0 });
+        }
+        // 유효한 옵션에서 무작위로 최대 3개 선택
+        List<UpgradeOption> selectedOptions = new List<UpgradeOption>();
+        int count = Mathf.Min(3, options.Count); // 최대 3개 선택
+
+        for (int i = 0; i < count; i++)
         {
             int randomIndex = Random.Range(0, options.Count);
             selectedOptions.Add(options[randomIndex]);
-            options.RemoveAt(randomIndex);  // 이미 선택된 옵션은 리스트에서 제거
+            options.RemoveAt(randomIndex); // 선택된 옵션 제거
         }
 
         return selectedOptions.ToArray();
