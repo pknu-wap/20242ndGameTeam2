@@ -31,27 +31,35 @@ public class MeleeWeapon4 : MonoBehaviour // 마늘
         {
             case 1:
                 attackRange = 8f;
+                baseDamage = 10f;
                 break;
             case 2:
                 attackRange = 9f;
+                baseDamage = 11f;
                 break;
             case 3:
                 attackRange = 10f;
+                baseDamage = 12f;
                 break;
             case 4:
                 attackRange = 11f;
+                baseDamage = 13f;
                 break;
             case 5:
                 attackRange = 12f;
+                baseDamage = 14f;
                 break;
             case 6:
                 attackRange = 13f;
+                baseDamage = 15f;
                 break;
             case 7:
                 attackRange = 14f;
+                baseDamage = 16f;
                 break;
             case 8:
                 attackRange = 15f;
+                baseDamage = 17f;
                 break;
                 // 추가 레벨에 따른 처리
         }
