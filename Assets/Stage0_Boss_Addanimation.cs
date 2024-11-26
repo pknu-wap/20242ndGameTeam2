@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Stage0_Boss_Addanimation : BaseEnemy
@@ -38,6 +39,10 @@ public class Stage0_Boss_Addanimation : BaseEnemy
         Vector2 dirVec = player.position - enemy.position;
         float distance = dirVec.magnitude;
 
+        if(distance > stopDistance)
+        {
+            anim.SetBool("isWalk", true);
+        }
         if (dirVec.x < 0)  // 플레이어가 왼쪽에 있을 때
         {
             enemy.transform.rotation = Quaternion.Euler(0, -180, 0);  // 적을 왼쪽으로 회전
@@ -48,23 +53,32 @@ public class Stage0_Boss_Addanimation : BaseEnemy
         }
         if (distance > stopDistance && anim.GetBool("isWalk") && !anim.GetBool("isAttack1") && !anim.GetBool("isAttack2"))
         {
-            // 플레이어에게 이동
+            
             Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
             enemy.MovePosition(enemy.position + nextVec);
         }
         else
         {
             anim.SetBool("isWalk", false); // 걷기 애니메이션 종료
-            switch (AttackNum++ % 3)
+            switch (AttackNum % 2)
             {
+
                 case 0:
                     if (Time.time >= nextDamageTime && !isWaiting) // 대기 중이지 않으면
                     {
                         anim.SetBool("isAttack1", true); // 공격 애니메이션 시작
-                        StartCoroutine(WaitAndCheckCollision());
+                        StartCoroutine(Attack1());
                     }
                     break;
                 case 1:
+                    if (Time.time >= nextDamageTime && !isWaiting) // 대기 중이지 않으면
+                    {
+                        anim.SetBool("isAttack2", true); // 공격 애니메이션 시작
+                        StartCoroutine(Attack2());
+                    }
+                    break;
+
+
             }
             
         }
@@ -72,31 +86,7 @@ public class Stage0_Boss_Addanimation : BaseEnemy
         enemy.velocity = Vector2.zero;
     }
 
-    private IEnumerator WaitAndCheckCollision()
-    {
-        isWaiting = true; // 대기 시작
-
-        yield return new WaitForSeconds(0.9f);
-
-        nextDamageTime = Time.time + damageInterval;
-
-        anim.SetBool("isAttack1", false); // 공격 애니메이션 종료
-        anim.SetBool("isWalk", true);
-        isWaiting = false; // 대기 종료
-    }
     private IEnumerator Attack1()
-    {
-        isWaiting = true; // 대기 시작
-
-        yield return new WaitForSeconds(0.9f);
-
-        nextDamageTime = Time.time + damageInterval;
-
-        anim.SetBool("isAttack1", false); // 공격 애니메이션 종료
-        anim.SetBool("isWalk", true);
-        isWaiting = false; // 대기 종료
-    }
-    private IEnumerator Attack2()
     {
         isWaiting = true; // 대기 시작
 
@@ -104,9 +94,23 @@ public class Stage0_Boss_Addanimation : BaseEnemy
 
         nextDamageTime = Time.time + damageInterval;
 
-        anim.SetBool("isAttack2", false); // 공격 애니메이션 종료
-        anim.SetBool("isWalk", true);
+        anim.SetBool("isAttack1", false); // 공격 애니메이션 종료
+        
         isWaiting = false; // 대기 종료
+        AttackNum++;
+    }
+    private IEnumerator Attack2()
+    {
+        isWaiting = true; // 대기 시작
+
+        yield return new WaitForSeconds(0.7f);
+
+        nextDamageTime = Time.time + damageInterval;
+
+        anim.SetBool("isAttack2", false); // 공격 애니메이션 종료
+
+        isWaiting = false; // 대기 종료
+        AttackNum++;
     }
 
 
