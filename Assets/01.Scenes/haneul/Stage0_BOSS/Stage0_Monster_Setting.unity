@@ -3333,8 +3333,8 @@ GameObject:
   - component: {fileID: 1626579213}
   - component: {fileID: 1626579212}
   - component: {fileID: 1626579211}
-  - component: {fileID: 1626579209}
   - component: {fileID: 1626579215}
+  - component: {fileID: 1626579216}
   m_Layer: 6
   m_Name: Stage0_Boss
   m_TagString: Enemy
@@ -3342,27 +3342,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &1626579209
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1626579208}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 367f93adf559a6447906b4be3b623522, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!70 &1626579211
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3395,8 +3374,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0019972324, y: -0.024052382}
-  m_Size: {x: 0.4083298, y: 0.5999334}
+  m_Offset: {x: 0.008896958, y: -0.0023787238}
+  m_Size: {x: 0.28487006, y: 0.53324616}
   m_Direction: 0
 --- !u!50 &1626579212
 Rigidbody2D:
@@ -3509,12 +3488,33 @@ MonoBehaviour:
   currentHealth: 0
   damageMultiplier: 1
   expOnDeath: 0
-  speed: 2
+  speed: 2.4
   player: {fileID: 1069843845}
-  stopDistance: 2.3
+  stopDistance: 2.6
   damageAmount: 1
   damageInterval: 1.1
   AttackNum: 0
+--- !u!95 &1626579216
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626579208}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 367f93adf559a6447906b4be3b623522, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1748046384
 GameObject:
   m_ObjectHideFlags: 0
@@ -4766,7 +4766,7 @@ MonoBehaviour:
   player: {fileID: 1069843845}
   stopDistance: 1.85
   damageAmount: 1
-  damageInterval: 1
+  damageInterval: 3
 --- !u!4 &8858339182152261268
 Transform:
   m_ObjectHideFlags: 0

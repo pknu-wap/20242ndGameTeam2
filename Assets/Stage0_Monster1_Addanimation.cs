@@ -67,15 +67,10 @@ public class Stage0_Monster1_Addanimation : BaseEnemy
     {
         isWaiting = true; // 대기 시작
 
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1f);
 
-        // 대기 후, 플레이어와의 충돌 여부 확인
-        if (Enemy_MeleeAttack_Judgment.isAttackSusses)
-        {
-            TakeDamageToPlayer(); // 플레이어에게 피해 주기
-            nextDamageTime = Time.time + damageInterval; // 다음 공격을 위한 시간 설정
-        }
-        
+        nextDamageTime = Time.time + damageInterval;
+
         anim.SetBool("isAttack", false); // 공격 애니메이션 종료
         anim.SetBool("isWalk", true);
         isWaiting = false; // 대기 종료
@@ -84,12 +79,15 @@ public class Stage0_Monster1_Addanimation : BaseEnemy
 
     private void TakeDamageToPlayer()
     {
-        Debug.Log("성공");
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.TakeDamageToPlayer(damageAmount, "근접 공격");
-            
+        if (Enemy_MeleeAttack_Judgment.isAttackSusses) {
+            Debug.Log("성공");
+            if (GameManager.Instance != null) {
+
+                GameManager.Instance.TakeDamageToPlayer(damageAmount, "근접 공격");
+
+            }
         }
+        
     }
 
     protected override void Die()

@@ -115,8 +115,8 @@ TextureImporter:
         serializedVersion: 2
         x: 810
         y: 263
-        width: 107
-        height: 45
+        width: 112
+        height: 46
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2214,9 +2214,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 39
-        y: 519
-        width: 36
-        height: 41
+        y: 518
+        width: 42
+        height: 44
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2234,10 +2234,10 @@ TextureImporter:
       name: Viking(Ice Axe)-Sheet_352
       rect:
         serializedVersion: 2
-        x: 150
-        y: 521
-        width: 47
-        height: 42
+        x: 151
+        y: 519
+        width: 53
+        height: 45
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2255,10 +2255,10 @@ TextureImporter:
       name: Viking(Ice Axe)-Sheet_353
       rect:
         serializedVersion: 2
-        x: 258
-        y: 522
-        width: 66
-        height: 40
+        x: 256
+        y: 521
+        width: 67
+        height: 43
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2276,10 +2276,10 @@ TextureImporter:
       name: Viking(Ice Axe)-Sheet_355
       rect:
         serializedVersion: 2
-        x: 373
-        y: 521
-        width: 47
-        height: 40
+        x: 372
+        y: 520
+        width: 65
+        height: 45
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2297,10 +2297,10 @@ TextureImporter:
       name: Viking(Ice Axe)-Sheet_356
       rect:
         serializedVersion: 2
-        x: 495
-        y: 520
-        width: 40
-        height: 41
+        x: 484
+        y: 519
+        width: 71
+        height: 45
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2318,10 +2318,10 @@ TextureImporter:
       name: Viking(Ice Axe)-Sheet_357
       rect:
         serializedVersion: 2
-        x: 616
-        y: 520
-        width: 34
-        height: 44
+        x: 612
+        y: 518
+        width: 44
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2339,10 +2339,10 @@ TextureImporter:
       name: Viking(Ice Axe)-Sheet_358
       rect:
         serializedVersion: 2
-        x: 731
-        y: 518
-        width: 34
-        height: 46
+        x: 729
+        y: 517
+        width: 39
+        height: 47
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2675,10 +2675,10 @@ TextureImporter:
       name: Viking(Ice Axe)-Sheet_447
       rect:
         serializedVersion: 2
-        x: 247
-        y: 264
-        width: 87
-        height: 39
+        x: 248
+        y: 263
+        width: 94
+        height: 42
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2696,9 +2696,9 @@ TextureImporter:
       name: Viking(Ice Axe)-Sheet_448
       rect:
         serializedVersion: 2
-        x: 352
+        x: 350
         y: 264
-        width: 106
+        width: 116
         height: 40
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -2719,7 +2719,7 @@ TextureImporter:
         serializedVersion: 2
         x: 466
         y: 264
-        width: 105
+        width: 116
         height: 40
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -2740,7 +2740,7 @@ TextureImporter:
         serializedVersion: 2
         x: 582
         y: 264
-        width: 104
+        width: 115
         height: 40
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -2761,7 +2761,7 @@ TextureImporter:
         serializedVersion: 2
         x: 696
         y: 263
-        width: 106
+        width: 114
         height: 42
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -2782,8 +2782,8 @@ TextureImporter:
         serializedVersion: 2
         x: 924
         y: 263
-        width: 108
-        height: 45
+        width: 116
+        height: 46
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2948,10 +2948,10 @@ TextureImporter:
       name: Viking(Ice Axe)-Sheet_528
       rect:
         serializedVersion: 2
-        x: 37
-        y: 99
-        width: 41
-        height: 40
+        x: 38
+        y: 95
+        width: 46
+        height: 46
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2969,10 +2969,10 @@ TextureImporter:
       name: Viking(Ice Axe)-Sheet_530
       rect:
         serializedVersion: 2
-        x: 152
-        y: 99
-        width: 41
-        height: 40
+        x: 150
+        y: 97
+        width: 52
+        height: 46
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2990,10 +2990,10 @@ TextureImporter:
       name: Viking(Ice Axe)-Sheet_531
       rect:
         serializedVersion: 2
-        x: 267
-        y: 99
-        width: 41
-        height: 40
+        x: 264
+        y: 98
+        width: 55
+        height: 43
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3011,10 +3011,10 @@ TextureImporter:
       name: Viking(Ice Axe)-Sheet_532
       rect:
         serializedVersion: 2
-        x: 382
-        y: 99
-        width: 41
-        height: 40
+        x: 381
+        y: 98
+        width: 51
+        height: 44
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3032,10 +3032,10 @@ TextureImporter:
       name: Viking(Ice Axe)-Sheet_534
       rect:
         serializedVersion: 2
-        x: 499
-        y: 99
-        width: 38
-        height: 41
+        x: 497
+        y: 98
+        width: 49
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

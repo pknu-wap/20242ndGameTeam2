@@ -10,7 +10,7 @@ public class Stage0_Boss_Addanimation : BaseEnemy
     public int damageAmount = 1;
     public float damageInterval = 1.1f; // 공격 간격
     private float nextDamageTime;
-    public int AttackNum = 0;
+    public int AttackNum = 1;
 
     bool isLive = true;
     bool isWaiting = false; // 대기 중인지 확인하는 변수
@@ -55,11 +55,18 @@ public class Stage0_Boss_Addanimation : BaseEnemy
         else
         {
             anim.SetBool("isWalk", false); // 걷기 애니메이션 종료
-            if (Time.time >= nextDamageTime && !isWaiting) // 대기 중이지 않으면
+            switch (AttackNum++ % 3)
             {
-                anim.SetBool("isAttack", true); // 공격 애니메이션 시작
-                StartCoroutine(WaitAndCheckCollision());
+                case 0:
+                    if (Time.time >= nextDamageTime && !isWaiting) // 대기 중이지 않으면
+                    {
+                        anim.SetBool("isAttack1", true); // 공격 애니메이션 시작
+                        StartCoroutine(WaitAndCheckCollision());
+                    }
+                    break;
+                case 1:
             }
+            
         }
 
         enemy.velocity = Vector2.zero;
@@ -69,29 +76,55 @@ public class Stage0_Boss_Addanimation : BaseEnemy
     {
         isWaiting = true; // 대기 시작
 
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(0.9f);
 
-        // 대기 후, 플레이어와의 충돌 여부 확인
-        if (Enemy_MeleeAttack_Judgment.isAttackSusses)
-        {
-            TakeDamageToPlayer(); // 플레이어에게 피해 주기
-            nextDamageTime = Time.time + damageInterval; // 다음 공격을 위한 시간 설정
-        }
+        nextDamageTime = Time.time + damageInterval;
 
-        anim.SetBool("isAttack", false); // 공격 애니메이션 종료
+        anim.SetBool("isAttack1", false); // 공격 애니메이션 종료
+        anim.SetBool("isWalk", true);
+        isWaiting = false; // 대기 종료
+    }
+    private IEnumerator Attack1()
+    {
+        isWaiting = true; // 대기 시작
+
+        yield return new WaitForSeconds(0.9f);
+
+        nextDamageTime = Time.time + damageInterval;
+
+        anim.SetBool("isAttack1", false); // 공격 애니메이션 종료
+        anim.SetBool("isWalk", true);
+        isWaiting = false; // 대기 종료
+    }
+    private IEnumerator Attack2()
+    {
+        isWaiting = true; // 대기 시작
+
+        yield return new WaitForSeconds(0.8f);
+
+        nextDamageTime = Time.time + damageInterval;
+
+        anim.SetBool("isAttack2", false); // 공격 애니메이션 종료
         anim.SetBool("isWalk", true);
         isWaiting = false; // 대기 종료
     }
 
 
+
+
     private void TakeDamageToPlayer()
     {
-        Debug.Log("성공");
-        if (GameManager.Instance != null)
+        if (Enemy_MeleeAttack_Judgment.isAttackSusses)
         {
-            GameManager.Instance.TakeDamageToPlayer(damageAmount, "근접 공격");
+            Debug.Log("성공");
+            if (GameManager.Instance != null)
+            {
 
+                GameManager.Instance.TakeDamageToPlayer(damageAmount, "근접 공격");
+
+            }
         }
+
     }
 
     protected override void Die()
