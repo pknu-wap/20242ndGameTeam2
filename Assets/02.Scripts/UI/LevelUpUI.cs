@@ -88,6 +88,10 @@ public class LevelUpUI : MonoBehaviour
         {
             GameManager.Instance.SelectWeapon(6);
         }
+        else if (selectedOption.name == "원거리 무기4") // 비타겟 무기를 강화
+        {
+            GameManager.Instance.SelectWeapon(7);
+        }
     }
 
     public void CloseLevelUpUI()
