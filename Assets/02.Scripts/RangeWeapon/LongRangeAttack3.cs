@@ -48,7 +48,7 @@ public class LongRangeAttack3 : MonoBehaviour
         }
     }
 
-    void UpdateStatsByLevel()
+    public void UpdateStatsByLevel()
     {
         switch (Level)
         {
