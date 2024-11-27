@@ -95,4 +95,5 @@ public class Stage0_Monster1_Addanimation : BaseEnemy
         base.Die();
         // 추가적인 사망 효과 구현
     }
+
 }
