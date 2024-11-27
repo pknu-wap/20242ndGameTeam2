@@ -49,6 +49,8 @@ public class LongRangeAttack2 : MonoBehaviour
             case 4: return 6;
             case 5: return 7;
             case 6: return 8;
+            case 7: return 9;
+            case 8: return 10;
             default: return 3; // 기본값
         }
     }
@@ -79,6 +81,14 @@ public class LongRangeAttack2 : MonoBehaviour
         else if (bulletCount == 8)
         {
             return new float[] { 0f, 45f, 90f, 135f, 180f, 225f, 270f, 315f };
+        }
+        else if (bulletCount == 9)
+        {
+            return new float[] { 0f, 40f, 80f, 120f, 160f, 200f, 240f, 280f, 320f };
+        }
+        else if (bulletCount == 10)
+        {
+            return new float[] { 0f, 36f, 72f, 108f, 144f, 180f, 216f, 252f, 288f, 324f };
         }
         return new float[] { 0f }; // 기본값
     }
