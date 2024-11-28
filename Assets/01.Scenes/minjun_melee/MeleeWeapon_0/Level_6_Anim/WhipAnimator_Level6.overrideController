@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WhipAnimator_Level6
+  m_Controller: {fileID: 9100000, guid: 3b52eab77b238443a980c7ea9b113d91, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 85091df2a344e4fa3afbe156ec6e3bb8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 54a25e462070d4a3c8162fc0b8ff8e75, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 574e6ddb2b30f487bb3aa776b2009f23, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 388fa6e07b1b448e380d01f2f26b2fae, type: 2}
