@@ -50,7 +50,7 @@ public class LongRangeAttack1 : MonoBehaviour
         }
     }
 
-    List<Vector2> CalculateFirePositions()
+    public List<Vector2> CalculateFirePositions()
     {
         List<Vector2> positions = new List<Vector2>();
 
@@ -97,7 +97,7 @@ public class LongRangeAttack1 : MonoBehaviour
         return positions;
     }
 
-    void UpdateAttackCooldown()
+    public void UpdateAttackCooldown()
     {
         // 6~8레벨에서는 연사 속도 증가
         switch (weaponLevel)

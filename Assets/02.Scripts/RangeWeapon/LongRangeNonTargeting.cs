@@ -33,7 +33,7 @@ public class LongRangeNonTargeting : MonoBehaviour
         }
 
         // 관통이 끝나면 화살 파괴
-        if (!other.CompareTag("Player"))
+        if (!other.CompareTag("Player") && other.gameObject.layer != LayerMask.NameToLayer("PlayerBullet"))
         {
             Destroy(gameObject);
         }
