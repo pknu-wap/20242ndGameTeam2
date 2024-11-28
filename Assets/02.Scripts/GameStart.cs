@@ -8,6 +8,6 @@ public class GameStart : MonoBehaviour
 {
     public void StartButton()
     {
-        SceneManager.LoadScene("Ingame");
+        SceneManager.LoadScene("Cutscene");
     }
 }

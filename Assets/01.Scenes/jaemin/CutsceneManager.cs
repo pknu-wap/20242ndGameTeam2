@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+
 
 [System.Serializable]
 public class CutsceneData
@@ -136,7 +138,6 @@ public class CutsceneManager : MonoBehaviour
     void EndCutscene()
     {
         Debug.Log("컷씬 종료");
-        // 다음 씬 전환 코드 추가 가능
-        // 예: SceneManager.LoadScene("NextScene");
+        SceneManager.LoadScene("Tutorial");
     }
 }
