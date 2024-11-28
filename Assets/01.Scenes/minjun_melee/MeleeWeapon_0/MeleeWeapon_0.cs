@@ -40,10 +40,10 @@ public class MeleeWeapon_0 : MonoBehaviour  // 채찍
     void Update()
     {
         // 공격 쿨타임 체크 및 공격 트리거
-        if (Time.time >= lastAttackTime + attackCooldown)
+        if (Time.time >= lastAttackTime + attackCooldown && GameManager.isMelee)
         {
             lastAttackTime = Time.time;
-            MeleeLevel(weaponLevel);
+            MeleeLevel(GameManager.Instance.meleeWeapon1_Level);
             animator.SetInteger("WeaponLevel", weaponLevel);
 
             StartCoroutine(AttackSequence());

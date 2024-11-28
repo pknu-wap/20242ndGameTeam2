@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
     // 원거리 무기 레벨 변수
     [SerializeField] public int longRangeAttack1_Level;
     [SerializeField] public int longRangeAttack2_Level;
-    [SerializeField] public static int longRangeAttack3_Level;
+    [SerializeField] public int longRangeAttack3_Level;
     [SerializeField] public int longRangeAttack4_Level;
     //무기 최대 레벨
     [SerializeField] public int maxWeaponLevel = 8;

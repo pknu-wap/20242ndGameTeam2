@@ -56,8 +56,10 @@ public class WeaponUIManager : MonoBehaviour
         // Range 무기 레벨을 GameManager에서 가져와서 UI에 업데이트
         UpdateWeaponSlot(gameManager.longRangeAttack1_Level, rangeWeaponImages[0], rangeWeaponLevelTexts[0]);
         UpdateWeaponSlot(gameManager.longRangeAttack2_Level, rangeWeaponImages[1], rangeWeaponLevelTexts[1]);
-        UpdateWeaponSlot(GameManager.longRangeAttack3_Level, rangeWeaponImages[2], rangeWeaponLevelTexts[2]);
+        UpdateWeaponSlot(GameManager.Instance.longRangeAttack3_Level, rangeWeaponImages[2], rangeWeaponLevelTexts[2]);
         UpdateWeaponSlot(gameManager.longRangeAttack4_Level, rangeWeaponImages[3], rangeWeaponLevelTexts[3]);
+
+        
     }
 
     // 무기 슬롯 업데이트 (레벨에 따라 UI 업데이트)

@@ -8,6 +8,8 @@ public class PuppetWarning : MonoBehaviour
     public GameObject wall;
     public GameObject Panel;
     public GameObject BossExplain;
+    public Slider healthSlider;
+    public Button ChangeWeapon;
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
@@ -20,6 +22,8 @@ public class PuppetWarning : MonoBehaviour
             wall.SetActive(true);
             Panel.SetActive(true);
             BossExplain.SetActive(true);
+            healthSlider.gameObject.SetActive(true);
+            ChangeWeapon.gameObject.SetActive(true);
             // 현재 게임 오브젝트 파괴
             Destroy(gameObject);
         }
