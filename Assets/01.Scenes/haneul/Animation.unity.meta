@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 31fecdea4a916134b85d59786233a4d8
+<<<<<<<< HEAD:Assets/01.Scenes/haneul/Animation.unity.meta
+guid: 4b2000661b55440e2a1caefd650a1e0e
+========
+guid: e79dbb5baf7c94807b46c042486be7be
+>>>>>>>> meleeDevelop:Assets/01.Scenes/minjun_melee/Melee_Ingame.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

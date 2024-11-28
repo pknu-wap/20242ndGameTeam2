@@ -59,35 +59,22 @@ public class LevelUpUI : MonoBehaviour
 
     private void UpgradeSelectedOption(UpgradeOption selectedOption)
     {
-        // 해당 무기/유물의 이름을 사용하여 실제 무기를 선택
-        if (selectedOption.name == "근접무기1") // 검을 강화
-        {
+        if (selectedOption.name == "대검")
             GameManager.Instance.SelectWeapon(0);
-        }
-        else if (selectedOption.name == "근접무기2") // 도끼를 강화
-        {
+        else if (selectedOption.name == "채찍")
             GameManager.Instance.SelectWeapon(1);
-        }
-        else if (selectedOption.name == "근접무기3") // 타겟 무기를 강화
-        {
+        else if (selectedOption.name == "성경")
             GameManager.Instance.SelectWeapon(2);
-        }
-        else if (selectedOption.name == "근접무기4") // 타겟 무기를 강화
-        {
+        else if (selectedOption.name == "마늘")
             GameManager.Instance.SelectWeapon(3);
-        }
-        else if (selectedOption.name == "원거리 무기1") // 비타겟 무기를 강화
-        {
+        else if (selectedOption.name == "조준경")
             GameManager.Instance.SelectWeapon(4);
-        }
-        else if (selectedOption.name == "원거리 무기2") // 비타겟 무기를 강화
-        {
+        else if (selectedOption.name == "콩알탄")
             GameManager.Instance.SelectWeapon(5);
-        }
-        else if (selectedOption.name == "원거리 무기3") // 비타겟 무기를 강화
-        {
+        else if (selectedOption.name == "단검")
             GameManager.Instance.SelectWeapon(6);
-        }
+        else if (selectedOption.name == "헬리오스")
+            GameManager.Instance.SelectWeapon(7);
     }
 
     public void CloseLevelUpUI()

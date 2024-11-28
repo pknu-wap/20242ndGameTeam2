@@ -34,28 +34,30 @@ public class MeleeWeapon3 : MonoBehaviour // 성경
                 break;
             case 2:
                 bulletCount = 2;
+                speed += 30f; // 회전 속도 증가
                 break;
             case 3:
-                speed += 30f; // 회전 속도 증가
+                bulletCount = 3;
                 radius += 1.25f; // 반지름 증가
                 break;
             case 4:
+                bulletCount = 4;
                 bulletExistTime += 0.5f; // 지속시간 증가
-                baseDamage += 10; // 공격력 증가
                 break;
             case 5:
-                bulletCount = 3;
+                bulletCount = 5;
+                speed += 39f;
                 break;
             case 6:
-                speed += 39f; // 회전 속도 증가
-                radius += 1.5625f; // 반지름 증가
+                bulletCount = 6;
+                radius += 1.5625f;
                 break;
             case 7:
-                bulletExistTime += 0.5f; // 지속시간 증가
-                baseDamage += 10; // 공격력 증가
+                bulletCount = 7;
+                bulletExistTime += 0.5f;
                 break;
             case 8:
-                bulletCount = 4;
+                bulletCount = 8;
                 break;
         }
 

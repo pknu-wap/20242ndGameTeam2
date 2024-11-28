@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2889960941356012191}
   - component: {fileID: 7353223534030991542}
   - component: {fileID: -6254136757641459687}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MeleeWeapon4Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

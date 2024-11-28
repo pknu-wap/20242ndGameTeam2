@@ -16,7 +16,7 @@ public class LongRangeAttack3 : MonoBehaviour
 
     private int projectileCount = 1;         // 투사체 개수
     public static int pierceCount = 0;       // 관통 수
-    public int Level = 1;
+    public int Level = 0;
 
     private void Start()
     {
@@ -48,10 +48,13 @@ public class LongRangeAttack3 : MonoBehaviour
         }
     }
 
-    void UpdateStatsByLevel()
+    public void UpdateStatsByLevel()
     {
+        Level = GameManager.Instance.longRangeAttack3_Level;
         switch (Level)
         {
+            case 0:
+                break;
             case 1:
                 rate = 1f;
                 arrowDamage = 10;
@@ -91,10 +94,11 @@ public class LongRangeAttack3 : MonoBehaviour
     {
         while (true)
         {
+            UpdateStatsByLevel();
             // 근접 공격 모드가 아닐 때만 발사
-            while (!GameManager.isMelee && Level > 0)
+            while (!GameManager.isMelee && Level > 0 && !GameManager.isMelee)
             {
-                UpdateStatsByLevel();
+                
                 for (int i = 0; i < projectileCount; i++)
                 {
                     // 각 화살의 발사 위치를 조금씩 다르게 설정 (살짝 위 또는 아래로 발사)

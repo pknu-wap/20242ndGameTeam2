@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1144098637605332875}
   - component: {fileID: 7952340010069638259}
   - component: {fileID: 1370490015443361212}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.09375, y: 0.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -124,7 +124,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.09375, y: 0.25}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1.09375, y: 0.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2045400321070488781}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9be895f9f1a590f43bff87fb423eea70, type: 3}
+  m_Script: {fileID: 11500000, guid: a6708d1c43e9049a8bd9f2c8b674f384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
