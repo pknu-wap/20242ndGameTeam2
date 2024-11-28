@@ -83,7 +83,7 @@ public class Stage0_Boss_Addanimation : BoseEnemy
         Vector2 dirVec = player.position - enemy.position;
         distance = dirVec.magnitude;
 
-        if(distance > 7 && !isWaiting && !isResurrect)
+        if(distance > 8.5 && !isWaiting && !isResurrect)
         {
             if (Phase == 2)
             {   if(AttackNum++ %2 == 0) 
