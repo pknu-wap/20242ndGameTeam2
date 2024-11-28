@@ -195713,7 +195713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 772f55d0eeb540841848a6da9901c7b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 150
+  maxHealth: 100
   currentHealth: 0
   damageMultiplier: 1
   expOnDeath: 0
