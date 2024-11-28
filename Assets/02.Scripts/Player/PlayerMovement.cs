@@ -20,9 +20,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");//enemy 태그를 가진 적들을 찾고 배열에 포함(비활성화된 오브젝트에서는 못찾음)
-        //이 배열을 초기화할 적당한 타이밍이 필요, 방 넘어갈때마다 갱신하거나 몬스터 소환 될 때마다 갱신하거나
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); // enemy 태그를 가진 적들을 찾고 배열에 포함
         enemyColliders = new Collider2D[enemies.Length]; // Collider2D 배열 크기 설정
 
         // 각 적의 Collider2D 컴포넌트를 enemyColliders 배열에 저장
@@ -77,14 +76,13 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator PerformRoll()
     {
         isRolling = true;
-        TutorialManager.isInvincible = true;
-
-        
+        GameManager.isInvincible = true;
 
         // 플레이어와 적 간의 충돌을 무시
         foreach (var enemy in enemyColliders)
         {
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), enemy, true);
+            if (enemy != null) // 적이 존재하는 경우에만 충돌 무시
+                Physics2D.IgnoreCollision(GetComponent<Collider2D>(), enemy, true);
         }
 
         // 구르기 속도를 적용하여 움직임 시작
@@ -99,10 +97,11 @@ public class PlayerMovement : MonoBehaviour
         // 구르기 후, 적과의 충돌을 다시 활성화
         foreach (var enemy in enemyColliders)
         {
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), enemy, false);
+            if (enemy != null) // 적이 존재하는 경우에만 충돌을 다시 활성화
+                Physics2D.IgnoreCollision(GetComponent<Collider2D>(), enemy, false);
         }
 
-        TutorialManager.isInvincible = false;
+        GameManager.isInvincible = false;
         isRolling = false;
     }
 }

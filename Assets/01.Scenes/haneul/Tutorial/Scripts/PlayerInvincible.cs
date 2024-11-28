@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialManager : MonoBehaviour
+public class PlayerInvincible : MonoBehaviour
 {
-    public static int PlayerHp = 6;
-    public GameObject[] Hp = new GameObject[PlayerHp];
-    public static bool isDamage = false;
-    public static bool isInvincible = false;
+    public  bool isDamage = false;
+    public  bool isInvincible = false;
 
     private bool isBlinking = false;  // 깜빡임 효과가 실행 중인지 추적하는 변수
 
@@ -20,30 +18,24 @@ public class TutorialManager : MonoBehaviour
     {
         while (true)
         {
-            if (isDamage)  // 데미지 상태 확인
+            isInvincible = GameManager.isInvincible;
+            isDamage = GameManager.isDamage;
+            
+            if (!isInvincible)  // 무적 상태가 아니면 데미지를 받음
             {
-                if (!isInvincible)  // 무적 상태가 아니면 데미지를 받음
+                
+                if (isDamage)
                 {
-                    isInvincible = true;  // 무적 상태 시작
-                    PlayerHp--;
-
-                    if (PlayerHp >= 0 && PlayerHp < Hp.Length)
-                    {
-                        Hp[PlayerHp].SetActive(false);  // HP 감소 반영
-                    }
-
-                    // 깜빡임 및 무적 상태 처리
+                    GameManager.isDamage = false;
+                    Debug.Log("아야");
                     Invincible();
-
-                    // 무적 상태 유지 시간
+                    isBlinking = true;
+                    GameManager.isInvincible = true;
                     yield return new WaitForSeconds(2.5f);
 
                     isBlinking = false;  // 깜빡임 효과 종료
-                    isInvincible = false;  // 무적 상태 종료
+                    GameManager.isInvincible = false;  // 무적 상태 종료
                 }
-
-                // 데미지 상태 초기화 (무조건 처리)
-                isDamage = false;
             }
 
             yield return null;  // 다음 프레임까지 대기
@@ -73,7 +65,7 @@ public class TutorialManager : MonoBehaviour
         Color originalColor = renderer.material.color;
         Color transparentColor = new Color(originalColor.r, originalColor.g, originalColor.b, 0.5f);
 
-        // 1.5초 동안 깜빡임 효과 수행
+        // 2초 동안 깜빡임 효과 수행
         float blinkInterval = 0.1f;
 
         for (int i = 0; i < 10; i++)

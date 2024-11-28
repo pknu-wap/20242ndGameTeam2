@@ -14,19 +14,28 @@ public class GameManager : MonoBehaviour
     [SerializeField] private static int maxHealth = 6; // 최대 체력
     [SerializeField] private int currentHealth; // 현재 체력
     [SerializeField] private GameObject[] Hp = new GameObject[maxHealth];
+    [SerializeField] public static bool isInvincible = false;
+    [SerializeField] public static bool isDamage= false;
 
     // 플레이어가 피해를 입는 함수
     public void TakeDamageToPlayer(int damage, string damageSource)
     {
-        currentHealth -= damage;
-        Debug.Log("현재 체력 : " + Hp[currentHealth]);
-        Hp[currentHealth].SetActive(false);
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // 현재 체력을 0 이하로 떨어지지 않게 하고 최대 체력보다 클 수 없게 Clamp 처리
-
-        if (currentHealth <= 0)
+        if (!isInvincible)
         {
-            Die(); // 체력이 0 이하가 되면 사망
+            isDamage = true;
+            
+            
+            currentHealth -= damage;
+            Debug.Log("현재 체력 : " + Hp[currentHealth]);
+            Hp[currentHealth].SetActive(false);
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // 현재 체력을 0 이하로 떨어지지 않게 하고 최대 체력보다 클 수 없게 Clamp 처리
+            
+            if (currentHealth <= 0)
+            {
+                Die(); // 체력이 0 이하가 되면 사망
+            }
         }
+    
     }
 
     // 사망 처리 함수

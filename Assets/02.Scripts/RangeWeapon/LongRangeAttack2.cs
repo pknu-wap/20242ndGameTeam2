@@ -8,7 +8,7 @@ public class LongRangeAttack2 : MonoBehaviour
     public float bulletSpeed = 10f; // 총알 속도
     public float attackInterval = 1f; // 공격 간격 (초 단위)
     private float attackTimer = 0f;  // 타이머
-    private int bulletCount;        // 현재 총알 개수
+ 
     private float[] bulletAngles;   // 현재 총알 각도 배열
 
     void Start()
@@ -49,35 +49,34 @@ public class LongRangeAttack2 : MonoBehaviour
         switch (weaponLevel)
         {
             case 1:
-                bulletCount = 3;
+
                 bulletAngles = new float[] { 0f, 120f, 240f };
                 break;
             case 2:
-                bulletCount = 4;
+
                 bulletAngles = new float[] { 0f, 90f, 180f, 270f };
                 break;
             case 3:
-                bulletCount = 5;
+
                 bulletAngles = new float[] { 0f, 72f, 144f, 216f, 288f };
                 break;
             case 4:
-                bulletCount = 6;
+
                 bulletAngles = new float[] { 0f, 60f, 120f, 180f, 240f, 300f };
                 break;
             case 5:
-                bulletCount = 7;
+
                 bulletAngles = new float[] { 0f, 51f, 102f, 153f, 204f, 255f, 306f };
                 break;
             case 6:
-                bulletCount = 8;
                 bulletAngles = new float[] { 0f, 45f, 90f, 135f, 180f, 225f, 270f, 315f };
                 break;
             case 7:
-                bulletCount = 9;
+
                 bulletAngles = new float[] { 0f, 40f, 80f, 120f, 160f, 200f, 240f, 280f, 320f };
                 break;
             case 8:
-                bulletCount = 10;
+
                 bulletAngles = new float[] { 0f, 36f, 72f, 108f, 144f, 180f, 216f, 252f, 288f, 324f };
                 break;
         }

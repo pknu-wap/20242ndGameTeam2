@@ -156,7 +156,7 @@ public class MeleeWeapon_1 : MonoBehaviour
             // 부채꼴 범위 내 적인지 확인
             if (IsWithinCone(transform.position, targetPosition, blueCone.transform.right, skillAngle, skillRadius))
             {
-                Debug.Log($"Damage Applied to {target.name}");
+                target.GetComponent<BaseEnemy>().TakeDamage(damage);
             }
         }
     }

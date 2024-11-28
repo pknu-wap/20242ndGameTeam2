@@ -6,7 +6,7 @@ public class IcicleDamage : BaseEnemy
     private bool hasCollided = false; // 충돌 여부 체크
 
     // 충돌 시 데미지를 처리하는 함수
-    void Awake()
+    protected override void Awake()
     {
         StartCoroutine(IcicleDestroy());
     }
