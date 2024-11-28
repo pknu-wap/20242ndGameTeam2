@@ -2,29 +2,29 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class CutsceneManager : MonoBehaviour
 {
-    public Image cutsceneImage; // 컷씬 이미지
-    public TMP_Text narrationText; // 텍스트 (TextMeshPro)
-    public CanvasGroup fadePanel; // 페이드 패널
-    public Sprite[] cutsceneImages; // 이미지 배열
-    public string[] narrations; // 나래이션 배열
-    public float fadeDuration = 1f; // 페이드 시간
-    public float textSpeed = 0.05f; // 텍스트 출력 속도
+    public Image cutsceneImage; 
+    public TMP_Text narrationText; 
+    public CanvasGroup fadePanel; 
+    public Sprite[] cutsceneImages;
+    public string[] narrations; 
+    public float fadeDuration = 1f;
+    public float textSpeed = 0.05f;
 
-    private int currentSceneIndex = 0; // 현재 장면 인덱스
-    private bool isSkipping = false; // 스킵 여부 체크
+    private int currentSceneIndex = 0; 
+    private bool isSkipping = false; 
 
     void Start()
     {
-        fadePanel.alpha = 0f; // 패널 투명 상태로 시작
+        fadePanel.alpha = 0f;
         StartCoroutine(PlayCutscene());
     }
 
     void Update()
     {
-        // 화면 터치 시 스킵 플래그 활성화
         if (Input.GetMouseButtonDown(0))
         {
             isSkipping = true;
@@ -69,7 +69,7 @@ public class CutsceneManager : MonoBehaviour
             {
                 fadePanel.alpha = endAlpha;
                 isSkipping = false;
-                yield break; // 즉시 종료
+                yield break; 
             }
 
             elapsed += Time.deltaTime;
@@ -82,25 +82,26 @@ public class CutsceneManager : MonoBehaviour
 
     IEnumerator TypeText(string text)
     {
-        narrationText.text = ""; // 텍스트 초기화
+        narrationText.text = ""; 
 
         foreach (char letter in text)
         {
-            if (isSkipping) // 터치 시 스킵
+            if (isSkipping) 
             {
-                narrationText.text = text; // 전체 텍스트 출력
+                narrationText.text = text; 
                 isSkipping = false;
                 yield break;
             }
 
-            narrationText.text += letter; // 한 글자씩 추가
-            yield return new WaitForSeconds(textSpeed); // 글자 출력 속도 조절
+            narrationText.text += letter; 
+            yield return new WaitForSeconds(textSpeed); 
         }
     }
 
     void EndCutscene()
     {
         Debug.Log("Cutscene Finished!");
-        // 여기에 다음 씬으로 이동하는 코드 추가
+        // 하늘이 튜토씬 연결
+        //SceneManager.LoadScene("Tutorial");
     }
 }
