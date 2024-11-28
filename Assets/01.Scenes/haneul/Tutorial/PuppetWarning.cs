@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PuppetWarning : MonoBehaviour
 {
+    public GameObject wall;
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
@@ -13,7 +14,7 @@ public class PuppetWarning : MonoBehaviour
 
             // 부모 객체에서 PuppetMarkMove 컴포넌트를 가져와 ChangeSprite 호출
             parent.GetComponent<PuppetMarkMove>().ChangeSprite();
-
+            wall.SetActive(true);
             // 현재 게임 오브젝트 파괴
             Destroy(gameObject);
         }
