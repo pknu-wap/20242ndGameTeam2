@@ -8,6 +8,7 @@ public class FadeOutPanel : MonoBehaviour
     private CanvasGroup canvasGroup;
     public GameObject PauseState;
     public GameObject Panel;
+    public GameObject LevelUpPanel;
     public float fadeDuration = 2f;  
 
     private void Start()
@@ -32,6 +33,8 @@ public class FadeOutPanel : MonoBehaviour
     private IEnumerator FadeOutCoroutine()
     {
         float timeElapsed = 0f;
+        Time.timeScale = 1f;
+        LevelUpPanel.gameObject.SetActive(false);
 
         // 투명도 점진적으로 감소
         while (timeElapsed < fadeDuration)

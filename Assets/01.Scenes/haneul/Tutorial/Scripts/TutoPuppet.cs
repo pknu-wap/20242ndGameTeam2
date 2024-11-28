@@ -21,7 +21,6 @@ public class TutoPuppet : BaseEnemy
         base.Awake();
         enemy = GetComponent<Rigidbody2D>();
         damageMultiplier = 1.0f;
-        expOnDeath = 50000000;
     }
 
     private void FixedUpdate()
@@ -65,6 +64,7 @@ public class TutoPuppet : BaseEnemy
     protected override void Die()
     {
         potal.SetActive(true);
+        
         base.Die();  // BaseEnemy의 Die()를 호출하여 경험치를 추가
     }
 }
