@@ -30,7 +30,7 @@ public class HelixAttack : MonoBehaviour
         }
     }
 
-    void FireBullets()
+    public void FireBullets()
     {
         int bulletCount = GetBulletCountByLevel();
 
@@ -61,7 +61,7 @@ public class HelixAttack : MonoBehaviour
         }
     }
 
-    void UpdateFireRate()
+    public void UpdateFireRate()
     {
         // 6~8 레벨에서 연사속도 증가
         switch (weaponLevel)

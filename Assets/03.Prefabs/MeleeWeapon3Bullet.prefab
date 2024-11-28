@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5659516980355640491}
   - component: {fileID: 1925635112102845653}
   - component: {fileID: 8589647786938661884}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MeleeWeapon3Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}

@@ -6,7 +6,7 @@ using UnityEngine;
 public class MeleeWeapon_0 : MonoBehaviour  // 채찍
 {
     [Header("Weapon Settings")]
-    [SerializeField] private int weaponLevel = 0;         // 무기 레벨
+    [SerializeField] public int weaponLevel = 0;         // 무기 레벨
     [SerializeField] private int damage = 10;            // 기본 공격력
     [SerializeField] private float attackCooldown = 0.5f;   // 공격 딜레이
     [SerializeField] private float directionalAttackDelay = 0.2f; // 양방향 공격 간의 딜레이
@@ -96,7 +96,7 @@ public class MeleeWeapon_0 : MonoBehaviour  // 채찍
         Gizmos.DrawWireCube(boxCenter, boxSize);
     }
 
-    private void MeleeLevel(int level)
+    public void MeleeLevel(int level)
     {
         // 무기 레벨에 따른 공격 범위 및 데미지 설정
         switch (level)
