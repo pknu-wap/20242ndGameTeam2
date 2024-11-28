@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FadeOutPanel : MonoBehaviour
 {
     private CanvasGroup canvasGroup;
-    public Canvas PauseState;
+    public GameObject PauseState;
     public GameObject Panel;
     public float fadeDuration = 2f;  
 
