@@ -6,13 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class TutoPotal : MonoBehaviour
 {
+    public GameObject WeaponGet1;
+    public GameObject WeaponGet2;
+    void Awake()
+    {
+        WeaponGet1.SetActive(false);
+        WeaponGet2.SetActive(false);
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
 
         if (other.CompareTag("Player"))
         {
-            Debug.Log("포탈");
+        
             SceneManager.LoadScene("Stage0");
         }
     }

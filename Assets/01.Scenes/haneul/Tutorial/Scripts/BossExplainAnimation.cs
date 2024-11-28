@@ -5,8 +5,8 @@ using DG.Tweening;
 
 public class BossExplainAnimation : MonoBehaviour
 {
-
     public GameObject Panel;
+    public GameObject WeaponGet;
     void Awake()
     {
         Sequence sequence = DOTween.Sequence();
@@ -19,6 +19,7 @@ public class BossExplainAnimation : MonoBehaviour
         sequence.Append((rectTransform.DOLocalMove(new Vector3(2308,-162,0), 2f, false).SetEase(Ease.InExpo)));
 
         Panel.SetActive(false);
+        WeaponGet.SetActive(true);
         
     }
 }
