@@ -15,7 +15,8 @@ public class Torch_Arrive: MonoBehaviour
     public GameObject Torch6;
     public GameObject Torch7;
     public GameObject Wall;
-    public GameObject Instance;
+    public GameObject PauseState;
+
     public Light2D Light;
     public Light2D playerLight;
     public ParticleSystem collisionParticles;
@@ -58,7 +59,8 @@ public class Torch_Arrive: MonoBehaviour
                 case 7:
                     Torch7.SetActive(false);
                     Wall.SetActive (true);
-                    Instance.SetActive(true);
+                    PauseState.gameObject.SetActive(true);
+
                     DodgeButton.SetActive(true);
                     if (Light != null)
                     {
