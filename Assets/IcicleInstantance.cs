@@ -13,7 +13,7 @@ public class IcicleInstantance : MonoBehaviour
 
     private IEnumerator IcicleInstant()
     {
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.3f);
 
         // 월드 좌표에서 스폰 위치 가져오기
         Vector3 spawnposition = gameObject.transform.position + new Vector3(0, 0.5f, 0); // Vector3로 위치 추가
