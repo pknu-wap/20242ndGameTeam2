@@ -6,54 +6,54 @@ using UnityEngine.UI;
 
 public class WeaponUIManager : MonoBehaviour
 {
-    // Melee¿Í Range¿¡ °¢°¢ 4°³ÀÇ ½½·Ô
-    public Image[] meleeWeaponImages; // Melee ¹«±â ÀÌ¹ÌÁö ¹è¿­
-    public TMP_Text[] meleeWeaponLevelTexts; // Melee ¹«±â ·¹º§ ÅØ½ºÆ® ¹è¿­
-    public Image[] rangeWeaponImages; // Range ¹«±â ÀÌ¹ÌÁö ¹è¿­
-    public TMP_Text[] rangeWeaponLevelTexts; // Range ¹«±â ·¹º§ ÅØ½ºÆ® ¹è¿­
+    // Meleeì™€ Rangeì— ê°ê° 4ê°œì˜ ìŠ¬ë¡¯
+    public Image[] meleeWeaponImages; // Melee ë¬´ê¸° ì´ë¯¸ì§€ ë°°ì—´
+    public TMP_Text[] meleeWeaponLevelTexts; // Melee ë¬´ê¸° ë ˆë²¨ í…ìŠ¤íŠ¸ ë°°ì—´
+    public Image[] rangeWeaponImages; // Range ë¬´ê¸° ì´ë¯¸ì§€ ë°°ì—´
+    public TMP_Text[] rangeWeaponLevelTexts; // Range ë¬´ê¸° ë ˆë²¨ í…ìŠ¤íŠ¸ ë°°ì—´
 
-    // GameManagerÀÇ ÂüÁ¶
+    // GameManagerì˜ ì°¸ì¡°
     private GameManager gameManager;
 
     void Start()
     {
-        // GameManager ÂüÁ¶ °¡Á®¿À±â
+        // GameManager ì°¸ì¡° ê°€ì ¸ì˜¤ê¸°
         gameManager = FindObjectOfType<GameManager>();
 
-        // UI ÃÊ±âÈ­
+        // UI ì´ˆê¸°í™”
         UpdateWeaponUI();
     }
 
     void Update()
     {
-        // ¸Å ÇÁ·¹ÀÓ¸¶´Ù UI °»½Å (·¹º§¾÷ ½Ã ¹İ¿µ)
+        // ë§¤ í”„ë ˆì„ë§ˆë‹¤ UI ê°±ì‹  (ë ˆë²¨ì—… ì‹œ ë°˜ì˜)
         UpdateWeaponUI();
     }
 
-    // ¹«±â UI ¾÷µ¥ÀÌÆ® ÇÔ¼ö
+    // ë¬´ê¸° UI ì—…ë°ì´íŠ¸ í•¨ìˆ˜
     private void UpdateWeaponUI()
     {
-        // Melee ¹«±â UI ¾÷µ¥ÀÌÆ®
+        // Melee ë¬´ê¸° UI ì—…ë°ì´íŠ¸
         UpdateMeleeWeaponUI();
 
-        // Range ¹«±â UI ¾÷µ¥ÀÌÆ®
+        // Range ë¬´ê¸° UI ì—…ë°ì´íŠ¸
         UpdateRangeWeaponUI();
     }
 
-    // Melee ¹«±â UI ¾÷µ¥ÀÌÆ®
+    // Melee ë¬´ê¸° UI ì—…ë°ì´íŠ¸
     private void UpdateMeleeWeaponUI()
     {
-        // Melee ¹«±â ·¹º§À» GameManager¿¡¼­ °¡Á®¿Í¼­ UI¿¡ ¾÷µ¥ÀÌÆ®
+        // Melee ë¬´ê¸° ë ˆë²¨ì„ GameManagerì—ì„œ ê°€ì ¸ì™€ì„œ UIì— ì—…ë°ì´íŠ¸
         UpdateWeaponSlot(gameManager.meleeWeapon1_Level, meleeWeaponImages[0], meleeWeaponLevelTexts[0]);
         UpdateWeaponSlot(gameManager.meleeWeapon2_Level, meleeWeaponImages[1], meleeWeaponLevelTexts[1]);
         UpdateWeaponSlot(gameManager.meleeWeapon3_Level, meleeWeaponImages[2], meleeWeaponLevelTexts[2]);
         UpdateWeaponSlot(gameManager.meleeWeapon4_Level, meleeWeaponImages[3], meleeWeaponLevelTexts[3]);
     }
 
-    // Range ¹«±â UI ¾÷µ¥ÀÌÆ®
+    // Range ë¬´ê¸° UI ì—…ë°ì´íŠ¸
     private void UpdateRangeWeaponUI()
     {
-        // Range ¹«±â ·¹º§À» GameManager¿¡¼­ °¡Á®¿Í¼­ UI¿¡ ¾÷µ¥ÀÌÆ®
+        // Range ë¬´ê¸° ë ˆë²¨ì„ GameManagerì—ì„œ ê°€ì ¸ì™€ì„œ UIì— ì—…ë°ì´íŠ¸
         UpdateWeaponSlot(gameManager.longRangeAttack1_Level, rangeWeaponImages[0], rangeWeaponLevelTexts[0]);
         UpdateWeaponSlot(gameManager.longRangeAttack2_Level, rangeWeaponImages[1], rangeWeaponLevelTexts[1]);
         UpdateWeaponSlot(GameManager.Instance.longRangeAttack3_Level, rangeWeaponImages[2], rangeWeaponLevelTexts[2]);
@@ -62,13 +62,13 @@ public class WeaponUIManager : MonoBehaviour
         
     }
 
-    // ¹«±â ½½·Ô ¾÷µ¥ÀÌÆ® (·¹º§¿¡ µû¶ó UI ¾÷µ¥ÀÌÆ®)
+    // ë¬´ê¸° ìŠ¬ë¡¯ ì—…ë°ì´íŠ¸ (ë ˆë²¨ì— ë”°ë¼ UI ì—…ë°ì´íŠ¸)
     private void UpdateWeaponSlot(int weaponLevel, Image weaponImage, TMP_Text weaponLevelText)
     {
-        // ¹«±â ·¹º§ ÅØ½ºÆ® ¾÷µ¥ÀÌÆ®
+        // ë¬´ê¸° ë ˆë²¨ í…ìŠ¤íŠ¸ ì—…ë°ì´íŠ¸
         weaponLevelText.text = "Level: " + weaponLevel.ToString();
 
-        // ¹«±â ·¹º§ÀÌ 0ÀÌ¸é UI ºñÈ°¼ºÈ­, ±× ¿Ü¿¡´Â È°¼ºÈ­
+        // ë¬´ê¸° ë ˆë²¨ì´ 0ì´ë©´ UI ë¹„í™œì„±í™”, ê·¸ ì™¸ì—ëŠ” í™œì„±í™”
         if (weaponLevel > 0)
         {
             weaponImage.gameObject.SetActive(true);

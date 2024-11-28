@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }  // 싱글톤 인스턴스
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject arrowPoint;
     #region 체력
     [SerializeField] private static int maxHealth = 6; // 최대 체력
     [SerializeField] private int currentHealth; // 현재 체력
@@ -106,30 +107,24 @@ public class GameManager : MonoBehaviour
     private MeleeWeapon3 MeleeWeapon3Script;
     private MeleeWeapon4 MeleeWeapon4Script;
 
-    public void WeaponChange()
-    {
-        if (isMelee == true)
-        {
-            isMelee = false;
-        }
-        else //원거리공격일때 근접공격으로 전환
-        {
-            isMelee = true;
-        }
-    }
-
     public void SelectWeapon(int weaponIndex)
     {
         switch (weaponIndex)
         {
             case 0:
-                if (meleeWeapon1_Level < maxWeaponLevel) meleeWeapon1_Level++;
+                if (meleeWeapon1_Level < maxWeaponLevel)
+                {
+                    meleeWeapon1_Level++;
+                }
                 break;
             case 1:
-                if (meleeWeapon2_Level < maxWeaponLevel) meleeWeapon2_Level++;
+                if (meleeWeapon2_Level < maxWeaponLevel)
+                {
+                    meleeWeapon2_Level++;
+                }
                 break;
             case 2:
-                if (meleeWeapon3_Level < maxWeaponLevel) 
+                if (meleeWeapon3_Level < maxWeaponLevel)
                 {
                     meleeWeapon3_Level++;
                     UpdateMeleeWeapon3Level();
@@ -143,10 +138,18 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case 4:
-                if (longRangeAttack1_Level < maxWeaponLevel) longRangeAttack1_Level++;
+                if (longRangeAttack1_Level < maxWeaponLevel)
+                {
+                    longRangeAttack1_Level++;
+                    UpdateLongRangeWeapon1Level();
+                }
                 break;
             case 5:
-                if (longRangeAttack2_Level < maxWeaponLevel) longRangeAttack2_Level++;
+                if (longRangeAttack2_Level < maxWeaponLevel)
+                {
+                    longRangeAttack2_Level++;
+                    UpdateLongRangeWeapon2Level();
+                }
                 break;
             case 6:
                 if (longRangeAttack3_Level < maxWeaponLevel)
@@ -156,7 +159,10 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case 7:
-                if (longRangeAttack4_Level < maxWeaponLevel) longRangeAttack4_Level++;
+                if (longRangeAttack4_Level < maxWeaponLevel)
+                {
+                    longRangeAttack4_Level++;
+                }
                 break;
         }
         UpdateWeaponStatus();
@@ -166,81 +172,44 @@ public class GameManager : MonoBehaviour
     {
         // 원거리 무기
         if (longRangeAttack1_Level == 0)
-        {
             if (LongRangeAttack1Script != null)
-            {
                 LongRangeAttack1Script.enabled = false;
-            }
-        }
         else
-        {
             if (LongRangeAttack1Script != null)
-            {
                 LongRangeAttack1Script.enabled = true;
-            }
-        }
+
 
         if (longRangeAttack2_Level == 0)
-        {
             if (LongRangeAttack2Script != null)
-            {
                 LongRangeAttack2Script.enabled = false;
-            }
-        }
         else
-        {
             if (LongRangeAttack2Script != null)
-            {
                 LongRangeAttack2Script.enabled = true;
-            }
-        }
+
 
         if (longRangeAttack3_Level == 0)
-        {
             if (LongRangeAttack3Script != null)
-            {
                 LongRangeAttack3Script.enabled = false;
-            }
-        }
         else
-        {
             if (LongRangeAttack3Script != null)
-            {
                 LongRangeAttack3Script.enabled = true;
-            }
-        }
 
         // 근접무기
 
         if (meleeWeapon3_Level == 0)
-        {
             if (MeleeWeapon3Script != null)
-            {
                 MeleeWeapon3Script.enabled = false;
-            }
-        }
         else
-        {
             if (MeleeWeapon3Script != null)
-            {
                 MeleeWeapon3Script.enabled = true;
-            }
-        }
+
 
         if (meleeWeapon4_Level == 0)
-        {
             if (MeleeWeapon4Script != null)
-            {
                 MeleeWeapon4Script.enabled = false;
-            }
-        }
         else
-        {
             if (MeleeWeapon4Script != null)
-            {
                 MeleeWeapon4Script.enabled = true;
-            }
-        }
     }
 
     public LevelUpUI.UpgradeOption[] GetUpgradeOptions()
@@ -258,8 +227,8 @@ public class GameManager : MonoBehaviour
                                  meleeWeapon1_Level == 5 ? "강화된 근접무기1" :
                                  meleeWeapon1_Level == 6 ? "강화된 근접무기1" :
                                  meleeWeapon1_Level == 7 ? "강화된 근접무기1" :
-                                 "강화된 근접무기1: 추가 효과";
-            options.Add(new LevelUpUI.UpgradeOption { name = "근접무기1", description = description, icon = null, isNew = meleeWeapon1_Level == 0 });
+                                 "강화된 대검: 추가 효과";
+            options.Add(new LevelUpUI.UpgradeOption { name = "대검", description = description, icon = null, isNew = meleeWeapon1_Level == 0 });
         }
 
         // 근접 무기 2
@@ -273,97 +242,97 @@ public class GameManager : MonoBehaviour
                                  meleeWeapon2_Level == 5 ? "강화된 근접무기2" :
                                  meleeWeapon2_Level == 6 ? "강화된 근접무기2" :
                                  meleeWeapon2_Level == 7 ? "강화된 근접무기2" :
-                                 "강화된 근접무기2: 추가 효과";
-            options.Add(new LevelUpUI.UpgradeOption { name = "근접무기2", description = description, icon = null, isNew = meleeWeapon2_Level == 0 });
+                                 "강화된 채찍: 추가 효과";
+            options.Add(new LevelUpUI.UpgradeOption { name = "채찍", description = description, icon = null, isNew = meleeWeapon2_Level == 0 });
         }
 
         // 근접 무기 3
         if (meleeWeapon3_Level < maxWeaponLevel)
         {
-            string description = meleeWeapon3_Level == 0 ? "근접무기3" :
-                                 meleeWeapon3_Level == 1 ? "투사체 개수 증가\n회전 속도 증가" :
-                                 meleeWeapon3_Level == 2 ? "투사체 개수 증가\n공격 범위 증가" :
-                                 meleeWeapon3_Level == 3 ? "투사체 개수 증가\n지속 시간 증가" :
-                                 meleeWeapon3_Level == 4 ? "투사체 개수 증가\n회전 속도 증가" :
-                                 meleeWeapon3_Level == 5 ? "투사체 개수 증가\n공격 범위 증가" :
-                                 meleeWeapon3_Level == 6 ? "투사체 개수 증가\n지속 시간 증가" :
+            string description = meleeWeapon3_Level == 0 ? "주변을 회전하며\n공격합니다." :
+                                 meleeWeapon3_Level == 1 ? "투사체 개수 증가\n회전 속도 30% 증가" :
+                                 meleeWeapon3_Level == 2 ? "투사체 개수 증가\n공격 범위 25% 증가" :
+                                 meleeWeapon3_Level == 3 ? "투사체 개수 증가\n지속 시간 0.5초 증가" :
+                                 meleeWeapon3_Level == 4 ? "투사체 개수 증가\n회전 속도 30% 증가" :
+                                 meleeWeapon3_Level == 5 ? "투사체 개수 증가\n공격 범위 25% 증가" :
+                                 meleeWeapon3_Level == 6 ? "투사체 개수 증가\n지속 시간 0.5초 증가" :
                                  meleeWeapon3_Level == 7 ? "투사체 개수 증가" :
-                                 "강화된 근접무기3: 추가 효과";
-            options.Add(new LevelUpUI.UpgradeOption { name = "근접무기3", description = description, icon = null, isNew = meleeWeapon3_Level == 0 });
+                                 "강화된 성경: 추가 효과";
+            options.Add(new LevelUpUI.UpgradeOption { name = "성경", description = description, icon = null, isNew = meleeWeapon3_Level == 0 });
         }
 
         // 근접 무기 4
         if (meleeWeapon4_Level < maxWeaponLevel)
         {
-            string description = meleeWeapon4_Level == 0 ? "근접무기4" :
-                                 meleeWeapon4_Level == 1 ? "공격력 증가 \n공격 범위 증가" :
-                                 meleeWeapon4_Level == 2 ? "공격력 증가 \n공격 범위 증가" :
-                                 meleeWeapon4_Level == 3 ? "공격력 증가 \n공격 범위 증가" :
-                                 meleeWeapon4_Level == 4 ? "공격력 증가 \n공격 범위 증가" :
-                                 meleeWeapon4_Level == 5 ? "공격력 증가 \n공격 범위 증가" :
-                                 meleeWeapon4_Level == 6 ? "공격력 증가 \n공격 범위 증가" :
-                                 meleeWeapon4_Level == 7 ? "공격력 증가 \n공격 범위 증가" :
-                                 "강화된 근접무기4: 추가 효과";
-            options.Add(new LevelUpUI.UpgradeOption { name = "근접무기4", description = description, icon = null, isNew = meleeWeapon4_Level == 0 });
+            string description = meleeWeapon4_Level == 0 ? "범위 내의 적에게\n피해를 줍니다." :
+                                 meleeWeapon4_Level == 1 ? "공격력 1 증가 \n공격 범위 1 증가" :
+                                 meleeWeapon4_Level == 2 ? "공격력 1 증가 \n공격 범위 1 증가" :
+                                 meleeWeapon4_Level == 3 ? "공격력 1 증가 \n공격 범위 1 증가" :
+                                 meleeWeapon4_Level == 4 ? "공격력 1 증가 \n공격 범위 1 증가" :
+                                 meleeWeapon4_Level == 5 ? "공격력 1 증가 \n공격 범위 1 증가" :
+                                 meleeWeapon4_Level == 6 ? "공격력 1 증가 \n공격 범위 1 증가" :
+                                 meleeWeapon4_Level == 7 ? "공격력 1 증가 \n공격 범위 1 증가" :
+                                 "강화된 마늘: 추가 효과";
+            options.Add(new LevelUpUI.UpgradeOption { name = "마늘", description = description, icon = null, isNew = meleeWeapon4_Level == 0 });
         }
 
         // 원거리 무기 1
         if (longRangeAttack1_Level < maxWeaponLevel)
         {
-            string description = longRangeAttack1_Level == 0 ? "원거리 무기1" :
-                                 longRangeAttack1_Level == 1 ? "강화된 원거리 무기1" :
-                                 longRangeAttack1_Level == 2 ? "강화된 원거리 무기1" :
-                                 longRangeAttack1_Level == 3 ? "강화된 원거리 무기1" :
-                                 longRangeAttack1_Level == 4 ? "강화된 원거리 무기1" :
-                                 longRangeAttack1_Level == 5 ? "강화된 원거리 무기1" :
-                                 longRangeAttack1_Level == 6 ? "강화된 원거리 무기1" :
-                                 longRangeAttack1_Level == 7 ? "강화된 원거리 무기1" :
-                                 "강화된 원거리 무기1: 추가 효과";
-            options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기1", description = description, icon = null, isNew = longRangeAttack1_Level == 0 });
+            string description = longRangeAttack1_Level == 0 ? "가장 가까운 적을\n공격합니다." :
+                                 longRangeAttack1_Level == 1 ? "투사체 개수 증가" :
+                                 longRangeAttack1_Level == 2 ? "투사체 개수 증가" :
+                                 longRangeAttack1_Level == 3 ? "투사체 개수 증가" :
+                                 longRangeAttack1_Level == 4 ? "투사체 개수 증가" :
+                                 longRangeAttack1_Level == 5 ? "쿨타임 0.25초 감소" :
+                                 longRangeAttack1_Level == 6 ? "쿨타임 0.25초 감소" :
+                                 longRangeAttack1_Level == 7 ? "쿨타임 0.2초 감소" :
+                                 "강화된 조준경: 추가 효과";
+            options.Add(new LevelUpUI.UpgradeOption { name = "조준경", description = description, icon = null, isNew = longRangeAttack1_Level == 0 });
         }
 
         // 원거리 무기 2
         if (longRangeAttack2_Level < maxWeaponLevel)
         {
-            string description = longRangeAttack2_Level == 0 ? "원거리 무기2" :
-                                 longRangeAttack2_Level == 1 ? "강화된 원거리 무기2" :
-                                 longRangeAttack2_Level == 2 ? "강화된 원거리 무기2" :
-                                 longRangeAttack2_Level == 3 ? "강화된 원거리 무기2" :
-                                 longRangeAttack2_Level == 4 ? "강화된 원거리 무기2" :
-                                 longRangeAttack2_Level == 5 ? "강화된 원거리 무기2" :
-                                 longRangeAttack2_Level == 6 ? "강화된 원거리 무기2" :
-                                 longRangeAttack2_Level == 7 ? "강화된 원거리 무기2" :
-                                 "강화된 원거리 무기2: 추가 효과";
-            options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기2", description = description, icon = null, isNew = longRangeAttack2_Level == 0 });
+            string description = longRangeAttack2_Level == 0 ? "캐릭터를 기준으로\n대칭을 이루며\n공격합니다." :
+                                 longRangeAttack2_Level == 1 ? "투사체 개수 증가" :
+                                 longRangeAttack2_Level == 2 ? "투사체 개수 증가" :
+                                 longRangeAttack2_Level == 3 ? "투사체 개수 증가" :
+                                 longRangeAttack2_Level == 4 ? "투사체 개수 증가" :
+                                 longRangeAttack2_Level == 5 ? "투사체 개수 증가" :
+                                 longRangeAttack2_Level == 6 ? "투사체 개수 증가" :
+                                 longRangeAttack2_Level == 7 ? "투사체 개수 증가" :
+                                 "강화된 콩알탄: 추가 효과";
+            options.Add(new LevelUpUI.UpgradeOption { name = "콩알탄", description = description, icon = null, isNew = longRangeAttack2_Level == 0 });
         }
 
         // 원거리 무기 3
         if (longRangeAttack3_Level < maxWeaponLevel)
         {
-            string description = longRangeAttack3_Level == 0 ? "원거리 무기3" :
-                                 longRangeAttack3_Level == 1 ? "강화된 원거리 무기3" :
-                                 longRangeAttack3_Level == 2 ? "강화된 원거리 무기3" :
-                                 longRangeAttack3_Level == 3 ? "강화된 원거리 무기3" :
-                                 longRangeAttack3_Level == 4 ? "강화된 원거리 무기3" :
-                                 longRangeAttack3_Level == 5 ? "강화된 원거리 무기3" :
-                                 longRangeAttack3_Level == 6 ? "강화된 원거리 무기3" :
-                                 longRangeAttack3_Level == 7 ? "강화된 원거리 무기3" :
-                                 "강화된 원거리 무기3: 추가 효과";
-            options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기3", description = description, icon = null, isNew = longRangeAttack3_Level == 0 });
+            string description = longRangeAttack3_Level == 0 ? "바라보는 방향으로\n단검을 투척합니다." :
+                                 longRangeAttack3_Level == 1 ? "투사체 개수 증가" :
+                                 longRangeAttack3_Level == 2 ? "투사체 개수 증가\n공격력 5 증가" :
+                                 longRangeAttack3_Level == 3 ? "투사체 개수 증가\n쿨타임 0.02초 감소" :
+                                 longRangeAttack3_Level == 4 ? "관통 수 증가" :
+                                 longRangeAttack3_Level == 5 ? "투사체 개수 증가\n쿨타임 0.02초 감소" :
+                                 longRangeAttack3_Level == 6 ? "투사체 개수 증가\n공격력 5 증가" :
+                                 longRangeAttack3_Level == 7 ? "관통 수 증가\n쿨타임 0.02초 감소" :
+                                 "강화된 단검: 추가 효과";
+            options.Add(new LevelUpUI.UpgradeOption { name = "단검", description = description, icon = null, isNew = longRangeAttack3_Level == 0 });
         }
 
         if (longRangeAttack4_Level < maxWeaponLevel)
         {
-            string description = longRangeAttack4_Level == 0 ? "원거리 무기4" :
-                                 longRangeAttack4_Level == 1 ? "강화된 원거리 무기4" :
-                                 longRangeAttack4_Level == 2 ? "강화된 원거리 무기4" :
-                                 longRangeAttack4_Level == 3 ? "강화된 원거리 무기4" :
-                                 longRangeAttack4_Level == 4 ? "강화된 원거리 무기4" :
-                                 longRangeAttack4_Level == 5 ? "강화된 원거리 무기4" :
-                                 longRangeAttack4_Level == 6 ? "강화된 원거리 무기4" :
-                                 longRangeAttack4_Level == 7 ? "강화된 원거리 무기4" :
-                                 "강화된 원거리 무기4: 추가 효과";
-            options.Add(new LevelUpUI.UpgradeOption { name = "원거리 무기4", description = description, icon = null, isNew = longRangeAttack4_Level == 0 });
+            string description = longRangeAttack4_Level == 0 ? "나선형으로 회전하며\n공격합니다." :
+                                 longRangeAttack4_Level == 1 ? "투사체 개수 증가" :
+                                 longRangeAttack4_Level == 2 ? "투사체 개수 증가" :
+                                 longRangeAttack4_Level == 3 ? "투사체 개수 증가" :
+                                 longRangeAttack4_Level == 4 ? "투사체 개수 증가" :
+                                 longRangeAttack4_Level == 5 ? "쿨타임 0.25초 감소" :
+                                 longRangeAttack4_Level == 6 ? "쿨타임 0.25초 감소" :
+                                 longRangeAttack4_Level == 7 ? "쿨타임 0.2초 감소" :
+                                 "강화된 헬리오스: 추가 효과";
+            options.Add(new LevelUpUI.UpgradeOption { name = "헬리오스", description = description, icon = null, isNew = longRangeAttack4_Level == 0 });
         }
         // 유효한 옵션에서 무작위로 최대 3개 선택
         List<UpgradeOption> selectedOptions = new List<UpgradeOption>();
@@ -385,49 +354,79 @@ public class GameManager : MonoBehaviour
         return selectedOptions.ToArray();
     }
 
+
     private void UpdateMeleeWeapon3Level()
     {
-        // Player 객체의 MeleeWeapon3 스크립트 참조
-        GameObject player = GameObject.FindWithTag("Player");
-        if (player != null)
-        {
-            MeleeWeapon3 meleeWeapon3 = player.GetComponent<MeleeWeapon3>();
-            if (meleeWeapon3 != null)
-            {
-                meleeWeapon3.currentLevel = meleeWeapon3_Level;  // 레벨 반영
-                meleeWeapon3.UpdateWeaponStats();  // 능력치 업데이트
-            }
-        }
+        MeleeWeapon3 meleeWeapon3 = player.GetComponent<MeleeWeapon3>();
+        meleeWeapon3.currentLevel = meleeWeapon3_Level;
+        meleeWeapon3.UpdateWeaponStats();
     }
 
     private void UpdateMeleeWeapon4Level()
     {
-        // Player 객체의 MeleeWeapon3 스크립트 참조
-        GameObject player = GameObject.FindWithTag("Player");
-        if (player != null)
+        MeleeWeapon4 meleeWeapon4 = player.GetComponent<MeleeWeapon4>();
+        meleeWeapon4.currentLevel = meleeWeapon4_Level;
+        meleeWeapon4.UpdateWeaponStats();
+    }
+
+    // 마법지팡이
+    private void UpdateLongRangeWeapon1Level()
+    {
+        LongRangeAttack1 longRangeAttack1 = player.GetComponent<LongRangeAttack1>();
+        longRangeAttack1.weaponLevel = longRangeAttack1_Level;
+        longRangeAttack1.CalculateFirePositions();
+        longRangeAttack1.UpdateAttackCooldown();
+    }
+
+    // 도끼
+    private void UpdateLongRangeWeapon2Level()
+    {
+        LongRangeAttack2 longRangeAttack2 = player.GetComponent<LongRangeAttack2>();
+        longRangeAttack2.weaponLevel = longRangeAttack2_Level;
+        longRangeAttack2.UpdateWeaponStats();
+    }
+
+    // 단검
+    private void UpdateLongRangeWeapon3Level()
+    {
+        LongRangeAttack3 longRangeAttack3 = arrowPoint.GetComponent<LongRangeAttack3>();
+        longRangeAttack3.Level = longRangeAttack3_Level;  // 레벨 반영
+        longRangeAttack3.UpdateStatsByLevel();  // 능력치 업데이트
+    }
+
+    #region 무기 변경
+    // WeaponChange 메서드
+    public void WeaponChange()
+    {
+        isMelee = !isMelee;  // 원거리/근거리 상태 전환
+
+        // 상태에 맞는 무기들 활성화/비활성화
+        if (isMelee)
         {
-            MeleeWeapon4 meleeWeapon4 = player.GetComponent<MeleeWeapon4>();
-            if (meleeWeapon4 != null)
-            {
-                meleeWeapon4.currentLevel = meleeWeapon4_Level;  // 레벨 반영
-                meleeWeapon4.UpdateWeaponStats();  // 능력치 업데이트
-            }
+            ActivateLongRangeWeapons(false);  // 원거리 무기 비활성화
+            ActivateMeleeWeapons(true);  // 근거리 무기 활성화
+        }
+        else
+        {
+            ActivateLongRangeWeapons(true);  // 원거리 무기 활성화
+            ActivateMeleeWeapons(false);  // 근거리 무기 비활성화
         }
     }
 
-    private void UpdateLongRangeWeapon3Level()
+    // 원거리 무기 활성화/비활성화
+    private void ActivateLongRangeWeapons(bool isActive)
     {
-        GameObject player = GameObject.FindWithTag("Player");
-        if (player != null)
-        {
-            LongRangeAttack3 longRangeAttack3 = player.GetComponent<LongRangeAttack3>();
-            if (longRangeAttack3 != null)
-            {
-                longRangeAttack3.Level = meleeWeapon3_Level;  // 레벨 반영
-                longRangeAttack3.UpdateStatsByLevel();  // 능력치 업데이트
-            }
-        }
+        LongRangeAttack1Script.enabled = isActive && longRangeAttack1_Level > 0;
+        LongRangeAttack2Script.enabled = isActive && longRangeAttack2_Level > 0;
     }
+
+    // 근거리 무기 활성화/비활성화
+    private void ActivateMeleeWeapons(bool isActive)
+    {
+        MeleeWeapon3Script.enabled = isActive && meleeWeapon3_Level > 0;
+        MeleeWeapon4Script.enabled = isActive && meleeWeapon4_Level > 0;
+    }
+    #endregion
     #endregion
     #region Pause
     [SerializeField] private int pauseCounter = 0;
@@ -486,5 +485,8 @@ public class GameManager : MonoBehaviour
         MeleeWeapon4Script = GameObject.FindWithTag("Player").GetComponent<MeleeWeapon4>();
         // 무기 상태에 맞게 PlayerAttack 스크립트 활성화/비활성화
         UpdateWeaponStatus();
+        // 원거리 무기만 활성화
+        ActivateLongRangeWeapons(true);
+        ActivateMeleeWeapons(false);
     }
 }
