@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class TutoPuppet : BaseEnemy
+public class TutoPuppet : BoseEnemy
 {
     public float speed;
     public Rigidbody2D player;
@@ -11,6 +12,7 @@ public class TutoPuppet : BaseEnemy
     public float damageInterval = 1f; // 데미지 간격
     private float nextDamageTime; // 다음 데미지 시간을 추적
     public GameObject potal;
+    [SerializeField] private Slider healthSlider; // 체력 슬라이더
 
     bool isLive = true;
 
@@ -21,6 +23,8 @@ public class TutoPuppet : BaseEnemy
         base.Awake();
         enemy = GetComponent<Rigidbody2D>();
         damageMultiplier = 1.0f;
+        healthSlider.maxValue = maxHealth; // 슬라이더 최대값 설정
+        healthSlider.value = currentHealth; // 초기 슬라이더 값 설정
     }
 
     private void FixedUpdate()
@@ -64,8 +68,21 @@ public class TutoPuppet : BaseEnemy
     protected override void Die()
     {
         potal.SetActive(true);
-        
+        healthSlider.gameObject.SetActive(false);
+
         base.Die();  // BaseEnemy의 Die()를 호출하여 경험치를 추가
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        UpdateHealth();
+    }
+
+    public void UpdateHealth()
+    {
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // 현재 체력 제한
+        healthSlider.value = currentHealth; // 슬라이더 업데이트
     }
 }
 

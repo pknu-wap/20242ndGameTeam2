@@ -11,6 +11,16 @@ public class TutoWeponGet : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Player"))
         {
+            if (gameObject.name == "GetWhip")
+            {
+                GameManager.Instance.meleeWeapon1_Level++;
+            }
+
+            if (gameObject.name == "GetKnife")
+            {
+                GameManager.Instance.longRangeAttack3_Level++;
+            }
+
             GetWepon.SetActive(true);
             WeaponGetParticles.Play();
             Destroy(gameObject);

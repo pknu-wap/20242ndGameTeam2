@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Stage0_Boss_Addanimation : BoseEnemy
 {
@@ -18,11 +19,14 @@ public class Stage0_Boss_Addanimation : BoseEnemy
     public Transform Player;
     public GameObject Icicle; //얼음 프리팹
 
+    [SerializeField] private Slider healthSlider; // 체력 슬라이더
 
     bool isLive = true;
     bool isWaiting = false; // 대기 중인지 확인하는 변수
     bool isResurrect = false;
     bool isDie = false;
+
+
 
     Animator anim; // 애니메이터 변수
 
@@ -42,7 +46,10 @@ public class Stage0_Boss_Addanimation : BoseEnemy
         anim.SetBool("isRunAttack", false);
         anim.SetBool("isSkill1", false);
         anim.SetBool("isSkill2", false);
-        
+
+        healthSlider.maxValue = maxHealth; // 슬라이더 최대값 설정
+        healthSlider.value = currentHealth; // 초기 슬라이더 값 설정
+
 
     }
 
@@ -188,6 +195,13 @@ public class Stage0_Boss_Addanimation : BoseEnemy
         enemy.velocity = Vector2.zero;
     }
 
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        UpdateHealth();
+    }
+
+
     private IEnumerator Attack1()
     {
         isWaiting = true; // 대기 시작
@@ -315,7 +329,12 @@ public class Stage0_Boss_Addanimation : BoseEnemy
         base.Die();
     }
 
-
+    // 체력 업데이트 메서드
+    public void UpdateHealth()
+    {
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // 현재 체력 제한
+        healthSlider.value = currentHealth; // 슬라이더 업데이트
+    }
 
 
     private void TakeDamageToPlayer()
