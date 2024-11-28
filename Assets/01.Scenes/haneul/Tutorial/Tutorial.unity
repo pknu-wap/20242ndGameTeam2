@@ -22020,8 +22020,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c533053389eb043b0e271bfd693772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Panel: {fileID: 2006191427}
-  WeaponGet: {fileID: 265402168}
 --- !u!1 &481700650
 GameObject:
   m_ObjectHideFlags: 0
@@ -50736,20 +50734,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e20641b7881d514a97e204db9473aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabs:
-  - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
-  - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
-  - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
-  - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
-  - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
-  - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
-  - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
-  - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
-  - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
-  - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
-  spacing: 2
-  moveSpeed: 5
-  fireRate: 4
 --- !u!114 &1017089763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180218,20 +180202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e20641b7881d514a97e204db9473aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabs:
-  - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
-  - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
-  - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
-  - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
-  - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
-  - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
-  - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
-  - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
-  - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
-  - {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
-  spacing: 2
-  moveSpeed: 5
-  fireRate: 4
 --- !u!114 &2120063807
 MonoBehaviour:
   m_ObjectHideFlags: 0
