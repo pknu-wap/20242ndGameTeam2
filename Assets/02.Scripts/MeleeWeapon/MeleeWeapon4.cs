@@ -87,6 +87,15 @@ public class MeleeWeapon4 : MonoBehaviour // 마늘
         }
     }
 
+    void OnDisable()
+    {
+        // 프리팹이 존재할 경우 삭제
+        if (prefabInstance != null)
+        {
+            Destroy(prefabInstance);
+        }
+    }
+
     void Update()
     {
         // 모든 적들에 대해 쿨타임을 갱신하고, 쿨타임이 지난 적에게 다시 데미지를 주기

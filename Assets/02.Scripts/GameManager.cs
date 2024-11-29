@@ -110,11 +110,15 @@ public class GameManager : MonoBehaviour
     //무기 최대 레벨
     [SerializeField] public int maxWeaponLevel = 8;
 
-    private LongRangeAttack1 LongRangeAttack1Script;
-    private LongRangeAttack2 LongRangeAttack2Script;
-    private LongRangeAttack3 LongRangeAttack3Script;
-    private MeleeWeapon3 MeleeWeapon3Script;
-    private MeleeWeapon4 MeleeWeapon4Script;
+    [Header("Debug")]
+    [SerializeField] private LongRangeAttack1 LongRangeAttack1Script;
+    [SerializeField] private LongRangeAttack2 LongRangeAttack2Script;
+    [SerializeField] private LongRangeAttack3 LongRangeAttack3Script;
+    [SerializeField] private HelixAttack LongRangeAttack4Script;
+    [SerializeField] private MeleeWeapon_1 MeleeWeapon1Script;  //채찍
+    [SerializeField] private MeleeWeapon_2 MeleeWeapon2Script;  //대검
+    [SerializeField] private MeleeWeapon3 MeleeWeapon3Script;   //성경
+    [SerializeField] private MeleeWeapon4 MeleeWeapon4Script;   //마늘
 
     public void SelectWeapon(int weaponIndex)
     {
@@ -174,6 +178,8 @@ public class GameManager : MonoBehaviour
                 }
                 break;
         }
+
+        WeaponRenew();   // 무기 즉각 반영되게끔 초기화
         UpdateWeaponStatus();
     }
 
@@ -204,6 +210,19 @@ public class GameManager : MonoBehaviour
                 LongRangeAttack3Script.enabled = true;
 
         // 근접무기
+        if (meleeWeapon1_Level == 0)
+            if (MeleeWeapon1Script != null)
+                MeleeWeapon1Script.enabled = false;
+        else
+            if (MeleeWeapon1Script != null)
+                MeleeWeapon1Script.enabled = true;
+
+        if (meleeWeapon2_Level == 0)
+            if (MeleeWeapon2Script != null)
+                MeleeWeapon2Script.enabled = false;
+        else
+            if (MeleeWeapon2Script != null)
+                MeleeWeapon2Script.enabled = true;
 
         if (meleeWeapon3_Level == 0)
             if (MeleeWeapon3Script != null)
@@ -236,8 +255,9 @@ public class GameManager : MonoBehaviour
                                  meleeWeapon1_Level == 5 ? "강화된 근접무기1" :
                                  meleeWeapon1_Level == 6 ? "강화된 근접무기1" :
                                  meleeWeapon1_Level == 7 ? "강화된 근접무기1" :
-                                 "강화된 대검: 추가 효과";
-            options.Add(new LevelUpUI.UpgradeOption { name = "대검", description = description, icon = null, isNew = meleeWeapon1_Level == 0 });
+                                 "강화된 채찍: 추가 효과";
+            Sprite icon = Resources.Load<Sprite>("Icons/Whip"); // 아이콘 경로
+            options.Add(new LevelUpUI.UpgradeOption { name = "채찍", description = description, icon = icon, isNew = meleeWeapon1_Level == 0 });
         }
 
         // 근접 무기 2
@@ -251,8 +271,9 @@ public class GameManager : MonoBehaviour
                                  meleeWeapon2_Level == 5 ? "강화된 근접무기2" :
                                  meleeWeapon2_Level == 6 ? "강화된 근접무기2" :
                                  meleeWeapon2_Level == 7 ? "강화된 근접무기2" :
-                                 "강화된 채찍: 추가 효과";
-            options.Add(new LevelUpUI.UpgradeOption { name = "채찍", description = description, icon = null, isNew = meleeWeapon2_Level == 0 });
+                                 "강화된 대검: 추가 효과";
+            Sprite icon = Resources.Load<Sprite>("Icons/Sweep"); // 아이콘 경로
+            options.Add(new LevelUpUI.UpgradeOption { name = "대검", description = description, icon = icon, isNew = meleeWeapon2_Level == 0 });
         }
 
         // 근접 무기 3
@@ -267,7 +288,8 @@ public class GameManager : MonoBehaviour
                                  meleeWeapon3_Level == 6 ? "투사체 개수 증가\n지속 시간 0.5초 증가" :
                                  meleeWeapon3_Level == 7 ? "투사체 개수 증가" :
                                  "강화된 성경: 추가 효과";
-            options.Add(new LevelUpUI.UpgradeOption { name = "성경", description = description, icon = null, isNew = meleeWeapon3_Level == 0 });
+            Sprite icon = Resources.Load<Sprite>("Icons/Bible"); // 아이콘 경로
+            options.Add(new LevelUpUI.UpgradeOption { name = "성경", description = description, icon = icon, isNew = meleeWeapon3_Level == 0 });
         }
 
         // 근접 무기 4
@@ -282,7 +304,8 @@ public class GameManager : MonoBehaviour
                                  meleeWeapon4_Level == 6 ? "공격력 1 증가 \n공격 범위 1 증가" :
                                  meleeWeapon4_Level == 7 ? "공격력 1 증가 \n공격 범위 1 증가" :
                                  "강화된 마늘: 추가 효과";
-            options.Add(new LevelUpUI.UpgradeOption { name = "마늘", description = description, icon = null, isNew = meleeWeapon4_Level == 0 });
+            Sprite icon = Resources.Load<Sprite>("Icons/Garlic"); // 아이콘 경로
+            options.Add(new LevelUpUI.UpgradeOption { name = "마늘", description = description, icon = icon, isNew = meleeWeapon4_Level == 0 });
         }
 
         // 원거리 무기 1
@@ -297,7 +320,8 @@ public class GameManager : MonoBehaviour
                                  longRangeAttack1_Level == 6 ? "쿨타임 0.25초 감소" :
                                  longRangeAttack1_Level == 7 ? "쿨타임 0.2초 감소" :
                                  "강화된 조준경: 추가 효과";
-            options.Add(new LevelUpUI.UpgradeOption { name = "조준경", description = description, icon = null, isNew = longRangeAttack1_Level == 0 });
+            Sprite icon = Resources.Load<Sprite>("Icons/Scope"); // 아이콘 경로
+            options.Add(new LevelUpUI.UpgradeOption { name = "조준경", description = description, icon = icon, isNew = longRangeAttack1_Level == 0 });
         }
 
         // 원거리 무기 2
@@ -312,7 +336,8 @@ public class GameManager : MonoBehaviour
                                  longRangeAttack2_Level == 6 ? "투사체 개수 증가" :
                                  longRangeAttack2_Level == 7 ? "투사체 개수 증가" :
                                  "강화된 콩알탄: 추가 효과";
-            options.Add(new LevelUpUI.UpgradeOption { name = "콩알탄", description = description, icon = null, isNew = longRangeAttack2_Level == 0 });
+            Sprite icon = Resources.Load<Sprite>("Icons/BangSnaps"); // 아이콘 경로                    
+            options.Add(new LevelUpUI.UpgradeOption { name = "콩알탄", description = description, icon = icon, isNew = longRangeAttack2_Level == 0 });
         }
 
         // 원거리 무기 3
@@ -327,7 +352,8 @@ public class GameManager : MonoBehaviour
                                  longRangeAttack3_Level == 6 ? "투사체 개수 증가\n공격력 5 증가" :
                                  longRangeAttack3_Level == 7 ? "관통 수 증가\n쿨타임 0.02초 감소" :
                                  "강화된 단검: 추가 효과";
-            options.Add(new LevelUpUI.UpgradeOption { name = "단검", description = description, icon = null, isNew = longRangeAttack3_Level == 0 });
+            Sprite icon = Resources.Load<Sprite>("Icons/knife"); // 아이콘 경로                      
+            options.Add(new LevelUpUI.UpgradeOption { name = "단검", description = description, icon = icon, isNew = longRangeAttack3_Level == 0 });
         }
 
         if (longRangeAttack4_Level < maxWeaponLevel)
@@ -341,7 +367,8 @@ public class GameManager : MonoBehaviour
                                  longRangeAttack4_Level == 6 ? "쿨타임 0.25초 감소" :
                                  longRangeAttack4_Level == 7 ? "쿨타임 0.2초 감소" :
                                  "강화된 헬리오스: 추가 효과";
-            options.Add(new LevelUpUI.UpgradeOption { name = "헬리오스", description = description, icon = null, isNew = longRangeAttack4_Level == 0 });
+            Sprite icon = Resources.Load<Sprite>("Icons/Hellios"); // 아이콘 경로                                           
+            options.Add(new LevelUpUI.UpgradeOption { name = "헬리오스", description = description, icon = icon, isNew = longRangeAttack4_Level == 0 });
         }
         // 유효한 옵션에서 무작위로 최대 3개 선택
         List<UpgradeOption> selectedOptions = new List<UpgradeOption>();
@@ -404,20 +431,28 @@ public class GameManager : MonoBehaviour
     }
 
     #region 무기 변경
-    // WeaponChange 메서드
+
     public void WeaponChange()
     {
         isMelee = !isMelee;  // 원거리/근거리 상태 전환
+        WeaponRenew();
+    }
+
+    // WeaponChange 메서드
+    public void WeaponRenew()
+    {
+        ActivateLongRangeWeapons(true);  // 원거리 무기 활성화
+        ActivateMeleeWeapons(true);
 
         // 상태에 맞는 무기들 활성화/비활성화
         if (isMelee)
         {
             ActivateLongRangeWeapons(false);  // 원거리 무기 비활성화
-            ActivateMeleeWeapons(true);  // 근거리 무기 활성화
+            //ActivateMeleeWeapons(true);  // 근거리 무기 활성화
         }
         else
         {
-            ActivateLongRangeWeapons(true);  // 원거리 무기 활성화
+            //ActivateLongRangeWeapons(true);  // 원거리 무기 활성화
             ActivateMeleeWeapons(false);  // 근거리 무기 비활성화
         }
     }
@@ -427,14 +462,19 @@ public class GameManager : MonoBehaviour
     {
         LongRangeAttack1Script.enabled = isActive && longRangeAttack1_Level > 0;
         LongRangeAttack2Script.enabled = isActive && longRangeAttack2_Level > 0;
+        LongRangeAttack3Script.enabled = isActive && longRangeAttack3_Level > 0;
+        LongRangeAttack4Script.enabled = isActive && longRangeAttack4_Level > 0;
     }
 
     // 근거리 무기 활성화/비활성화
     private void ActivateMeleeWeapons(bool isActive)
     {
+        MeleeWeapon1Script.enabled = isActive && meleeWeapon1_Level > 0;
+        MeleeWeapon2Script.enabled = isActive && meleeWeapon2_Level > 0;
         MeleeWeapon3Script.enabled = isActive && meleeWeapon3_Level > 0;
         MeleeWeapon4Script.enabled = isActive && meleeWeapon4_Level > 0;
     }
+
     #endregion
     #endregion
     #region Pause
@@ -489,7 +529,11 @@ public class GameManager : MonoBehaviour
         // PlayerAttack 스크립트 찾기 (Player 객체에 부착되어 있다고 가정)
         LongRangeAttack1Script = GameObject.FindWithTag("Player").GetComponent<LongRangeAttack1>();
         LongRangeAttack2Script = GameObject.FindWithTag("Player").GetComponent<LongRangeAttack2>();
-        LongRangeAttack3Script = GameObject.FindWithTag("Player").GetComponent<LongRangeAttack3>();
+        LongRangeAttack3Script = GameObject.FindWithTag("Weapon1").GetComponent<LongRangeAttack3>();
+        LongRangeAttack4Script = GameObject.FindWithTag("Player").GetComponent<HelixAttack>();
+
+        MeleeWeapon1Script = GameObject.FindWithTag("Player").GetComponent<MeleeWeapon_1>();
+        MeleeWeapon2Script = GameObject.FindWithTag("Weapon").GetComponent<MeleeWeapon_2>();
         MeleeWeapon3Script = GameObject.FindWithTag("Player").GetComponent<MeleeWeapon3>();
         MeleeWeapon4Script = GameObject.FindWithTag("Player").GetComponent<MeleeWeapon4>();
         // 무기 상태에 맞게 PlayerAttack 스크립트 활성화/비활성화

@@ -34,15 +34,14 @@ public class MeleeWeapon_2 : MonoBehaviour
 
     void Start()
     {
-        // 붉은색 타이머 초기화
+        // 초기화 로직
         timerMaterial.SetFloat("_StartAngle", 0);
         timerMaterial.SetFloat("_FillAngle", 0);
 
-        // 파란색 부채꼴 생성 및 부모 설정
-        blueCone = Instantiate(coneEffectPrefab, transform.position, Quaternion.identity, transform); // 부모를 플레이어로 설정
+        blueCone = Instantiate(coneEffectPrefab, transform.position, Quaternion.identity, transform);
         UpdateBlueConeScale();
+        weaponLevel = GameManager.Instance.meleeWeapon2_Level;
     }
-
     void Update()
     {
         if (isSkillActive)
@@ -53,6 +52,7 @@ public class MeleeWeapon_2 : MonoBehaviour
 
         // 조이스틱 입력
         ProcessInputs();
+        weaponLevel = GameManager.Instance.meleeWeapon2_Level;
         MeleeLevel(weaponLevel);
 
         // 파란색 부채꼴 크기 업데이트
@@ -62,7 +62,7 @@ public class MeleeWeapon_2 : MonoBehaviour
         UpdateBlueCone();
 
         // 공격 쿨타임 확인 후 공격
-        if (Time.time >= lastAttackTime + attackCooldown)
+        if (Time.time >= lastAttackTime + attackCooldown && weaponLevel != 0)
         {
             lastAttackTime = Time.time;
             CastSkill();
@@ -191,40 +191,70 @@ public class MeleeWeapon_2 : MonoBehaviour
         swordObject.gameObject.SetActive(false);
     }
 
+    void OnDrawGizmos()
+{
+    Gizmos.color = Color.red;
+    Gizmos.DrawWireSphere(transform.position, skillRadius);
+}
+
     // 데미지 적용
     void ApplyDamage()
     {
-        Collider[] hitTargets = Physics.OverlapSphere(transform.position, skillRadius, enemyLayer);
+        // OverlapCircleAll을 사용하여 범위 내 적 감지
+        Collider2D[] hitTargets = Physics2D.OverlapCircleAll(transform.position, skillRadius, enemyLayer);
 
-        foreach (Collider target in hitTargets)
+        foreach (Collider2D target in hitTargets)
         {
-            Vector3 targetPosition = target.transform.position;
+
+            Vector2 targetPosition = target.transform.position;
 
             // 부채꼴 범위 내 적인지 확인
             if (IsWithinCone(transform.position, targetPosition, blueCone.transform.right, skillAngle, skillRadius))
             {
-                target.GetComponent<BaseEnemy>().TakeDamage(damage);
+                BaseEnemy enemy = target.GetComponent<BaseEnemy>();
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(damage);
+                }
             }
         }
     }
 
-    // 부채꼴 범위 내인지 확인
-    bool IsWithinCone(Vector3 origin, Vector3 target, Vector3 direction, float angle, float radius)
+
+    bool IsWithinCone(Vector2 origin, Vector2 target, Vector2 direction, float angle, float radius)
     {
-        Vector3 toTarget = target - origin;
+        Vector2 toTarget = target - origin;
+
+        // 1. 거리가 범위 내에 있는지 확인
         if (toTarget.magnitude > radius) return false;
 
-        float dot = Vector3.Dot(direction.normalized, toTarget.normalized);
+        // 2. 방향이 부채꼴 범위 내에 있는지 확인
+        float dot = Vector2.Dot(direction.normalized, toTarget.normalized);
         float theta = Mathf.Acos(dot) * Mathf.Rad2Deg;
 
-        return theta <= angle / 2;
+        return theta <= angle / 2; // 부채꼴 각도 범위 확인
     }
+
+    /*void OnDisable()
+    {
+        // 스크립트가 비활성화될 때, blueCone이 자식으로 존재하고 활성화된 경우에만 삭제
+        if (blueCone.transform.IsChildOf(transform) && blueCone.activeSelf)
+        {
+            Destroy(blueCone.gameObject); // 자식 오브젝트 삭제
+            blueCone = null; // 참조 제거
+        }
+    }*/
 
     private void MeleeLevel(int level)
     {
         // 무기 레벨에 따른 공격 범위 및 데미지 설정
         switch (level)
         {
+            case 0:
+                scaleXY = 0f;
+                scaleSwordXY = 0f;
+                damage = 0;
+                break;
             case 1:
                 scaleXY = 0.15f;
                 scaleSwordXY = 11.5f;

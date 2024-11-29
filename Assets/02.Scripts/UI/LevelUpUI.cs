@@ -6,90 +6,93 @@ using UnityEngine.UI;
 
 public class LevelUpUI : MonoBehaviour
 {
-    public GameObject levelUpPanel; // ·¹º§¾÷ UI ÆĞ³Î
-    public Button[] optionButtons; // 3°³ÀÇ ¹öÆ°
-    public TMP_Text[] nameTexts; // ¹«±â/À¯¹° ÀÌ¸§ ÅØ½ºÆ®
-    public TMP_Text[] infoTexts; // ¹«±â/À¯¹° Á¤º¸ ÅØ½ºÆ®
-    public TMP_Text[] newTexts; // ½Å±Ô ¿©ºÎ ÅØ½ºÆ®
-    public Image[] optionImages; // ¹«±â/À¯¹° ÀÌ¹ÌÁö
+    public GameObject levelUpPanel; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UI ï¿½Ğ³ï¿½
+    public Button[] optionButtons; // 3ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
+    public TMP_Text[] nameTexts; // ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½Ø½ï¿½Æ®
+    public TMP_Text[] infoTexts; // ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®
+    public TMP_Text[] newTexts; // ï¿½Å±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®
+    public Image[] optionImages; // ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½
     public GameManager gameManager;
 
     public void TriggerLevelUpUI(UpgradeOption[] options)
     {
-        // °ÔÀÓ Á¤Áö
+        // ê²Œì„ ë©ˆì¶”ê¸°
         GameManager.Instance.PauseGame();
 
-        // UI ÆĞ³Î È°¼ºÈ­
+        // UI í™œì„±í™”
         levelUpPanel.SetActive(true);
 
-        // À¯È¿ÇÑ ¿É¼Ç »ı¼º ¹× ·£´ı ¼±ÅÃ
-        UpgradeOption[] validOptions = GameManager.Instance.GetUpgradeOptions();
-
-        // UI ¾÷µ¥ÀÌÆ®
+        // UI ì—…ë°ì´íŠ¸
         for (int i = 0; i < optionButtons.Length; i++)
         {
-            if (i < validOptions.Length)
+            if (i < options.Length)
             {
-                // ¹«±â/À¯¹° Á¤º¸ ¾÷µ¥ÀÌÆ®
-                nameTexts[i].text = validOptions[i].name;
-                infoTexts[i].text = validOptions[i].description;
-                newTexts[i].text = validOptions[i].isNew ? "½Å±Ô" : ""; // ½Å±Ô ¿©ºÎ Ç¥½Ã
-                optionImages[i].sprite = validOptions[i].icon;
+                // ë¬´ê¸° ì´ë¦„ ë° ì„¤ëª… ì„¤ì •
+                nameTexts[i].text = options[i].name;
+                infoTexts[i].text = options[i].description;
+                newTexts[i].text = options[i].isNew ? "ì‹ ê·œ" : "";
 
-                // ¹öÆ° Å¬¸¯ ÀÌº¥Æ® Ãß°¡
-                int index = i; // ·ÎÄÃ º¯¼ö·Î Ä¸Ã³
-                optionButtons[i].onClick.RemoveAllListeners(); // ÀÌÀü ÀÌº¥Æ® Á¦°Å
-                optionButtons[i].onClick.AddListener(() => SelectOption(validOptions[index])); // ¿É¼Ç ¼±ÅÃ Ã³¸®
+                // ë¬´ê¸° ì•„ì´ì½˜ ì„¤ì •
+                optionImages[i].sprite = options[i].icon;
+                optionImages[i].gameObject.SetActive(true);
+
+                // ë²„íŠ¼ ì´ë²¤íŠ¸ ì„¤ì •
+                int index = i; // ë¡œì»¬ ë³€ìˆ˜ ì‚¬ìš©
+                optionButtons[i].onClick.RemoveAllListeners();
+                optionButtons[i].onClick.AddListener(() => SelectOption(options[index]));
+                optionButtons[i].gameObject.SetActive(true);
             }
             else
             {
-                // ³ª¸ÓÁö ¹öÆ°/ÅØ½ºÆ® ¼û±â±â
+                // ë¹„í™œì„±í™”
                 optionButtons[i].gameObject.SetActive(false);
+                optionImages[i].gameObject.SetActive(false);
             }
         }
     }
 
+
     public void SelectOption(UpgradeOption selectedOption)
     {
-        // ¼±ÅÃÇÑ ¹«±â/À¯¹° °­È­ ·ÎÁ÷ ½ÇÇà
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         UpgradeSelectedOption(selectedOption);
-        // UI ÆĞ³Î ºñÈ°¼ºÈ­
+        // UI ï¿½Ğ³ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
         CloseLevelUpUI();
     }
 
     private void UpgradeSelectedOption(UpgradeOption selectedOption)
     {
-        if (selectedOption.name == "´ë°Ë")
+        if (selectedOption.name == "ì±„ì°")
             GameManager.Instance.SelectWeapon(0);
-        else if (selectedOption.name == "Ã¤Âï")
+        else if (selectedOption.name == "ëŒ€ê²€")
             GameManager.Instance.SelectWeapon(1);
-        else if (selectedOption.name == "¼º°æ")
+        else if (selectedOption.name == "ì„±ê²½")
             GameManager.Instance.SelectWeapon(2);
-        else if (selectedOption.name == "¸¶´Ã")
+        else if (selectedOption.name == "ë§ˆëŠ˜")
             GameManager.Instance.SelectWeapon(3);
-        else if (selectedOption.name == "Á¶ÁØ°æ")
+        else if (selectedOption.name == "ì¡°ì¤€ê²½")
             GameManager.Instance.SelectWeapon(4);
-        else if (selectedOption.name == "Äá¾ËÅº")
+        else if (selectedOption.name == "ì½©ì•Œíƒ„")
             GameManager.Instance.SelectWeapon(5);
-        else if (selectedOption.name == "´Ü°Ë")
+        else if (selectedOption.name == "ë‹¨ê²€")
             GameManager.Instance.SelectWeapon(6);
-        else if (selectedOption.name == "Çï¸®¿À½º")
+        else if (selectedOption.name == "í—¬ë¦¬ì˜¤ìŠ¤")
             GameManager.Instance.SelectWeapon(7);
     }
 
     public void CloseLevelUpUI()
     {
         levelUpPanel.SetActive(false);
-        GameManager.Instance.ResumeGame(); // ÀÏ½ÃÁ¤Áö ÇØÁ¦
+        GameManager.Instance.ResumeGame(); // ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
-    // ¹«±â/À¯¹° ¿É¼Ç Å¬·¡½º
+    // ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½É¼ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
     [System.Serializable]
     public class UpgradeOption
     {
-        public string name; // ÀÌ¸§
-        public string description; // Á¤º¸
-        public Sprite icon; // ¾ÆÀÌÄÜ ÀÌ¹ÌÁö
-        public bool isNew; // ½Å±Ô ¿©ºÎ
+        public string name; // ï¿½Ì¸ï¿½
+        public string description; // ï¿½ï¿½ï¿½ï¿½
+        public Sprite icon; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½
+        public bool isNew; // ï¿½Å±ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 }
