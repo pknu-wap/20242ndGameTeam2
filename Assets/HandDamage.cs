@@ -8,10 +8,10 @@ public class HandDamage : MonoBehaviour
 
     void Awake()
     {
-        StartCoroutine(IcicleInstant());
+        StartCoroutine(HandDestroy());
     }
 
-    private IEnumerator IcicleInstant()
+    private IEnumerator HandDestroy()
     {
         yield return new WaitForSeconds(2.35f);
 
@@ -20,8 +20,9 @@ public class HandDamage : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // 플레이어와 충돌했을 때
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !GameManager.isInvincible)
         {
+
             hasCollided = true; // 충돌 처리 상태로 설정
         }
 
