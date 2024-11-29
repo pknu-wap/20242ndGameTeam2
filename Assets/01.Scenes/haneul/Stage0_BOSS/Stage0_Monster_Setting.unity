@@ -8272,7 +8272,7 @@ GameObject:
   - component: {fileID: 7091592003465250469}
   - component: {fileID: 7091592003465250470}
   m_Layer: 6
-  m_Name: Stage0_Monster2
+  m_Name: Stage0_Monster2_archer
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
