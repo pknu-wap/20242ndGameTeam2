@@ -43,8 +43,8 @@ public class Stage1_Boss_Addanimation : BoseEnemy
         anim.SetBool("isWalk", true);
         anim.SetBool("isAttack1", false);
         anim.SetBool("isAttack2", false);
-        //anim.SetBool("isRun", false);
-        //anim.SetBool("isRunAttack", false);
+        anim.SetBool("isRun", false);
+        anim.SetBool("isRunAttack", false);
         anim.SetBool("isSkill1", false);
         anim.SetBool("isSkill2", false);
 
@@ -90,7 +90,7 @@ public class Stage1_Boss_Addanimation : BoseEnemy
             {
                 if (AttackNum++ % 2 == 0)
                 {
-                    //anim.SetBool("isRun", true);
+                    anim.SetBool("isRun", true);
                     if (!isWaiting)
                     {
                         StartCoroutine(RunAttack());
@@ -98,7 +98,7 @@ public class Stage1_Boss_Addanimation : BoseEnemy
                 }
                 else
                 {
-                    //anim.SetBool("isSkill2", true);
+                    anim.SetBool("isSkill2", true);
                     if (!isWaiting)
                     {
                         StartCoroutine(Skill2());
@@ -107,7 +107,7 @@ public class Stage1_Boss_Addanimation : BoseEnemy
             }
             else
             {
-                //anim.SetBool("isRun", true);
+                anim.SetBool("isRun", true);
                 if (!isWaiting)
                 {
                     StartCoroutine(RunAttack());
@@ -250,8 +250,8 @@ public class Stage1_Boss_Addanimation : BoseEnemy
 
                 isWaiting = false; // 대기 종료
                 speed = 2.4f;
-                //anim.SetBool("isRunAttack", false); // 공격 중 상태 해제
-                //anim.SetBool("isRun", false); // 달리기 애니메이션 시작
+                anim.SetBool("isRunAttack", false); // 공격 중 상태 해제
+                anim.SetBool("isRun", false); // 달리기 애니메이션 시작
 
                 break; // 루프 종료
             }
@@ -342,11 +342,11 @@ public class Stage1_Boss_Addanimation : BoseEnemy
     {
         Debug.Log("성공");
         isWaiting = true; // 대기 시작
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
             Vector3 spawnposition = Player.position;
             GameObject instantHand = Instantiate(Hand, spawnposition, Quaternion.Euler(0, 0, 0));
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(1f);
         }
 
         nextDamageTime = Time.time + damageInterval;
