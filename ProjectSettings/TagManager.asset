@@ -9,6 +9,8 @@ TagManager:
   - Bullet
   - Weapon
   - Weapon1
+  - Boss1Trigger
+  - Boss2Trigger
   layers:
   - Default
   - TransparentFX
