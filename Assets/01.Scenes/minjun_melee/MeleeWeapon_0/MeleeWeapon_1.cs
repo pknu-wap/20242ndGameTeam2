@@ -42,7 +42,7 @@ public class MeleeWeapon_1 : MonoBehaviour  // 채찍
     {
         weaponLevel = GameManager.Instance.meleeWeapon1_Level;
         // 공격 쿨타임 체크 및 공격 트리거
-        if (Time.time >= lastAttackTime + attackCooldown/*&& GameManager.isMelee*/)
+        if (Time.time >= lastAttackTime + attackCooldown  && GameManager.isMelee)
         {
             lastAttackTime = Time.time;
             MeleeLevel(GameManager.Instance.meleeWeapon1_Level);
