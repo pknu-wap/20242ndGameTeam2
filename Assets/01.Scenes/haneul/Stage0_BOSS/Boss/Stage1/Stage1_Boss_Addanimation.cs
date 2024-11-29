@@ -19,6 +19,8 @@ public class Stage1_Boss_Addanimation : BoseEnemy
     public Transform Player;
     public GameObject Hand;
     public GameObject fireball;
+    public GameObject Bomb1;
+    public GameObject Bomb2;
 
     [SerializeField] private Slider healthSlider; // 체력 슬라이더
 
@@ -66,8 +68,8 @@ public class Stage1_Boss_Addanimation : BoseEnemy
         }
         if (currentHealth <= resurrectionHealth && Phase != 2 && !isResurrect)
         {
-            isInvincible = true;
             Phase = 2;
+            isInvincible = true;
             isResurrect = true;
             anim.SetTrigger("isResurrect");
             AttackNum = 3;
@@ -241,8 +243,8 @@ public class Stage1_Boss_Addanimation : BoseEnemy
             // 공격 애니메이션이 실행 중일 때
             if (distance <= stopDistance)
             {
-                //anim.SetBool("isRunAttack", true);
-                yield return new WaitForSeconds(0.3f); // 0.3초 대기 후
+                anim.SetBool("isRunAttack", true);
+                yield return new WaitForSeconds(0.55f); // 0.3초 대기 후
 
                 nextDamageTime = Time.time + damageInterval;
 
@@ -278,26 +280,67 @@ public class Stage1_Boss_Addanimation : BoseEnemy
     {
         isWaiting = true; // 대기 시작
 
-        yield return new WaitForSeconds(1.1f);
+        // 스킬 실행 대기
+        yield return new WaitForSeconds(0.9f);
 
+        // 플레이어와 몬스터 위치 교체
+        Vector3 playerPosition = Player.position;
+        Vector3 bossPosition = transform.position;
+
+        Player.position = bossPosition; // 플레이어를 보스 위치로 이동
+        transform.position = playerPosition; // 보스를 플레이어 위치로 이동
+
+        yield return new WaitForSeconds(0.5f); // 위치 교체 후 잠시 대기
+
+        // 폭탄 생성
+        int bombCount = 7; // 생성할 폭탄 개수
+        for (int i = 1; i <= bombCount; i++)
+        {
+            // 플레이어와 보스 사이 거리와 방향 계산
+            Vector3 currentPlayerPosition = Player.position;
+            Vector3 currentBossPosition = transform.position;
+
+            // 플레이어와 보스 사이 방향 계산
+            Vector3 direction = (currentPlayerPosition - currentBossPosition).normalized;
+
+            // 일정 비율로 나눈 위치 계산
+            float ratio = (float)i / (bombCount + 1); // 1/(5+1), 2/(5+1), ..., 5/(5+1)로 비율 생성
+            Vector3 spawnPosition = currentBossPosition + direction * Vector3.Distance(currentBossPosition, currentPlayerPosition) * ratio;
+
+            // 폭탄 랜덤 선택 (Bomb1 또는 Bomb2)
+            GameObject selectedBomb = Random.value > 0.5f ? Bomb1 : Bomb2;
+
+            // 폭탄 생성
+            Instantiate(selectedBomb, spawnPosition, Quaternion.identity);
+
+            yield return new WaitForSeconds(0.5f); // 폭탄 생성 간격 대기
+        }
+
+        // 스킬 종료 처리
         nextDamageTime = Time.time + damageInterval;
-
-        //anim.SetBool("isSkill2", false); // 공격 애니메이션 종료
-
+        anim.SetBool("isSkill2", false); // 스킬 애니메이션 종료
         isWaiting = false; // 대기 종료
-        StartCoroutine(HandInstant());
     }
+
+
 
 
     private IEnumerator Resurrect()
     {
         isWaiting = true; // 대기 시작
 
-        yield return new WaitForSeconds(3.8f);
+        yield return new WaitForSeconds(4.5f);
 
         nextDamageTime = Time.time + damageInterval;
 
-        anim.SetTrigger("isResurrectFinish");
+        anim.SetTrigger("isReSurrectFinish");
+        anim.SetBool("isWalk", true);
+        anim.SetBool("isAttack1", false);
+        anim.SetBool("isAttack2", false);
+        anim.SetBool("isRun", false);
+        anim.SetBool("isRunAttack", false);
+        anim.SetBool("isSkill1", false);
+        anim.SetBool("isSkill2", false);
         isResurrect = false;
         isWaiting = false; // 대기 종료
         isInvincible = false;
@@ -400,6 +443,15 @@ public class Stage1_Boss_Addanimation : BoseEnemy
                 }
             }
             else if (anim.GetBool("isAttack2") && S0_Boss_Attack2Range.isAttackSusses2)
+            {
+                if (GameManager.Instance != null)
+                {
+
+                    GameManager.Instance.TakeDamageToPlayer(damageAmount, "근접 공격");
+
+                }
+            }
+            else if (anim.GetBool("isRunAttack") && S0_Boss_Attack2Range.isAttackSusses2)
             {
                 if (GameManager.Instance != null)
                 {

@@ -296,6 +296,13 @@ public class Stage0_Boss_Addanimation : BoseEnemy
         nextDamageTime = Time.time + damageInterval;
 
         anim.SetTrigger("isResurrectFinish");
+        anim.SetBool("isWalk", true);
+        anim.SetBool("isAttack1", false);
+        anim.SetBool("isAttack2", false);
+        anim.SetBool("isRun", false);
+        anim.SetBool("isRunAttack", false);
+        anim.SetBool("isSkill1", false);
+        anim.SetBool("isSkill2", false);
         isResurrect = false;
         isWaiting = false; // 대기 종료
         isInvincible = false;

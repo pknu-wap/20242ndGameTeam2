@@ -273,7 +273,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &33162569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -821,7 +821,7 @@ RectTransform:
   m_Father: {fileID: 197945207}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2437,7 +2437,7 @@ RectTransform:
   m_Father: {fileID: 1976231834}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3426,7 +3426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &963117049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6219,7 +6219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!70 &1626579211
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -6323,7 +6323,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1188331255, guid: 45cc9118bb2e1054db55ee3286fb2c49, type: 3}
+  m_Sprite: {fileID: 248430721, guid: 45cc9118bb2e1054db55ee3286fb2c49, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6343,7 +6343,7 @@ Transform:
   m_GameObject: {fileID: 1626579208}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.91, y: 0.3, z: -1}
+  m_LocalPosition: {x: -6.16, y: 0.3, z: -1}
   m_LocalScale: {x: 11, y: 11, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6358,7 +6358,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1626579208}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85daaccb258772e4aa4dfab2d892be97, type: 3}
   m_Name: 
@@ -6580,7 +6580,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1739131302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6610,6 +6610,8 @@ MonoBehaviour:
   Player: {fileID: 1069843842}
   Hand: {fileID: 4363478359323301277, guid: 020c74322aa676b4ca91be65ab0ad75e, type: 3}
   fireball: {fileID: 330352582357284747, guid: f4c138bd142fa614f9f6cd31d1b37f28, type: 3}
+  Bomb1: {fileID: 6776790596367965441, guid: 88b5ddcb23f7019478cc756d55333727, type: 3}
+  Bomb2: {fileID: 5469250356317883762, guid: 149be13c9c620f946b384748c7cf89a0, type: 3}
   healthSlider: {fileID: 495376715}
 --- !u!70 &1739131303
 CapsuleCollider2D:
@@ -6713,7 +6715,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -750047184722822154, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6734,7 +6736,7 @@ Transform:
   m_GameObject: {fileID: 1739131300}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.3, z: -1}
+  m_LocalPosition: {x: 0, y: -4.52, z: -1}
   m_LocalScale: {x: 11, y: 11, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

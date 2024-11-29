@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Stage0_Boss_RunAttack
+  m_Name: Bomb1_idle
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,19 +21,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -643843233168925960, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
-    - time: 0.083333336
-      value: {fileID: -1554090680192844270, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
-    - time: 0.16666667
-      value: {fileID: 8385784872082410219, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
+      value: {fileID: -205306569, guid: 4399270ace755dc46b2df1904fb723ee, type: 3}
     - time: 0.25
-      value: {fileID: 2090659836945643480, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
-    - time: 0.33333334
-      value: {fileID: 751812126289047221, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
-    - time: 0.41666666
-      value: {fileID: -6766038691376649458, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
+      value: {fileID: 914195532, guid: 4399270ace755dc46b2df1904fb723ee, type: 3}
     - time: 0.5
-      value: {fileID: 3976960032240018065, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
+      value: {fileID: 900649506, guid: 4399270ace755dc46b2df1904fb723ee, type: 3}
+    - time: 0.75
+      value: {fileID: 900649506, guid: 4399270ace755dc46b2df1904fb723ee, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -56,19 +50,16 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -643843233168925960, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
-    - {fileID: -1554090680192844270, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
-    - {fileID: 8385784872082410219, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
-    - {fileID: 2090659836945643480, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
-    - {fileID: 751812126289047221, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
-    - {fileID: -6766038691376649458, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
-    - {fileID: 3976960032240018065, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
+    - {fileID: -205306569, guid: 4399270ace755dc46b2df1904fb723ee, type: 3}
+    - {fileID: 914195532, guid: 4399270ace755dc46b2df1904fb723ee, type: 3}
+    - {fileID: 900649506, guid: 4399270ace755dc46b2df1904fb723ee, type: 3}
+    - {fileID: 900649506, guid: 4399270ace755dc46b2df1904fb723ee, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5833333
+    m_StopTime: 0.8333333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -87,11 +78,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0.41666666
-    functionName: TakeDamageToPlayer
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []
