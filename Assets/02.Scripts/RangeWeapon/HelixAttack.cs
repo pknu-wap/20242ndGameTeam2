@@ -25,6 +25,7 @@ public class HelixAttack : MonoBehaviour
     {
         while (isFiring)
         {
+            weaponLevel = GameManager.Instance.longRangeAttack4_Level;
             FireBullets(); // 레벨에 따라 총알 발사
             yield return new WaitForSeconds(fireRate);
         }

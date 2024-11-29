@@ -63365,6 +63365,14 @@ MonoBehaviour:
   longRangeAttack3_Level: 0
   longRangeAttack4_Level: 0
   maxWeaponLevel: 8
+  LongRangeAttack1Script: {fileID: 0}
+  LongRangeAttack2Script: {fileID: 0}
+  LongRangeAttack3Script: {fileID: 0}
+  LongRangeAttack4Script: {fileID: 0}
+  MeleeWeapon1Script: {fileID: 0}
+  MeleeWeapon2Script: {fileID: 0}
+  MeleeWeapon3Script: {fileID: 0}
+  MeleeWeapon4Script: {fileID: 0}
   pauseCounter: 0
 --- !u!4 &1429616673
 Transform:
