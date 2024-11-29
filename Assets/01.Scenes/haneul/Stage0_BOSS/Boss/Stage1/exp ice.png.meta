@@ -1,0 +1,591 @@
+fileFormatVersion: 2
+guid: 912c4804f0d06f847928c9259acfe329
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: exp ice_0
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 0
+        width: 25
+        height: 28
+      alignment: 9
+      pivot: {x: 0.49999902, y: 0.4584125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49af5822a7348714799bd69fb20658c6
+      internalID: -1900776682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exp ice_1
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 0
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb5c66028bc6c514c8bef73146ff6fa7
+      internalID: -1441504061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exp ice_2
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 0
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4da37982c58eb2b4eb6e015afc6d795e
+      internalID: 131249793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exp ice_3
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 0
+        width: 27
+        height: 26
+      alignment: 9
+      pivot: {x: 0.50479126, y: 0.49004757}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9afc8e6c9fc531646b0494165e2053bd
+      internalID: -580920793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exp ice_4
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 0
+        width: 28
+        height: 27
+      alignment: 9
+      pivot: {x: 0.51848274, y: 0.48083204}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ae980f3df30d144b9d3b945e17364d2
+      internalID: 1900718500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exp ice_6
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 0
+        width: 28
+        height: 28
+      alignment: 9
+      pivot: {x: 0.51848274, y: 0.42606655}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a00561840d0d2e04ba649c1c0a993ea7
+      internalID: 1449338285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exp ice_7
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 0
+        width: 28
+        height: 28
+      alignment: 9
+      pivot: {x: 0.5138626, y: 0.4491708}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 149a38e5799e9fe46b20eb92c46206ef
+      internalID: 606706328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exp ice_8
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 0
+        width: 28
+        height: 28
+      alignment: 9
+      pivot: {x: 0.5138637, y: 0.43530822}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3db3dd95562cfa418ccde33b6f4f438
+      internalID: 1429711058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exp ice_9
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 0
+        width: 28
+        height: 28
+      alignment: 9
+      pivot: {x: 0.5, y: 0.42144567}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b12e3d42445e7fd41ba3ea35ea945082
+      internalID: 1310371000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exp ice_10
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 0
+        width: 28
+        height: 28
+      alignment: 9
+      pivot: {x: 0.5, y: 0.42144567}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 253904ddca6230c429544d7d9b8c1cc5
+      internalID: -1309169643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exp ice_11
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 0
+        width: 28
+        height: 28
+      alignment: 9
+      pivot: {x: 0.5092425, y: 0.43530822}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60b8cb7aad55cd745b23e487e42bede3
+      internalID: -689658445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exp ice_12
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 0
+        width: 28
+        height: 28
+      alignment: 9
+      pivot: {x: 0.5277252, y: 0.39834142}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c501e987c2ffd345b9faa1d090aab05
+      internalID: -1409497970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exp ice_13
+      rect:
+        serializedVersion: 2
+        x: 761
+        y: 0
+        width: 28
+        height: 28
+      alignment: 9
+      pivot: {x: 0.5092425, y: 0.39372057}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75849020bad997b4ab6eb4598223c8bb
+      internalID: -1662853734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exp ice_14
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 0
+        width: 37
+        height: 49
+      alignment: 9
+      pivot: {x: 0.6258875, y: 0.22274882}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1b58a502800fc34f8e882917b7ba71a
+      internalID: 1550956872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exp ice_29
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 633b0fbb461a572409b7f47216e0e5b2
+      internalID: -1062545925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exp ice_30
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 0
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a147d334477be30428faca813205a165
+      internalID: 1176507743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exp ice_5
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 0
+        width: 46
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5168762, y: 0.22829391}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5dc0daf1830ffd468642c97e64955a1
+      internalID: 1916465902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exp ice_15
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 0
+        width: 55
+        height: 50
+      alignment: 9
+      pivot: {x: 0.53528607, y: 0.24640766}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0e127900715b90468320ef3c835652a
+      internalID: 1172661092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exp ice_16
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 0
+        width: 51
+        height: 50
+      alignment: 9
+      pivot: {x: 0.5152217, y: 0.2671091}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c60bafbfa48c0cb48b27348d1fb5b7c9
+      internalID: 1905694399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: exp ice_17
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 0
+        width: 35
+        height: 30
+      alignment: 9
+      pivot: {x: 0.4926069, y: 0.39649308}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 831c386759a08f24abcfb3f2292be1d9
+      internalID: 716916133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      exp ice_0: -1900776682
+      exp ice_1: -1441504061
+      exp ice_10: -1309169643
+      exp ice_11: -689658445
+      exp ice_12: -1409497970
+      exp ice_13: -1662853734
+      exp ice_14: 1550956872
+      exp ice_15: 1172661092
+      exp ice_16: 1905694399
+      exp ice_17: 716916133
+      exp ice_18: -1672872908
+      exp ice_19: -348070870
+      exp ice_2: 131249793
+      exp ice_20: 755799250
+      exp ice_21: 493854905
+      exp ice_22: 216608686
+      exp ice_23: -1992631010
+      exp ice_24: 1975883201
+      exp ice_25: 401778824
+      exp ice_26: -631093101
+      exp ice_27: 906835095
+      exp ice_28: 624215626
+      exp ice_29: -1062545925
+      exp ice_3: -580920793
+      exp ice_30: 1176507743
+      exp ice_31: -2019144085
+      exp ice_32: -342308
+      exp ice_33: 396284410
+      exp ice_34: 293425895
+      exp ice_35: -62981975
+      exp ice_36: -911443390
+      exp ice_37: 731473325
+      exp ice_38: 2049043799
+      exp ice_39: -1369245280
+      exp ice_4: 1900718500
+      exp ice_40: 253162701
+      exp ice_41: 53580898
+      exp ice_42: 111925625
+      exp ice_43: 1900848567
+      exp ice_5: 1916465902
+      exp ice_6: 1449338285
+      exp ice_7: 606706328
+      exp ice_8: 1429711058
+      exp ice_9: 1310371000
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
