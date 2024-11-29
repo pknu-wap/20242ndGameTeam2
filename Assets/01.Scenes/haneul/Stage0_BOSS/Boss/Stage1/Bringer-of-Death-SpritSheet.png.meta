@@ -532,8 +532,8 @@ TextureImporter:
         y: 0
         width: 43
         height: 61
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.53037775, y: 0.7869551}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -574,8 +574,8 @@ TextureImporter:
         y: 0
         width: 52
         height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5200958, y: 0.74901116}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1180,11 +1180,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1052
-        y: 272
+        y: 280
         width: 54
-        height: 60
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 52
+      alignment: 9
+      pivot: {x: 0.55154985, y: 0.4618818}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1204,8 +1204,8 @@ TextureImporter:
         y: 187
         width: 49
         height: 92
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.48503643, y: 0.39638868}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1225,8 +1225,8 @@ TextureImporter:
         y: 187
         width: 51
         height: 92
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.52875596, y: 0.3645081}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1247,7 +1247,7 @@ TextureImporter:
         width: 57
         height: 105
       alignment: 9
-      pivot: {x: 0.68164814, y: 0.36254418}
+      pivot: {x: 0.5958884, y: 0.30434963}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1344,36 +1344,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bringer-of-Death-SpritSheet_95
-      rect:
-        serializedVersion: 2
-        x: 634
-        y: 216
-        width: 4
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f85c37988857c994fa66b00752e939f2
-      internalID: -1666399675
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Bringer-of-Death-SpritSheet_96
       rect:
         serializedVersion: 2
-        x: 1065
+        x: 1046
         y: 187
-        width: 40
-        height: 65
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 59
+        height: 92
+      alignment: 9
+      pivot: {x: 0.59113896, y: 0.33262768}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1498,8 +1477,8 @@ TextureImporter:
         y: 115
         width: 31
         height: 36
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.49999803, y: 0.6959432}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1519,8 +1498,8 @@ TextureImporter:
         y: 98
         width: 31
         height: 53
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.55056465, y: 0.7661867}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1540,8 +1519,8 @@ TextureImporter:
         y: 94
         width: 31
         height: 57
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.520244, y: 0.84125185}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1561,8 +1540,8 @@ TextureImporter:
         y: 1
         width: 33
         height: 57
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.52375054, y: 0.793342}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1582,8 +1561,8 @@ TextureImporter:
         y: 1
         width: 34
         height: 57
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.51536787, y: 0.80709237}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1603,8 +1582,8 @@ TextureImporter:
         y: 1
         width: 35
         height: 55
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5223929, y: 0.8277585}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

@@ -24,4 +24,8 @@ public class Enemy_MeleeAttack_Judgment : MonoBehaviour
             }
         }
     }
+    public void dsds()
+    {
+        //ds
+    }
 }

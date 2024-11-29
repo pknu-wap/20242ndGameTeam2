@@ -17,7 +17,8 @@ public class Stage1_Boss_Addanimation : BoseEnemy
     public float distance;
     public int Phase = 1;
     public Transform Player;
-    public GameObject Icicle; //얼음 프리팹
+    public GameObject Hand;
+    public GameObject fireball;
 
     [SerializeField] private Slider healthSlider; // 체력 슬라이더
 
@@ -42,8 +43,8 @@ public class Stage1_Boss_Addanimation : BoseEnemy
         anim.SetBool("isWalk", true);
         anim.SetBool("isAttack1", false);
         anim.SetBool("isAttack2", false);
-        anim.SetBool("isRun", false);
-        anim.SetBool("isRunAttack", false);
+        //anim.SetBool("isRun", false);
+        //anim.SetBool("isRunAttack", false);
         anim.SetBool("isSkill1", false);
         anim.SetBool("isSkill2", false);
 
@@ -89,7 +90,7 @@ public class Stage1_Boss_Addanimation : BoseEnemy
             {
                 if (AttackNum++ % 2 == 0)
                 {
-                    anim.SetBool("isRun", true);
+                    //anim.SetBool("isRun", true);
                     if (!isWaiting)
                     {
                         StartCoroutine(RunAttack());
@@ -97,7 +98,7 @@ public class Stage1_Boss_Addanimation : BoseEnemy
                 }
                 else
                 {
-                    anim.SetBool("isSkill2", true);
+                    //anim.SetBool("isSkill2", true);
                     if (!isWaiting)
                     {
                         StartCoroutine(Skill2());
@@ -106,7 +107,7 @@ public class Stage1_Boss_Addanimation : BoseEnemy
             }
             else
             {
-                anim.SetBool("isRun", true);
+                //anim.SetBool("isRun", true);
                 if (!isWaiting)
                 {
                     StartCoroutine(RunAttack());
@@ -240,7 +241,7 @@ public class Stage1_Boss_Addanimation : BoseEnemy
             // 공격 애니메이션이 실행 중일 때
             if (distance <= stopDistance)
             {
-                anim.SetBool("isRunAttack", true);
+                //anim.SetBool("isRunAttack", true);
                 yield return new WaitForSeconds(0.3f); // 0.3초 대기 후
 
                 nextDamageTime = Time.time + damageInterval;
@@ -249,8 +250,8 @@ public class Stage1_Boss_Addanimation : BoseEnemy
 
                 isWaiting = false; // 대기 종료
                 speed = 2.4f;
-                anim.SetBool("isRunAttack", false); // 공격 중 상태 해제
-                anim.SetBool("isRun", false); // 달리기 애니메이션 시작
+                //anim.SetBool("isRunAttack", false); // 공격 중 상태 해제
+                //anim.SetBool("isRun", false); // 달리기 애니메이션 시작
 
                 break; // 루프 종료
             }
@@ -263,7 +264,7 @@ public class Stage1_Boss_Addanimation : BoseEnemy
     {
         isWaiting = true; // 대기 시작
 
-        yield return new WaitForSeconds(1.1f);
+        yield return new WaitForSeconds(1.5f);
 
         nextDamageTime = Time.time + damageInterval;
 
@@ -281,10 +282,10 @@ public class Stage1_Boss_Addanimation : BoseEnemy
 
         nextDamageTime = Time.time + damageInterval;
 
-        anim.SetBool("isSkill2", false); // 공격 애니메이션 종료
+        //anim.SetBool("isSkill2", false); // 공격 애니메이션 종료
 
         isWaiting = false; // 대기 종료
-        StartCoroutine(IcicleRangeInstant());
+        StartCoroutine(HandInstant());
     }
 
 
@@ -300,17 +301,52 @@ public class Stage1_Boss_Addanimation : BoseEnemy
         isResurrect = false;
         isWaiting = false; // 대기 종료
         isInvincible = false;
+
+        FireballShoot();
     }
 
-    private IEnumerator IcicleRangeInstant()
+    private void FireballShoot()
+    {
+        int numberOfFireballs = 18; // 발사할 파이어볼 개수
+        float angleStep = 360f / numberOfFireballs; // 각도 간격
+        float currentAngle = 0f;
+
+        for (int i = 0; i < numberOfFireballs; i++)
+        {
+            // 각도 계산
+            float fireballDirX = Mathf.Cos(currentAngle * Mathf.Deg2Rad);
+            float fireballDirY = Mathf.Sin(currentAngle * Mathf.Deg2Rad);
+
+            Vector2 fireballDirection = new Vector2(fireballDirX, fireballDirY).normalized;
+
+            // 파이어볼 생성 (기본 방향 보정 포함)
+            Quaternion fireballRotation = Quaternion.Euler(0f, 0f, currentAngle - 180f); // 기본 방향 보정을 위해 -90도 추가
+            GameObject fireballInstance = Instantiate(fireball, transform.position, fireballRotation);
+
+            // 파이어볼에 힘을 가해 날리기
+            Rigidbody2D fireballRb = fireballInstance.GetComponent<Rigidbody2D>();
+            if (fireballRb != null)
+            {
+                float fireballSpeed = 5f; // 파이어볼 속도 설정
+                fireballRb.velocity = fireballDirection * fireballSpeed;
+            }
+
+            // 다음 각도로 업데이트
+            currentAngle += angleStep;
+        }
+    }
+
+
+
+    private IEnumerator HandInstant()
     {
         Debug.Log("성공");
         isWaiting = true; // 대기 시작
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 3; i++)
         {
             Vector3 spawnposition = Player.position;
-            GameObject instantIcicle = Instantiate(Icicle, spawnposition, Quaternion.Euler(0, 0, 90));
-            yield return new WaitForSeconds(1f);
+            GameObject instantHand = Instantiate(Hand, spawnposition, Quaternion.Euler(0, 0, 0));
+            yield return new WaitForSeconds(0.3f);
         }
 
         nextDamageTime = Time.time + damageInterval;
@@ -354,7 +390,16 @@ public class Stage1_Boss_Addanimation : BoseEnemy
         }
         else
         {
-            if (Enemy_MeleeAttack_Judgment.isAttackSusses)
+            if (anim.GetBool("isAttack1") && S0_Boss_Attack1Range.isAttackSusses1)
+            {
+                if (GameManager.Instance != null)
+                {
+
+                    GameManager.Instance.TakeDamageToPlayer(damageAmount, "근접 공격");
+
+                }
+            }
+            else if (anim.GetBool("isAttack2") && S0_Boss_Attack2Range.isAttackSusses2)
             {
                 if (GameManager.Instance != null)
                 {

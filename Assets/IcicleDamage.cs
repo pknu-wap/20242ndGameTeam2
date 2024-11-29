@@ -18,7 +18,7 @@ public class IcicleDamage : BaseEnemy
     private void OnTriggerEnter2D(Collider2D other)
     {
         // 플레이어와 충돌했을 때
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !GameManager.isInvincible)
         {
             hasCollided = true; // 충돌 처리 상태로 설정
         }
